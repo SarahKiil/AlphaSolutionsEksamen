@@ -32,6 +32,10 @@ public Subproject showSubproject(Project project, String name) {
     return rp.showSubproject(project, name);
 }
 
+public Task showTask(Subproject subproject, String name){
+    return rp.showTask(subproject, name);
+}
+
 public void createTask (Project project, Subproject subproject, Task task) {
     rp.createTask(project, subproject, task);
 }
@@ -43,7 +47,7 @@ public void createSubproject (Project project, Subproject subproject) {
 public void updateProject(String name, Project project){
     rp.updateProject(name, project);
 }
-public void updateSubject(String subprojectName, Project project, Subproject subproject){
+public void updateSubproject(String subprojectName, Project project, Subproject subproject){
     rp.updateSubProject(subprojectName, project, subproject);
 }
     public void updateTask(Subproject subproject, Task task){

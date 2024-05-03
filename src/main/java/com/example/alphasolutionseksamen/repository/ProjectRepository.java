@@ -72,6 +72,16 @@ public class ProjectRepository {
         }
         return null;
     }
+
+    public Task showTask(Subproject subproject, String name) {
+        for (Task t : subproject.getTasks()) {
+            if (name.equalsIgnoreCase(t.getName())) {
+                return t;
+
+            }
+        }
+        return null;
+    }
     public void updateProject(String name, Project project) {
         for (Project p : projects) {
             if (p.getName().equals(name)){
@@ -95,7 +105,8 @@ public class ProjectRepository {
 
     public void updateTask(String taskname, Subproject subproject, Task task){
         for (Task t : subproject.getTasks()){
-            if (t.getName().equals(task.getName())){
+            if (t.getName().equals(taskname)){
+                t.setName(task.getName());
                 t.setDescription(task.getDescription());
                 t.setEstimatedHours(task.getEstimatedHours());
             }
