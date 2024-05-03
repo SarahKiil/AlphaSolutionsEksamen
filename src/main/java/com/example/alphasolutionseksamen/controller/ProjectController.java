@@ -97,4 +97,35 @@ public class ProjectController {
         model.addAttribute("subprojectname", subproject.getName());
         return "showtasks";
     }
+
+    @GetMapping("/{name}/edit")
+    public String updateProject(@PathVariable String name, Model model){
+        Project project = projectService.showProject(name);
+        model.addAttribute("project", project);
+        return "updateproject";
+    }
+
+    @PostMapping("/{name}/update")
+    public String updateProject(@PathVariable String name, Project project){
+        System.out.println(project.getName());
+        System.out.println(project.getDescription());
+        projectService.updateProject(name, project);
+        return "redirect:/project";
+    }
+
+
+    @GetMapping("/{name}/{subprojectname}/edit")
+    public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        model.addAttribute("project", project);
+        model.addAttribute("subproject", subproject);
+        return "updatesubproject";
+    }
+
+   /* @PostMapping("/update")
+    public String updateProject(Project project){
+        projectService.updateProject(project);
+        return "redirect:/project";
+    }*/
 }

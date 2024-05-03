@@ -14,7 +14,7 @@ public class ProjectRepository {
 
     ArrayList<Project> projects = new ArrayList<>();
 
-    public ProjectRepository(){
+    public ProjectRepository() {
         Project project = new Project("Eksamen", "Dette er en eksamen", "29-05-2024");
         projects.add(project);
         Subproject subproject = new Subproject("PO meeting", "Mødes med Luise");
@@ -25,37 +25,37 @@ public class ProjectRepository {
         Task task1 = new Task("Userstory 2", "Vis userstory til hende", 1);
         addTask(subproject, task);
         addTask(subproject, task1);
-        project.setEstimatedHours(project.getEstimatedHours()+subproject.getEstimatedHours());
-        project.setEstimatedHours(project.getEstimatedHours()+subproject1.getEstimatedHours());
+        project.setEstimatedHours(project.getEstimatedHours() + subproject.getEstimatedHours());
+        project.setEstimatedHours(project.getEstimatedHours() + subproject1.getEstimatedHours());
 
     }
 
-    public void addTask(Subproject subproject, Task task){
+    public void addTask(Subproject subproject, Task task) {
         subproject.addTask(task);
-        subproject.setEstimatedHours(subproject.getEstimatedHours()+ task.getEstimatedHours());
+        subproject.setEstimatedHours(subproject.getEstimatedHours() + task.getEstimatedHours());
     }
 
-    public void createProject(Project project){
+    public void createProject(Project project) {
         projects.add(project);
     }
 
-    public void createSubproject(Project project, Subproject subproject){
+    public void createSubproject(Project project, Subproject subproject) {
         project.addSubproject(subproject);
     }
 
-    public void createTask(Project project, Subproject subproject, Task task){
+    public void createTask(Project project, Subproject subproject, Task task) {
         subproject.addTask(task);
-        subproject.setEstimatedHours(subproject.getEstimatedHours()+ task.getEstimatedHours());
-        project.setEstimatedHours(project.getEstimatedHours()+ task.getEstimatedHours());
+        subproject.setEstimatedHours(subproject.getEstimatedHours() + task.getEstimatedHours());
+        project.setEstimatedHours(project.getEstimatedHours() + task.getEstimatedHours());
     }
 
-    public List<Project>showProjects(){
+    public List<Project> showProjects() {
         return projects;
     }
 
-    public Project showProject(String name){
-        for (Project p : projects){
-            if (name.equalsIgnoreCase(p.getName())){
+    public Project showProject(String name) {
+        for (Project p : projects) {
+            if (name.equalsIgnoreCase(p.getName())) {
                 return p;
             }
         }
@@ -63,13 +63,40 @@ public class ProjectRepository {
     }
 
 
-    public Subproject showSubproject(Project project, String name){
-        for (Subproject s : project.getSubprojects()){
-            if (name.equalsIgnoreCase(s.getName())){
+    public Subproject showSubproject(Project project, String name) {
+        for (Subproject s : project.getSubprojects()) {
+            if (name.equalsIgnoreCase(s.getName())) {
                 return s;
 
             }
         }
         return null;
+    }
+    public void updateProject(String name, Project project) {
+        for (Project p : projects) {
+            if (p.getName().equals(name)){
+                p.setName(project.getName());
+                p.setDescription(project.getDescription());
+            }
+
+
+        }
+    }
+
+    public void updateSubProject(String subprojectName, Project project, Subproject subproject){
+        for (Subproject s : project.getSubprojects()){
+            if (s.getName().equals(subprojectName)){
+                s.setName(subproject.getName());
+                s.setDescription(subproject.getDescription());
+            }
+        }
+    }
+    public void updateTask(Subproject subproject, Task task){
+        for (Task t : subproject.getTasks()){
+            if (t.getName().equals(task.getName())){
+                t.setDescription(task.getDescription());
+                t.setEstimatedHours(task.getEstimatedHours());
+            }
+        }
     }
 }

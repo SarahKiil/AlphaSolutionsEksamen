@@ -39,4 +39,14 @@ public void createTask (Project project, Subproject subproject, Task task) {
 public void createSubproject (Project project, Subproject subproject) {
     rp.createSubproject(project, subproject);
 }
+
+public void updateProject(String name, Project project){
+    rp.updateProject(name, project);
+}
+public void updateSubject(String subprojectName, Project project, Subproject subproject){
+    rp.updateSubProject(subprojectName, project, subproject);
+}
+    public void updateTask(Subproject subproject, Task task){
+        rp.updateTask(subproject, task);
+    }
 }
