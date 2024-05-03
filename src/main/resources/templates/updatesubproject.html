@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update your project</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<form th:action="@{'/project/' +${project.name} + '/update'}" method="post" th:object="${subproject}">
+    <p th:text="${subproject.name}">
+    </p>
+
+    <p>
+        <input name="name" type="name" th:value="${subproject.name}"/>
+    </p>
+
+    <p>
+        <label>Description:</label>
+        <input name="description" type="description" th:value="${project.description}"/>
+    </p>
+    <br>
+    <p>
+        <button type="submit" class="button">Update project</button>
+
+        <a th:href="@{'/project'}">
+            <button type="button" class="button">Cancel</button>
+        </a>
+    </p>
+</form>
+</body>
+</html>
