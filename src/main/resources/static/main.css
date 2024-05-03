@@ -1,0 +1,71 @@
+/* Header */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #0f2f4f, #1b232f);
+    margin: 0;  /* Remove default margin */
+    height: 100vh;  /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+    overflow: hidden;  /* Prevent scrolling */
+}
+
+
+
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1b232f;
+    color: #FFFFFF;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 20px;
+    flex-grow: 1;
+}
+
+/* Button container adjustments */
+.login-button,
+.signup-button {
+    margin: 0 5px;
+}
+
+.login-button a,
+.signup-button a {
+    padding: 8px 15px;
+    background-color: #0596b1;
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.login-button a:hover,
+.signup-button a:hover {
+    background-color: #047a91;
+}
+
+
+.buttons-container {
+    display: flex;
+}
+
