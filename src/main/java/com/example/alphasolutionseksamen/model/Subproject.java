@@ -14,7 +14,7 @@ public class Subproject {
     public Subproject (String name, String description) {
         this.name = name;
         this.description = description;
-        this.estimatedHours = 0;
+
     }
 
     public Subproject() {}

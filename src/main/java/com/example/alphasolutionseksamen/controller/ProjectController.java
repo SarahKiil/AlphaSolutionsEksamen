@@ -143,10 +143,31 @@ public class ProjectController {
     }
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
-    public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Subproject subproject){
+    public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(project, subprojectname);
         projectService.updateTask(taskname, subproject, task);
         return "redirect:/project";
+    }
+
+    @GetMapping ("/{name}/{subprojectname}/{taskname}/edithours")
+    public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        Task task = projectService.showTask(subproject, taskname);
+        System.out.println(task.getUsedHours());
+        model.addAttribute("project", project);
+        model.addAttribute("subproject", subproject);
+        model.addAttribute("task", task);
+        return "updatehours";
+    }
+
+    @PostMapping("/{name}/{subprojectname}/{taskname}/updatehours")
+    public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
+        System.out.println(task.getUsedHours());
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        projectService.updateHours(taskname, subproject, task);
+        return "index";
     }
 }

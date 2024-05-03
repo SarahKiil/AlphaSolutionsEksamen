@@ -9,7 +9,7 @@
 <div th:replace="~{fragments/header :: header}"></div>
 
 <form th:action="@{'/project/' +${project.name} + '/' + ${subproject.name} + '/update'}" method="post" th:object="${subproject}">
-    <p th:text="${subproject.name}">
+    <p th:text="${project.name}">
     </p>
 
     <p>

@@ -8,7 +8,7 @@
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 
-<form th:action="@{'/project/' +${project.name} + +${subp.name} + '/update'}" method="post" th:object="${project}">
+<form th:action="@{'/project/' +${project.name} + '/' + ${subproject.name} +'/'+ ${task.name} +'/update'}" method="post" th:object="${task}">
   <p th:text="${project.name}">
   </p>
 
@@ -19,6 +19,10 @@
   <p>
     <label>Description:</label>
     <input name="description" type="description" th:value="${task.description}"/>
+  </p>
+  <p>
+    <label>Estimated hours:</label>
+    <input name="estimatedhours" type="estimatedhours" th:value="${task.estimatedHours}"/>
   </p>
   <br>
   <p>

@@ -21,8 +21,8 @@ public class ProjectRepository {
         Subproject subproject1 = new Subproject("Code review", "Mødes med Tine");
         project.addSubproject(subproject);
         project.addSubproject(subproject1);
-        Task task = new Task("Userstory 1", "Vis userstory til hende", 5);
-        Task task1 = new Task("Userstory 2", "Vis userstory til hende", 1);
+        Task task = new Task("Userstory 1", "Vis userstory til hende", 5, 5);
+        Task task1 = new Task("Userstory 2", "Vis userstory til hende", 1, 0);
         addTask(subproject, task);
         addTask(subproject, task1);
         project.setEstimatedHours(project.getEstimatedHours() + subproject.getEstimatedHours());
@@ -82,9 +82,10 @@ public class ProjectRepository {
         }
         return null;
     }
+
     public void updateProject(String name, Project project) {
         for (Project p : projects) {
-            if (p.getName().equals(name)){
+            if (p.getName().equals(name)) {
                 p.setName(project.getName());
                 p.setDescription(project.getDescription());
             }
@@ -93,9 +94,9 @@ public class ProjectRepository {
         }
     }
 
-    public void updateSubProject(String subprojectName, Project project, Subproject subproject){
-        for (Subproject s : project.getSubprojects()){
-            if (s.getName().equals(subprojectName)){
+    public void updateSubProject(String subprojectName, Project project, Subproject subproject) {
+        for (Subproject s : project.getSubprojects()) {
+            if (s.getName().equals(subprojectName)) {
                 s.setName(subproject.getName());
                 s.setDescription(subproject.getDescription());
             }
@@ -103,12 +104,20 @@ public class ProjectRepository {
     }
 
 
-    public void updateTask(String taskname, Subproject subproject, Task task){
-        for (Task t : subproject.getTasks()){
-            if (t.getName().equals(taskname)){
+    public void updateTask(String taskname, Subproject subproject, Task task) {
+        for (Task t : subproject.getTasks()) {
+            if (t.getName().equals(taskname)) {
                 t.setName(task.getName());
                 t.setDescription(task.getDescription());
                 t.setEstimatedHours(task.getEstimatedHours());
+            }
+        }
+    }
+
+    public void updateHours(String taskName, Subproject subproject, Task task) {
+        for (Task t : subproject.getTasks()) {
+            if (t.getName().equals(taskName)) {
+                t.setUsedHours(task.getUsedHours());
             }
         }
     }

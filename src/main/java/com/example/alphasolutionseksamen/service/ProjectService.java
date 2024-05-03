@@ -50,7 +50,11 @@ public void updateProject(String name, Project project){
 public void updateSubproject(String subprojectName, Project project, Subproject subproject){
     rp.updateSubProject(subprojectName, project, subproject);
 }
-    public void updateTask(Subproject subproject, Task task){
-        rp.updateTask(subproject, task);
-    }
+public void updateTask(String taskName, Subproject subproject, Task task){
+    rp.updateTask(taskName, subproject, task);
+}
+
+public void updateHours(String taskName, Subproject subproject, Task task){
+    rp.updateHours(taskName, subproject, task);
+}
 }
