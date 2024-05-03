@@ -6,20 +6,18 @@
 }
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #0f2f4f, #1b232f);
-    margin: 0;  /* Remove default margin */
-    height: 100vh;  /* Full viewport height */
-    width: 100vw;  /* Full viewport width */
-    overflow: hidden;  /* Prevent scrolling */
+    background: linear-gradient(to bottom, #0596b1, #074756);
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
-
-
 
 .site-header {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background-color: #1b232f;
+    background-color: rgba(27, 35, 47, 0.6);
     color: #FFFFFF;
 }
 
@@ -63,7 +61,6 @@ body {
 .signup-button a:hover {
     background-color: #047a91;
 }
-
 
 .buttons-container {
     display: flex;
