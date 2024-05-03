@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update hours</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<form th:action="@{'/project/' +${project.name} + '/' + ${subproject.name} +'/'+ ${task.name} +'/updatehours'}" method="post" th:object="${task}">
+    <p th:text="${task.name}">
+    </p>
+
+    <p>
+        <label>Used hours:</label>
+        <input name="usedhours" type="usedhours" th:value="${task.usedHours}"/>
+    </p>
+
+    <br>
+    <p>
+        <button type="submit" class="button">Update used hours</button>
+
+        <a th:href="@{'/project/' + ${project.name} + '/' +${subproject.name} + '/tasks'}">
+            <button type="button" class="button">Go back to subprojects</button>
+        </a>
+    </p>
+</form>
+</body>
+</html>

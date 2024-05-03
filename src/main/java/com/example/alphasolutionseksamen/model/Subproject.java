@@ -52,8 +52,6 @@ public class Subproject {
     }
 
 
-
-
     public void setEstimatedHours(double estimatedHours) {
         this.estimatedHours = estimatedHours;
     }

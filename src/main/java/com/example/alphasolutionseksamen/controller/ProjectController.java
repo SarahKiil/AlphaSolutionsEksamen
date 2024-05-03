@@ -145,7 +145,8 @@ public class ProjectController {
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Subproject subproject){
         Project project = projectService.showProject(name);
-        projectService.updateSubproject(subprojectname, project, subproject);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        projectService.updateTask(taskname, subproject, task);
         return "redirect:/project";
     }
 }
