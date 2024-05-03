@@ -8,21 +8,21 @@
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 
-<form th:action="@{'/project/' +${project.name} + '/update'}" method="post" th:object="${project}">
+<form th:action="@{'/project/' +${project.name} + +${subp.name} + '/update'}" method="post" th:object="${project}">
   <p th:text="${project.name}">
   </p>
 
   <p>
-    <input name="name" type="name" th:value="${project.name}"/>
+    <input name="name" type="name" th:value="${task.name}"/>
   </p>
 
   <p>
     <label>Description:</label>
-    <input name="description" type="description" th:value="${project.description}"/>
+    <input name="description" type="description" th:value="${task.description}"/>
   </p>
   <br>
   <p>
-    <button type="submit" class="button">Update project</button>
+    <button type="submit" class="button">Update task</button>
 
     <a th:href="@{'/project'}">
       <button type="button" class="button">Cancel</button>

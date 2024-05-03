@@ -91,7 +91,9 @@ public class ProjectRepository {
             }
         }
     }
-    public void updateTask(Subproject subproject, Task task){
+
+
+    public void updateTask(String taskname, Subproject subproject, Task task){
         for (Task t : subproject.getTasks()){
             if (t.getName().equals(task.getName())){
                 t.setDescription(task.getDescription());
