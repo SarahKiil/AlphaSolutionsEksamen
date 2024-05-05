@@ -8,13 +8,14 @@ public class Subproject {
     private String description;
     private double estimatedHours;
 
+    private double usedHours;
+
     private List<Task>tasks = new ArrayList<>() {
     };
 
     public Subproject (String name, String description) {
         this.name = name;
         this.description = description;
-        this.estimatedHours = 0;
     }
 
     public Subproject() {}
@@ -56,5 +57,13 @@ public class Subproject {
 
     public void setEstimatedHours(double estimatedHours) {
         this.estimatedHours = estimatedHours;
+    }
+
+    public double getUsedHours(){
+        return usedHours;
+    }
+
+    public void setUsedHours(double usedHours){
+        this.usedHours = usedHours;
     }
 }

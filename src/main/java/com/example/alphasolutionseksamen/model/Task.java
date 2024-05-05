@@ -5,10 +5,13 @@ public class Task {
     private String description;
     private double estimatedHours;
 
-    public Task (String name, String description, double estimatedHours) {
+    private double usedHours;
+
+    public Task (String name, String description, double estimatedHours, double usedHours) {
         this.name = name;
         this.description = description;
         this.estimatedHours = estimatedHours;
+        this.usedHours = usedHours;
     }
 
     public Task () {}
@@ -35,5 +38,13 @@ public class Task {
 
     public void setEstimatedHours(double estimatedHours) {
         this.estimatedHours = estimatedHours;
+    }
+
+    public double getUsedHours(){
+        return usedHours;
+    }
+
+    public void setUsedHours(double usedHours){
+        this.usedHours = usedHours;
     }
 }
