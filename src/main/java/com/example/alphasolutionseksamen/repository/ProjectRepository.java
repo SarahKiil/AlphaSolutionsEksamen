@@ -3,6 +3,7 @@ package com.example.alphasolutionseksamen.repository;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
+import com.example.alphasolutionseksamen.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

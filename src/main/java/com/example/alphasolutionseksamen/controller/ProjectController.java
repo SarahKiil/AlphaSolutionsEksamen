@@ -3,6 +3,7 @@ package com.example.alphasolutionseksamen.controller;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
+import com.example.alphasolutionseksamen.model.User;
 import com.example.alphasolutionseksamen.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

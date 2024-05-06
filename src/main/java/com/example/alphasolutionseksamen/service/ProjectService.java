@@ -3,6 +3,7 @@ package com.example.alphasolutionseksamen.service;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
+import com.example.alphasolutionseksamen.model.User;
 import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 

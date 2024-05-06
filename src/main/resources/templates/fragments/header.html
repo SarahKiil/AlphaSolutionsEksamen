@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>AlphaCalc</title>
-  <link th:href="@{/main.css}" rel="stylesheet">
-</head>
-<body>
 <header class="site-header">
-  <button class="logo-link" onclick="window.location.href='/AlphaCalc'">
+  <button onclick="window.location.href='/AlphaCalc'" class="logo-link">
+    <link th:href="@{/main.css}" rel="stylesheet">
     <img src="https://i.pinimg.com/originals/c3/90/1a/c3901af7776cb18611068bea31f3fcd3.png" alt="AlphaCalc Logo" class="logo">
   </button>
   <div class="header-title">AlphaCalc</div>
@@ -20,5 +13,4 @@
     </div>
   </div>
 </header>
-</body>
-</html>
+
