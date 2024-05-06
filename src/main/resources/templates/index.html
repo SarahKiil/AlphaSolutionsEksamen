@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <div th:replace="~{fragments/header :: header}"></div>
+    <title>AlphaCalc</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Hi</h1>
-<p>
-    <a th:href="@{'/project/create'}">
-        <button type="button" class="button">Create project</button>
-    </a>
-</p>
+<!-- Thymeleaf header inclusion -->
+<div th:replace="~{fragments/header :: header}"></div>
 
-    <a th:href="@{'/project/overview'}">
-        <button type="button" class="button">See projects</button>
-    </a>
-</p>
+<main>
+    <h1>AlphaCalc, a project management tool</h1>
+    <p>
+        <a th:href="@{'/project/create'}">
+            <button type="button" class="button">Create project</button>
+        </a>
+        <a th:href="@{'/project/overview'}">
+            <button type="button" class="button">See projects</button>
+        </a>
+    </p>
+</main>
 </body>
 </html>

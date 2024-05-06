@@ -66,3 +66,64 @@ body {
     display: flex;
 }
 
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 800px;
+    margin: 40px auto; /* Increased margin for better centering */
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center; /* Center text and content */
+}
+
+h1 {
+    color: #026ca0;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center flex items on the main axis */
+    align-items: center; /* Center flex items on the cross axis */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+}
+
+.button {
+    background-color: #026ca0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0; /* Adjusted for better spacing */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #014f6e;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.button {
+    display: inline-block; /* Ensure links are centered with text-align */
+}
+
+
