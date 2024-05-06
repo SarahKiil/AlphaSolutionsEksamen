@@ -43,7 +43,8 @@ public class Task {
     public double getUsedHours(){
         return usedHours;
     }
-    public void setUsedHours(double usedHours) {
+
+    public void setUsedHours(double usedHours){
         this.usedHours = usedHours;
     }
 }

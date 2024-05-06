@@ -24,6 +24,8 @@
             </a>
             <p>Description: <strong th:text="${subproject.description}"></strong></p>
             <p>Estimated hours: <strong th:text="${subproject.estimatedHours}"></strong></p>
+            <p>Actual hours: <strong th:text="${subproject.usedHours}"></strong></p>
+            <p th:if="${subproject.usedHours}>${subproject.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
                 <a th:href="@{ ${subproject.name} + '/edit'}">
                     <button type="button" class="button">Update subproject</button>
@@ -35,8 +37,8 @@
 </table>
 
 <p>
-    <a th:href="@{'/project'}">
-        <button type="button" class="button">Go home</button>
+    <a th:href="@{'/project/overview'}">
+        <button type="button" class="button">Go back</button>
     </a>
 </p>
 </body>

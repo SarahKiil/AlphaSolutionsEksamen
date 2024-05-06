@@ -36,7 +36,7 @@ public class ProjectController {
     @PostMapping("/save")
     public String createProject(@ModelAttribute Project project){
         projectService.createProject(project);
-        return "redirect:/project";
+        return "redirect:/project/overview";
     }
 
     @GetMapping("/{name}/create")
@@ -48,10 +48,9 @@ public class ProjectController {
 
     @PostMapping("/{name}/save")
     public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
-        System.out.println(name);
         Project project = projectService.showProject(name);
         projectService.createSubproject(project, subproject);
-        return "redirect:/project";
+        return "redirect:/project/{name}/subprojects";
     }
 
     @GetMapping("/{name}/{subproject}/create")
@@ -64,17 +63,17 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/save")
     public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
-        System.out.println(name);
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(project, subprojectname);
         projectService.createTask(project, subproject, task);
-        return "redirect:/project";
+        return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
     @GetMapping("/overview")
     public String showProjects(Model model){
         List<Project> projects = projectService.showProjects();
         model.addAttribute("projects", projects);
+        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this project");
         return "showprojects";
     }
 
@@ -84,6 +83,7 @@ public class ProjectController {
         List<Subproject>subprojects = project.getSubprojects();
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("projectname", project.getName());
+        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this subproject");
         return "showsubprojects";
     }
 
@@ -95,6 +95,7 @@ public class ProjectController {
         model.addAttribute("projectname", name);
         model.addAttribute("tasks", tasks);
         model.addAttribute("subprojectname", subproject.getName());
+        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this task");
         return "showtasks";
     }
 
@@ -107,10 +108,8 @@ public class ProjectController {
 
     @PostMapping("/{name}/update")
     public String updateProject(@PathVariable String name, Project project){
-        System.out.println(project.getName());
-        System.out.println(project.getDescription());
         projectService.updateProject(name, project);
-        return "redirect:/project";
+        return "redirect:/project/overview";
     }
 
 
@@ -127,7 +126,7 @@ public class ProjectController {
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Subproject subproject){
         Project project = projectService.showProject(name);
         projectService.updateSubproject(subprojectname, project, subproject);
-        return "redirect:/project";
+        return "redirect:/project/{name}/subprojects";
     }
 
 
@@ -145,17 +144,16 @@ public class ProjectController {
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
         Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        projectService.updateTask(taskname, subproject, task);
-        return "redirect:/project";
+        Subproject subproject =projectService.showSubproject(project, subprojectname);
+        projectService.updateTask(project, taskname, subproject, task);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
-    @GetMapping ("/{name}/{subprojectname}/{taskname}/edithours")
+    @GetMapping("/{name}/{subprojectname}/{taskname}/edithours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(project, subprojectname);
         Task task = projectService.showTask(subproject, taskname);
-        System.out.println(task.getUsedHours());
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -164,10 +162,9 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/updatehours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        System.out.println(task.getUsedHours());
         Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        projectService.updateHours(taskname, subproject, task);
-        return "index";
+        Subproject subproject =projectService.showSubproject(project, subprojectname);
+        projectService.updateHours(project, taskname, subproject, task);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 }

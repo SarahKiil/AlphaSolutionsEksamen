@@ -10,6 +10,8 @@ public class Project {
 
     private double estimatedHours;
 
+    private double usedHours;
+
     private List<Subproject>subprojects = new ArrayList<>();
 
     public Project(String name, String description, String deadline){
@@ -63,16 +65,15 @@ public class Project {
     }
 
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", deadline=" + deadline +
-                '}';
-    }
-
     public void setEstimatedHours(double estimatedHours) {
         this.estimatedHours = estimatedHours;
+    }
+
+    public double getUsedHours(){
+        return usedHours;
+    }
+
+    public void setUsedHours(double usedHours){
+        this.usedHours = usedHours;
     }
 }
