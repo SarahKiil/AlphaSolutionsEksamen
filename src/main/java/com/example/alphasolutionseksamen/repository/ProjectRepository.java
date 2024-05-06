@@ -15,6 +15,8 @@ public class ProjectRepository {
 
     ArrayList<Project> projects = new ArrayList<>();
 
+    ArrayList<User> users = new ArrayList<>();
+
     public ProjectRepository() {
         Project project = new Project("Eksamen", "Dette er en eksamen", "29-05-2024");
         projects.add(project);
@@ -77,9 +79,10 @@ public class ProjectRepository {
         }
         return null;
     }
+
     public void updateProject(String name, Project project) {
         for (Project p : projects) {
-            if (p.getName().equals(name)){
+            if (p.getName().equals(name)) {
                 p.setName(project.getName());
                 p.setDescription(project.getDescription());
             }
@@ -88,9 +91,9 @@ public class ProjectRepository {
         }
     }
 
-    public void updateSubProject(String subprojectName, Project project, Subproject subproject){
-        for (Subproject s : project.getSubprojects()){
-            if (s.getName().equals(subprojectName)){
+    public void updateSubProject(String subprojectName, Project project, Subproject subproject) {
+        for (Subproject s : project.getSubprojects()) {
+            if (s.getName().equals(subprojectName)) {
                 s.setName(subproject.getName());
                 s.setDescription(subproject.getDescription());
             }
@@ -113,17 +116,43 @@ public class ProjectRepository {
         }
     }
 
-        public void updateHours(Project project, String taskName, Subproject subproject, Task task){
-            double usedHoursSubproject = subproject.getUsedHours();
-            double usedHoursSubprojectNew = subproject.getUsedHours();
-            for (Task t : subproject.getTasks()){
-                if (t.getName().equals(taskName)){
-                    usedHoursSubprojectNew = subproject.getUsedHours() - t.getUsedHours() + task.getUsedHours();
-                    t.setUsedHours(task.getUsedHours());
-                    subproject.setUsedHours(usedHoursSubprojectNew);
-                    project.setUsedHours(project.getUsedHours() - usedHoursSubproject + usedHoursSubprojectNew);
-                }
+    public void updateHours(Project project, String taskName, Subproject subproject, Task task) {
+        double usedHoursSubproject = subproject.getUsedHours();
+        double usedHoursSubprojectNew = subproject.getUsedHours();
+        for (Task t : subproject.getTasks()) {
+            if (t.getName().equals(taskName)) {
+                usedHoursSubprojectNew = subproject.getUsedHours() - t.getUsedHours() + task.getUsedHours();
+                t.setUsedHours(task.getUsedHours());
+                subproject.setUsedHours(usedHoursSubprojectNew);
+                project.setUsedHours(project.getUsedHours() - usedHoursSubproject + usedHoursSubprojectNew);
+            }
         }
     }
 
+    public void createUser(User user) {
+        users.add(user);
+    }
+
+
+    public boolean checkLogin(User user){
+        for (User u : users){
+            if (user.getUsername().equals(u.getUsername())){
+                if (user.getPassword().equals(u.getPassword())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public User showUser(User user){
+        for (User u : users){
+            if (u.getUsername().equals(user.getUsername())){
+                return u;
+            }
+        }
+        return null;
+    }
 }
+
+

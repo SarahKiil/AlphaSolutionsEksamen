@@ -58,4 +58,16 @@ public void updateTask(Project project, String taskName, Subproject subproject, 
 public void updateHours(Project project, String taskName, Subproject subproject, Task task){
     rp.updateHours(project,taskName, subproject, task);
     }
+
+    public void createUser(User user){
+    rp.createUser(user);
+    }
+
+    public boolean checkLogin(User user){
+    return rp.checkLogin(user);
+    }
+
+    public User showUser(User user){
+    return rp.showUser(user);
+    }
 }

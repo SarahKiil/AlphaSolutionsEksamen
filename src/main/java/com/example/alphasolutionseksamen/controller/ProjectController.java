@@ -1,5 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
+import jakarta.servlet.http.HttpSession;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping(path="project")
 public class ProjectController {
 
+    private User loggedInUser;
 
     private ProjectService projectService;
     public ProjectController(ProjectService projectService){
@@ -168,4 +170,52 @@ public class ProjectController {
         projectService.updateHours(project, taskname, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
+
+    @GetMapping("/user/create")
+    public String createUser(Model model){
+        model.addAttribute("user", new User());
+        return "createuser";
+    }
+
+    @PostMapping("/user/save")
+    public String createUser(@ModelAttribute User user, HttpSession session){
+        projectService.createUser(user);
+        loggedInUser = new User();
+        session.setAttribute("key", user);
+        return "redirect:/project/profile";
+    }
+
+    @GetMapping("/user/login")
+    public String login(Model model){
+        model.addAttribute("user", new User());
+        return "loginpage";
+    }
+
+    @PostMapping("/user/postlogin")
+    public String login(@ModelAttribute User user, Model model, HttpSession session) {
+        if (!projectService.checkLogin(user)) {
+            model.addAttribute("loginError", "Username or password is incorrect");
+            return "loginpage";
+        } else {
+
+
+            User userToBeLoggedIn = projectService.showUser(user);
+            loggedInUser = (User) session.getAttribute("key");
+            if (loggedInUser == null) {
+                loggedInUser = new User();
+                session.setAttribute("key", userToBeLoggedIn);
+            }
+            return "redirect:/project/profile";
+        }
+    }
+
+    @GetMapping("/profile")
+    public String showProfile(Model model, HttpSession session){
+        loggedInUser = (User)session.getAttribute("key");
+        model.addAttribute("user", loggedInUser);
+        return "profilepage";
+    }
+
+
+
 }
