@@ -1,18 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AlphaCalc</title>
+  <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
 <header class="site-header">
-  <button onclick="window.location.href='/AlphaCalc'" class="logo-link">
-    <link th:href="@{/main.css}" rel="stylesheet">
+  <button class="logo-link" onclick="window.location.href='/AlphaCalc'">
     <img src="https://i.pinimg.com/originals/c3/90/1a/c3901af7776cb18611068bea31f3fcd3.png" alt="AlphaCalc Logo" class="logo">
   </button>
   <div class="header-title">AlphaCalc</div>
-  <nav>
-    <ul>
-    </ul>
-  </nav>
-  <div class="login-button">
-    <a href="/alphacalc/login" class="login-button">Login</a>
-  </div>
-  <div class="signup-button">
-    <a href="/alphacalc/signup" class="signup-button">Sign Up</a>
+  <div class="buttons-container"> <!-- Ensuring container is utilized for buttons -->
+    <div class="login-button">
+      <a href="/alphacalc/login">Login</a>
+    </div>
+    <div class="signup-button">
+      <a href="/alphacalc/signup">Sign Up</a>
+    </div>
   </div>
 </header>
-
+</body>
+</html>

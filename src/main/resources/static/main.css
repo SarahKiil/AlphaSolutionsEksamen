@@ -1,17 +1,59 @@
-/* Header */
+/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #0596b1, #074756);
     margin: 0;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    background: linear-gradient(270deg, #293746, #3a506b, #5c677d, #2b394f, #293746); /* Refined color scheme for a professional look */
+    background-size: 800% 800%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: Gradient 30s ease infinite; /* Smooth transition for a more professional appearance */
+    position: relative;
 }
+
+@keyframes Gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02) 50%, transparent 80%); /* More subtle gradient for a sleek look */
+    background-size: cover;
+    pointer-events: none;
+    animation: softGlow 120s ease-in-out infinite; /* Extended duration for a gentle, soothing effect */
+}
+
+@keyframes softGlow {
+    0%, 100% {
+        background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02) 50%, transparent 80%);
+    }
+    50% {
+        background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04) 50%, transparent 80%);
+    }
+}
+
+
+
+body {
+    perspective: 2px;
+}
+
 
 .site-header {
     display: flex;
@@ -19,6 +61,9 @@ body {
     padding: 10px 20px;
     background-color: rgba(27, 35, 47, 0.6);
     color: #FFFFFF;
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
 
 .logo-link {
@@ -41,10 +86,8 @@ body {
     flex-grow: 1;
 }
 
-/* Button container adjustments */
-.login-button,
-.signup-button {
-    margin: 0 5px;
+.buttons-container {
+    display: flex;
 }
 
 .login-button a,
@@ -62,68 +105,43 @@ body {
     background-color: #047a91;
 }
 
-.buttons-container {
-    display: flex;
-}
-
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-
+/* Main content area styling */
 main {
     max-width: 800px;
-    margin: 40px auto; /* Increased margin for better centering */
+    margin: 80px auto 0; /* Adjusted top margin to account for header */
     padding: 20px;
     background: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border-radius: 8px;
-    text-align: center; /* Center text and content */
-}
-
-h1 {
-    color: #026ca0;
-    margin-bottom: 20px;
+    text-align: center;
 }
 
 .button-container {
     display: flex;
-    justify-content: center; /* Center flex items on the main axis */
-    align-items: center; /* Center flex items on the cross axis */
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Space between buttons */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .button {
-    background-color: #026ca0;
+    background-color: rgba(2, 108, 160, 0.7); /* Semi-transparent background */
     color: white;
-    border: none;
+    border: 2px solid rgba(2, 108, 160, 1); /* Solid border to maintain visibility */
     padding: 10px 20px;
-    margin: 10px 0; /* Adjusted for better spacing */
+    margin: 10px 0;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #014f6e;
+    background-color: rgba(1, 79, 110, 0.9); /* Slightly darker on hover for better interaction feedback */
+    border-color: rgba(1, 79, 110, 1); /* Adjust border color to match hover background */
+    color: #fff; /* Ensure text is always visible */
 }
 
 a {
     text-decoration: none;
+    display: inline-block;
 }
-
-a.button {
-    display: inline-block; /* Ensure links are centered with text-align */
-}
-
-
