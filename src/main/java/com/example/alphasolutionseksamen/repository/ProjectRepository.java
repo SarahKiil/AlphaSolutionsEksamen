@@ -18,7 +18,10 @@ public class ProjectRepository {
     ArrayList<User> users = new ArrayList<>();
 
     public ProjectRepository() {
-        Project project = new Project("Eksamen", "Dette er en eksamen", "29-05-2024");
+        Project project = new Project("Eksamen", "Dette er en eksamen", "29-05-2024", "Bobby");
+        users.add(new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark"));
+        users.add(new User("abc", "Harry", "Potter", "password123", "harrypotter@mail.co.uk", "Londonroad", "29", 10000, "London", 1234567899, "England"));
+        users.add(new User("HanneRocks", "Hanne", "Jensen", "1234", "HanneFraMarketing@gmail.com", "Taffelæblevej", "13", 4000, "Roskilde", 87654321, "Sverige"));
         projects.add(project);
         Subproject subproject = new Subproject("PO meeting", "Mødes med Luise");
         Subproject subproject1 = new Subproject("Code review", "Mødes med Tine");
@@ -134,6 +137,7 @@ public class ProjectRepository {
     }
 
 
+
     public boolean checkLogin(User user){
         for (User u : users){
             if (user.getUsername().equals(u.getUsername())){
@@ -152,6 +156,51 @@ public class ProjectRepository {
             }
         }
         return null;
+    }
+
+    public boolean checkMail(User user){
+        if (user.getEmail().contains("@")){
+        if (user.getEmail().contains(".")){
+            String[]mail = user.getEmail().split("\\.");
+                int last = mail.length;
+                if (mail[last-1].length()<6){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean checkNumber(User user){
+        String numberToCheck = String.valueOf(user.getPhoneNumber());
+        if (numberToCheck.length()>7&&numberToCheck.length()<13){
+            return true;
+        }
+        return false;
+    }
+
+    public User showUser(String username){
+        for (User u : users){
+            if (u.getUsername().equals(username)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkUsers(String username){
+        for (User u : users){
+            if (u.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addUser(Project project, Subproject subproject, Task task, User user){
+        task.addUser(user);
+        subproject.addUser(user);
+        project.addUser(user);
     }
 }
 

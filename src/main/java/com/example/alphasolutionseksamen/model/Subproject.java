@@ -13,9 +13,12 @@ public class Subproject {
     private List<Task>tasks = new ArrayList<>() {
     };
 
+    private List<User>assignedUsers;
+
     public Subproject (String name, String description) {
         this.name = name;
         this.description = description;
+        this.assignedUsers = new ArrayList<>();
     }
 
     public Subproject() {}
@@ -65,5 +68,13 @@ public class Subproject {
 
     public void setUsedHours(double usedHours){
         this.usedHours = usedHours;
+    }
+
+    public List<User> getAssignedUsers(){
+        return assignedUsers;
+    }
+
+    public void addUser(User user){
+        assignedUsers.add(user);
     }
 }

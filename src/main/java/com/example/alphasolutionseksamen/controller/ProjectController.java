@@ -25,7 +25,7 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(){
+    public String getIndex(Model model){
         return "index";
     }
 
@@ -37,7 +37,9 @@ public class ProjectController {
 }
 
     @PostMapping("/save")
-    public String createProject(@ModelAttribute Project project){
+    public String createProject(@ModelAttribute Project project, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
+        project.setUsername(loggedInUser.getUsername());
         projectService.createProject(project);
         return "redirect:/project/overview";
     }
@@ -178,7 +180,24 @@ public class ProjectController {
     }
 
     @PostMapping("/user/save")
-    public String createUser(@ModelAttribute User user, HttpSession session){
+    public String createUser(@ModelAttribute User user, Model model, HttpSession session){
+        if (!projectService.checkMail(user))
+        {
+            model.addAttribute("mailError", "This is not a valid mail");
+            return "createuser";
+        }
+        if (user.getFirstName().length()<1){
+            model.addAttribute("firstNameError", "You need to have a first name");
+            return "createuser";
+        }
+        if (user.getLastName().length()<1) {
+            model.addAttribute("lastNameError", "You need to have a last name");
+            return "createuser";
+        }
+        if (!projectService.checkNumber(user)){
+            model.addAttribute("numberError", "This is not a valid phone number");
+            return "createuser";
+        }
         projectService.createUser(user);
         loggedInUser = new User();
         session.setAttribute("key", user);
@@ -214,6 +233,48 @@ public class ProjectController {
         loggedInUser = (User)session.getAttribute("key");
         model.addAttribute("user", loggedInUser);
         return "profilepage";
+    }
+
+    @GetMapping("/{name}/{subprojectname}/{taskname}/assign")
+    public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        Task task = projectService.showTask(subproject, taskname);
+        model.addAttribute("project", project);
+        model.addAttribute("subproject", subproject);
+        model.addAttribute("task", task);
+        model.addAttribute("user", new User());
+        return "assignment";
+    }
+
+    @PostMapping("/{name}/{subprojectname}/{taskname}/assignpost")
+    public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, User user, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject =projectService.showSubproject(project, subprojectname);
+        Task task = projectService.showTask(subproject, taskname);
+        if (!projectService.checkUser(user.getUsername())){
+            model.addAttribute("userError", "No user with this username exists");
+            return "assignment";
+        }
+        User userToAdd = projectService.showUser(user.getUsername());
+        projectService.addUser(project, subproject, task, userToAdd);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
+    }
+
+    @GetMapping("/{name}/{subprojectname}/{taskname}/assignments")
+    public String showAssigned(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        Task task = projectService.showTask(subproject, taskname);
+        List<User>assignedUsers = task.getAssignedUsers();
+        if (assignedUsers.size()>0){
+            model.addAttribute("usersassigned", "usersassignet");
+        }
+        model.addAttribute("project", project);
+        model.addAttribute("task", task);
+        model.addAttribute("subproject", subproject);
+        model.addAttribute("users", assignedUsers);
+        return "assignments";
     }
 
 

@@ -70,4 +70,24 @@ public void updateHours(Project project, String taskName, Subproject subproject,
     public User showUser(User user){
     return rp.showUser(user);
     }
+
+    public boolean checkMail(User user){
+    return rp.checkMail(user);
+    }
+
+    public boolean checkNumber(User user){
+    return rp.checkNumber(user);
+    }
+
+    public User showUser(String username){
+    return rp.showUser(username);
+    }
+
+    public boolean checkUser(String username){
+    return rp.checkUsers(username);
+    }
+
+    public void addUser(Project project, Subproject subproject, Task task, User user){
+    rp.addUser(project, subproject, task, user);
+    }
 }

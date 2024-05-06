@@ -12,13 +12,19 @@ public class Project {
 
     private double usedHours;
 
+    private String username;
+
     private List<Subproject>subprojects = new ArrayList<>();
 
-    public Project(String name, String description, String deadline){
+    private List<User>assignedUsers;
+
+    public Project(String name, String description, String deadline, String username){
         this.name =name;
         this.description = description;
         this.deadline=deadline;
         this.estimatedHours=0;
+        this.username = username;
+        this.assignedUsers = new ArrayList<>();
     }
 
     public Project(){}
@@ -75,5 +81,21 @@ public class Project {
 
     public void setUsedHours(double usedHours){
         this.usedHours = usedHours;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public List<User>getAssignedUsers(){
+        return assignedUsers;
+    }
+
+    public void addUser(User user){
+        assignedUsers.add(user);
     }
 }

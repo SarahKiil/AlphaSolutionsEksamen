@@ -20,6 +20,7 @@
             <a th:href="@{ ${project.name} + '/subprojects'}">
                 <button type="button" class="button" th:text="${project.name}"></button>
             </a>
+            <p>Project manager: <strong th:text="${project.username}"></strong></p>
             <p>Description: <strong th:text="${project.description}"></strong></p>
             <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
             <p>Estimated hours: <strong th:text="${project.estimatedHours}"></strong></p>

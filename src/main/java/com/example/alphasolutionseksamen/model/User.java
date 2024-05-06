@@ -7,17 +7,26 @@ public class User {
     private String lastName;
     private String password;
     private String email;
-    private String address;
+    private String streetName;
+    private String streetNumber;
+    private int postNumber;
     private int phoneNumber;
 
-    public User(String username, String firstName, String lastName, String password, String email, String address, int phoneNumber) {
+    private String city;
+    private String country;
+
+    public User(String username, String firstName, String lastName, String password, String email, String streetName, String streetNumber, int postNumber, String city, int phoneNumber, String country) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.address = address;
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.postNumber = postNumber;
+        this.city=city;
         this.phoneNumber = phoneNumber;
+        this.country = country;
     }
 
     public User(){}
