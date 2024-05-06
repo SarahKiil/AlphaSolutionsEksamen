@@ -12,8 +12,9 @@
 <div th:replace="~{fragments/header :: header}"></div>
 
 <main>
-    <h1>AlphaCalc, a project management tool</h1>
-    <p>
+    <h1 class="welcome-heading">Welcome to AlphaCalc</h1>
+    <p>Simplifying project management for Alpha Solutions. Streamline workflows, track progress, and foster collaboration with our intuitive tool.</p>
+    <p class="button-paragraph">
         <a th:href="@{'/project/create'}">
             <button type="button" class="button">Create project</button>
         </a>
@@ -22,5 +23,8 @@
         </a>
     </p>
 </main>
+
+
+
 </body>
 </html>
