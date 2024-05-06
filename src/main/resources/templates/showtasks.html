@@ -34,6 +34,16 @@
                     <button type="button" class="button">Update used hours</button>
                 </a>
             </p>
+            <p>
+                <a th:href="@{ ${task.name} + '/assignments'}">
+                    <button type="button" class="button">Show assigned users</button>
+                </a>
+            </p>
+            <p>
+                <a th:href="@{${task.name}+'/assign'}">
+                    <button type="button" class="button">Assign a user</button>
+                </a>
+            </p>
 
         </td>
     </tr>

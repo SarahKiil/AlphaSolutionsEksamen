@@ -7,10 +7,9 @@
 
 </head>
 
-
 <form action="/project/user/save" th:object="${user}" method="post">
     <p>
-        <label for="username">Name:</label>
+        <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
     <p>
@@ -18,19 +17,46 @@
         <input type="password" id="password" name="password" th:field="*{password}"/>
     </p>
     <p>
+        <label for="firstName">First name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/>
+    </p>
+    <p>
+        <label for="lastName">Lastname:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/>
+    </p>
+    <p>
+        <label for="streetName">Street name:</label>
+        <input type="text" id="streetName" name="streetName" th:field="*{streetName}"/>
+    </p>
+    <p>
+        <label for="streetNumber">Street number:</label>
+        <input type="text" id="streetNumber" name="streetNumber" th:field="*{streetNumber}"/>
+    </p>
+    <p>
+        <label for="postNumber">Post number:</label>
+        <input type="number" id="postNumber" name="postNumber" th:field="*{postNumber}"/>
+    </p>
+    <p>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" th:field="*{city}"/>
+    </p>
+    <p>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" th:field="*{country}"/>
+    </p>
+    <p>
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" th:field="*{email}"/>
     </p>
     <p>
         <label for="phoneNumber">Phonenumber:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
-    </p>
-
-    <p>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" th:field="*{address}"/>
+        <input type="number" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
     </p>
     <br>
+    <p th:if="${mailError}" th:text="${mailError}" class="error-message"></p>
+    <p th:if="${firstNameError}" th:text="${firstNameError}" class="error-message"></p>
+    <p th:if="${lastNameError}" th:text="${lastNameError}" class="error-message"></p>
+    <p th:if="${numberError}" th:text="${numberError}" class="error-message"></p>
     <input type="submit" value="Create user" /></form>
 <a th:href="@{'/project'}">
     <button type="button" class="button">Cancel</button>

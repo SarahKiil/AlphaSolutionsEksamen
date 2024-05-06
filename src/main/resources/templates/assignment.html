@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create task</title>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+</head>
+<body>
+
+<form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/assignpost'}" th:object="${user}" method="post">
+    <p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}"/>
+    </p>
+    <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
+
+    <br>
+    <input type="submit" value="Assign user" /></form>
+
+
+
+</body>
+</html>
