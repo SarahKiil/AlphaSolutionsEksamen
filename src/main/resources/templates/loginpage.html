@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="Login">
+    <h1>Login to your account</h1>
+    <form action="/project/user/postlogin" method="post" class="Login">
+        <div class="Login">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <button type="submit" class="button">Login</button>
+
+            <p th:if="${loginError}" th:text="${loginError}" class="error-message"></p>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>

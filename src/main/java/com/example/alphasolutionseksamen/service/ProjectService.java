@@ -3,6 +3,7 @@ package com.example.alphasolutionseksamen.service;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
+import com.example.alphasolutionseksamen.model.User;
 import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +57,17 @@ public void updateTask(Project project, String taskName, Subproject subproject, 
 
 public void updateHours(Project project, String taskName, Subproject subproject, Task task){
     rp.updateHours(project,taskName, subproject, task);
+    }
+
+    public void createUser(User user){
+    rp.createUser(user);
+    }
+
+    public boolean checkLogin(User user){
+    return rp.checkLogin(user);
+    }
+
+    public User showUser(User user){
+    return rp.showUser(user);
     }
 }
