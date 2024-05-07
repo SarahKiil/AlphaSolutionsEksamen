@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <link th:href="@{/loginpage.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
 
 <main class="Login">
     <h1>Login to your account</h1>
@@ -19,6 +20,7 @@
             <button type="submit" class="button">Login</button>
 
             <p th:if="${loginError}" th:text="${loginError}" class="error-message"></p>
+
         </div>
     </form>
     <p>Don't have an account? Sign up here:</p>
@@ -26,6 +28,7 @@
         <a href="/project/user/create" class="signup-button">Sign Up</a>
     </div>
 </main>
+
 
 </body>
 </html>
