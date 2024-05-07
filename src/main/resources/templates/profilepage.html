@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your profile</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>Login page</title>
+    <link th:href="@{/profilepage.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="~{fragments/headerloggedin :: header}"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 <table>
     <thead>
     <tr>
@@ -18,7 +18,7 @@
             <p>Phone number: <strong th:text="${user.phoneNumber}"></strong></p>
             <p>Address: <strong th:text="${user.streetName}"></strong>
                 <strong th:text="${user.streetNumber}"></strong>,
-            <strong th:text="${user.postNumber}"></strong></p>
+                <strong th:text="${user.postNumber}"></strong></p>
             <p><strong th:text="${user.city}"></strong>,
                 <strong th:text="${user.country}"></strong></p>
         </td>

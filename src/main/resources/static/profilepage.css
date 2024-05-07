@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 150px;
+    padding: 0;
+    background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+
+th {
+    background-color: #4a6c73;
+    color: black;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4a6c73;
+    color: #fff;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #3c5c7e;
+}
+
+strong {
+    font-weight: bold;
+}
