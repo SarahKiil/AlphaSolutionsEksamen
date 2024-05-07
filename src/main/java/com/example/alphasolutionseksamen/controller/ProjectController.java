@@ -25,8 +25,13 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(Model model){
+    public String getIndex(){
         return "index";
+    }
+
+    @GetMapping("/frontpage")
+    public String getFrontpage(){
+        return "frontpage";
     }
 
 
@@ -231,7 +236,9 @@ public class ProjectController {
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
+        List<Project> assignedProjects =projectService.showProjectsForUser(loggedInUser);
         model.addAttribute("user", loggedInUser);
+        model.addAttribute("projects", assignedProjects);
         return "profilepage";
     }
 
@@ -275,6 +282,12 @@ public class ProjectController {
         model.addAttribute("subproject", subproject);
         model.addAttribute("users", assignedUsers);
         return "assignments";
+    }
+
+    @PostMapping("/user/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("key");
+        return "redirect:/project";
     }
 
 

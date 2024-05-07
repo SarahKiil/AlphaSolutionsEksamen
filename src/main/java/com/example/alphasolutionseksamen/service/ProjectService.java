@@ -90,4 +90,8 @@ public void updateHours(Project project, String taskName, Subproject subproject,
     public void addUser(Project project, Subproject subproject, Task task, User user){
     rp.addUser(project, subproject, task, user);
     }
+
+    public List<Project> showProjectsForUser(User user){
+    return rp.showsProjectsForUser(user);
+    }
 }

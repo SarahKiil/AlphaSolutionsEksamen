@@ -19,18 +19,26 @@ public class ProjectRepository {
 
     public ProjectRepository() {
         Project project = new Project("Eksamen", "Dette er en eksamen", "29-05-2024", "Bobby");
-        users.add(new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark"));
+        Project project1 = new Project("New Project", "Test this thing", "29-05-2024", "Bobby");
+        User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
         users.add(new User("abc", "Harry", "Potter", "password123", "harrypotter@mail.co.uk", "Londonroad", "29", 10000, "London", 1234567899, "England"));
         users.add(new User("HanneRocks", "Hanne", "Jensen", "1234", "HanneFraMarketing@gmail.com", "Taffelæblevej", "13", 4000, "Roskilde", 87654321, "Sverige"));
         projects.add(project);
+        users.add(user);
         Subproject subproject = new Subproject("PO meeting", "Mødes med Luise");
         Subproject subproject1 = new Subproject("Code review", "Mødes med Tine");
+        Subproject subproject2 = new Subproject("Business", "Stuff");
         project.addSubproject(subproject);
         project.addSubproject(subproject1);
         Task task = new Task("Userstory 1", "Vis userstory til hende", 5, 0);
         Task task1 = new Task("Userstory 2", "Vis userstory til hende", 1, 0);
+        Task task2 = new Task("Blablabla", "Hello", 1, 0);
         createTask(project, subproject, task);
         createTask(project, subproject, task1);
+        createTask(project1, subproject2, task2);
+        task.addUser(user);
+        task1.addUser(user);
+        task2.addUser(user);
 
     }
 
@@ -51,6 +59,22 @@ public class ProjectRepository {
 
     public List<Project> showProjects() {
         return projects;
+    }
+
+    public List<Project> showsProjectsForUser(User user){
+        List<Project>assignedProjects =new ArrayList<>();
+        for (Project p : projects){
+            for (Subproject s : p.getSubprojects()){
+                for (Task t : s.getTasks()){
+                    for (User u : t.getAssignedUsers()){
+                        if (u.getUsername().equals(user.getUsername())){
+                            assignedProjects.add(p);
+                        }
+                    }
+                }
+            }
+        }
+        return assignedProjects;
     }
 
     public Project showProject(String name) {

@@ -10,19 +10,40 @@
 <table>
     <thead>
     <tr>
-        <a th:text="${user.username}">Username</a>
-        <a th:text="${user.firstName}">First name</a>
-        <a th:text="${user.lastName}">Last name</a>
-        <a th:text="${user.streetName}">Street name</a>
-        <a th:text="${user.streetNumber}">Street number</a>
-        <a th:text="${user.postNumber}">Post number</a>
-        <a th:text="${user.city}">City</a>
-        <a th:text="${user.country}">Country</a>
-        <a th:text="${user.phoneNumber}">Phone number</a>
-        <a th:text="${user.email}">Email</a>
+        <td>
+            <p>Username: <strong th:text="${user.username}"></strong></p>
+            <p>First name: <strong th:text="${user.firstName}"></strong></p>
+            <p>Last name: <strong th:text="${user.lastName}"></strong></p>
+            <p>Email: <strong th:text="${user.email}"></strong></p>
+            <p>Phone number: <strong th:text="${user.phoneNumber}"></strong></p>
+            <p>Address: <strong th:text="${user.streetName}"></strong>
+                <strong th:text="${user.streetNumber}"></strong>,
+            <strong th:text="${user.postNumber}"></strong></p>
+            <p><strong th:text="${user.city}"></strong>,
+                <strong th:text="${user.country}"></strong></p>
+        </td>
     </tr>
     </thead>
 </table>
+<br>
+<table>
+    <thead>
+    <th>Your assigned projects:</th>
+    <tr th:each="project : ${projects}">
+        <td>
+            <p>Project name: <strong th:text="${project.name}"></strong></p>
+            <p>Description: <strong th:text="${project.description}"></strong></p>
+            <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
+            <p>
+                <a th:href="@{ ${project.name} + '/subprojects'}">
+                    <button type="button" class="button">Show project</button>
+                </a>
+            </p>
+        </td>
+    </tr>
+    </thead>
+</table>
+
 <p>
     <a th:href="@{'/project'}">
         <button type="button" class="button">Go back</button>
