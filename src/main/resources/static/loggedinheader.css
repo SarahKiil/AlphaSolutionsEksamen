@@ -1,6 +1,66 @@
 body {
     margin-top: 150px;
-    margin-block: 150px;
-    
+}
 
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(27, 35, 47, 0.6);
+    color: #FFFFFF;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+
+
+}
+
+/* Logo and Header Titles */
+.logo-link {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 40px;
+    flex-grow: 1;
+    color: #FFFFFF;
+}
+/* Button Styling */
+.buttons-container {
+    display: flex;
+}
+
+.login-button a,
+.signup-button a {
+    padding: 8px 15px;
+    margin-right: 20px;
+    background: linear-gradient(to right, #0596b1 0%, #047a91 100%);
+    border-radius: 8px;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.login-button a:hover,
+.signup-button a:hover {
+    background: linear-gradient(to right, #047a91 0%, #03657d 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }

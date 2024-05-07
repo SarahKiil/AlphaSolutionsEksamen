@@ -25,8 +25,17 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(){
-        return "index";
+    public String getIndex(HttpSession session){
+
+        User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+        User userToBeLoggedIn = projectService.showUser(user);
+        loggedInUser = (User) session.getAttribute("key");
+        if (loggedInUser == null) {
+            loggedInUser = new User();
+            session.setAttribute("key", userToBeLoggedIn);
+            return "frontpage";
+        }
+        return "frontpage";
     }
 
     @GetMapping("/frontpage")
@@ -80,9 +89,14 @@ public class ProjectController {
     }
 
     @GetMapping("/overview")
-    public String showProjects(Model model){
+    public String showProjects(Model model, HttpSession session){
         List<Project> projects = projectService.showProjects();
+        loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
+        for (Project p : projects){
+        if (p.getUsername().equals(loggedInUser.getUsername())){
+            model.addAttribute("manager", "manager");
+        }}
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this project");
         return "showprojects";
     }
@@ -102,7 +116,8 @@ public class ProjectController {
     }
 
     @GetMapping("/{name}/{subprojectname}/tasks")
-    public String showTasks(@PathVariable String name, @PathVariable String subprojectname, Model model){
+    public String showTasks(@PathVariable String name, @PathVariable String subprojectname, Model model, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task>tasks = subproject.getTasks();
@@ -110,6 +125,9 @@ public class ProjectController {
         model.addAttribute("tasks", tasks);
         model.addAttribute("subprojectname", subproject.getName());
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this task");
+        if (project.getUsername().equals(loggedInUser.getUsername())){
+            model.addAttribute("manager", "manager");
+        }
         return "showtasks";
     }
 
