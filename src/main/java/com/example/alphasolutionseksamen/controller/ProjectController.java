@@ -1,5 +1,7 @@
 package com.example.alphasolutionseksamen.controller;
 
+import com.example.alphasolutionseksamen.repository.ProjectRepository;
+import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import jakarta.servlet.http.HttpSession;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
@@ -17,26 +19,30 @@ import java.util.List;
 public class ProjectController {
 
     private User loggedInUser;
+    private ProjectRepository rp = new ProjectRepository();
+    private ProjectService projectService = new ProjectService(rp);
 
-    private ProjectService projectService;
-    public ProjectController(ProjectService projectService){
-        this.projectService = projectService;
+    private ProjectRepositoryDB projectRepositoryDB;
+    public ProjectController(ProjectRepositoryDB projectRepositoryDB){
+        this.projectRepositoryDB =projectRepositoryDB;
     }
+    /*public ProjectController(ProjectService projectService){
+        this.projectService = projectService;
+    }*/
 
 
     @GetMapping("")
     public String getIndex(HttpSession session){
-
         User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+
         User userToBeLoggedIn = projectService.showUser(user);
         loggedInUser = (User) session.getAttribute("key");
         if (loggedInUser == null) {
             loggedInUser = new User();
             session.setAttribute("key", userToBeLoggedIn);
-            return "frontpage";
-        }
         return "frontpage";
     }
+        return "frontpage";}
 
     @GetMapping("/frontpage")
     public String getFrontpage(){
@@ -54,6 +60,7 @@ public class ProjectController {
     public String createProject(@ModelAttribute Project project, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
         project.setUsername(loggedInUser.getUsername());
+        projectRepositoryDB.createProject(project);
         projectService.createProject(project);
         return "redirect:/project/overview";
     }
@@ -68,7 +75,8 @@ public class ProjectController {
     @PostMapping("/{name}/save")
     public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
         Project project = projectService.showProject(name);
-        projectService.createSubproject(project, subproject);
+        projectRepositoryDB.createSubproject(project, subproject);
+        //projectService.createSubproject(project, subproject);
         return "redirect:/project/{name}/subprojects";
     }
 
@@ -84,7 +92,8 @@ public class ProjectController {
     public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(project, subprojectname);
-        projectService.createTask(project, subproject, task);
+        projectRepositoryDB.createTask(project, subproject, task);
+        //projectService.createTask(project, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
