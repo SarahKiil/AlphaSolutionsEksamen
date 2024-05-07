@@ -9,13 +9,13 @@ body {
 
 form {
     background: white;
-    padding: 30px; /* Increased padding for better content breathing space */
-    border-radius: 12px; /* More pronounced border-radius for a modern look */
-    border: none; /* Removing the border for a cleaner design */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1); /* Multi-layer shadows for depth */
+    padding: 30px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 380px; /* Optimal width for form fields */
-    margin: 75px auto 75px; /* Consistent vertical margin */
+    max-width: 380px;
+    margin: 75px auto 75px;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
