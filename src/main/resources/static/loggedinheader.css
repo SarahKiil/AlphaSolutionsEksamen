@@ -17,7 +17,7 @@ body {
 
 }
 
-/* Logo and Header Titles */
+
 .logo-link {
     display: flex;
     align-items: center;
@@ -43,24 +43,6 @@ body {
     display: flex;
 }
 
-.login-button a,
-.signup-button a {
-    padding: 8px 15px;
-    margin-right: 20px;
-    background: linear-gradient(to right, #0596b1 0%, #047a91 100%);
-    border-radius: 8px;
-    color: #FFFFFF;
-    text-decoration: none;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: inline-block;
-    cursor: pointer;
-}
+.logout-button {
 
-.login-button a:hover,
-.signup-button a:hover {
-    background: linear-gradient(to right, #047a91 0%, #03657d 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
