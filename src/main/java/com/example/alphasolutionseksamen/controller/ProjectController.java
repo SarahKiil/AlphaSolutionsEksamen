@@ -88,12 +88,16 @@ public class ProjectController {
     }
 
     @GetMapping("/{name}/subprojects")
-    public String showSubprojects(@PathVariable String name, Model model){
+    public String showSubprojects(@PathVariable String name, Model model, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
         Project project = projectService.showProject(name);
         List<Subproject>subprojects = project.getSubprojects();
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("projectname", project.getName());
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this subproject");
+        if (project.getUsername().equals(loggedInUser.getUsername())){
+            model.addAttribute("manager", "manager");
+        }
         return "showsubprojects";
     }
 
