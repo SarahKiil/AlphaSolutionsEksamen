@@ -10,7 +10,6 @@ body {
     font-family: Arial, sans-serif;
     min-height: 150vh;
     width: 100%;
-    background: linear-gradient(270deg, #293746, #3a506b, #5c677d, #2b394f, #ffffff);
     background-size: 800% 150%;
     background-attachment: fixed;
     overflow-x: hidden;
@@ -23,13 +22,6 @@ body {
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
 
-}
-
-/* Animation */
-@keyframes Gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 .site-header {
@@ -147,14 +139,12 @@ main {
     animation: slideUp 0.5s ease-out forwards;
 }
 
-
-
 .welcome-heading {
     margin-bottom: 100px;
     font-family: 'Arial Black', sans-serif;
     font-size: 50px;
     color: white;
-    background: linear-gradient(45deg, #b7bcc7, #87a5b9);
+    background: linear-gradient(45deg, #2b394f, #3c5c7e);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -184,7 +174,7 @@ main {
 .button-container {
     display: flex;
     justify-content: space-around;
-    background: linear-gradient(45deg, #3c5c7e, #818e98); /* Gradient background */
+    background: linear-gradient(45deg, #15455f, #587581); /* Gradient background */
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
