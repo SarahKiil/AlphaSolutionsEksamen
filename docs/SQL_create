@@ -1,0 +1,62 @@
+create database if not exists AlphaCalc default character set utf8;
+use AlphaCalc;
+drop table if exists Users;
+drop table if exists Projects;
+drop table if exists Subprojects;
+drop table if exists Task;
+
+create table Users (
+Username varchar (50) unique,
+Firstname varchar (50),
+Lastname varchar (50),
+Password varchar (50),
+Email varchar (250),
+Streetname varchar (50),
+Streetnumber varchar (50),
+Postnumber int,
+Phonenumber int,
+City varchar (50),
+Country varchar (50),
+primary key (username));
+
+create table Projects (
+ID int auto_increment,
+Name varchar(30) not null,
+description varchar(250),
+deadline varchar(20),
+estimatedhours double,
+usedhours double,
+username varchar (50),
+foreign key (username) references users(username),
+primary key (ID)
+);
+
+create table Subprojects (
+ID int auto_increment,
+Name varchar(30) not null,
+description varchar(250),
+estimatedhours double,
+usedhours double,
+project_ID int,
+foreign key (project_ID) references projects(ID),
+primary key (ID)
+);
+
+create table Tasks (
+ID int auto_increment,
+Name varchar(30) not null,
+description varchar(250),
+estimatedhours double,
+usedhours double,
+subproject_ID int,
+foreign key (subproject_ID) references subprojects(ID),
+primary key (ID)
+);
+
+CREATE TABLE Tasks_Users (
+Task_ID int,
+Username varchar(50),
+PRIMARY KEY (Task_ID, Username),
+FOREIGN KEY (Task_ID) REFERENCES tasks(ID),
+FOREIGN KEY (username) REFERENCES Users(username)
+);
