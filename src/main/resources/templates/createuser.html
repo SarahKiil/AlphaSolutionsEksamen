@@ -7,6 +7,11 @@
     <div th:replace="~{fragments/header :: header}"></div>
 </head>
 <body>
+<div class="form-container">
+    <div class="form-header">
+        <h1 class="signup-header">Sign up to AlphaCalc</h1>
+        <p class="project-description">Sign up to AlphaCalc to continue to AlphaCalc.com.</p>
+    </div>
 <form action="/project/user/save" th:object="${user}" method="post">
     <p>
         <label for="username">Username:</label>
@@ -63,4 +68,3 @@
 </form>
 </body>
 </html>
-ml>
