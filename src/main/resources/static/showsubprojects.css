@@ -25,13 +25,13 @@ table:hover {
 th, td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #e9f3f3; /* Ensures better visibility of separation */
+    border-bottom: 1px solid #e9f3f3;
 }
 
 th {
     background-color: #1b232f;
     font-size: 1.1em;
-    color: #ffffff; /* Ensures text in headers is clearly readable */
+    color: #ffffff;
 }
 
 .button {
@@ -46,8 +46,8 @@ th {
 }
 
 .button:hover {
-    background-color: #559bad; /* Darker shade of the button color for subtle effect */
-    color: #000000; /* Changes text color to black for contrast */
+    background-color: #559bad;
+    color: #000000;
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
@@ -58,46 +58,46 @@ p, a {
 }
 
 strong {
-    color: #f0f0f0; /* Lighter color for strong emphasis, ensuring it stands out */
+    color: #f0f0f0;
 }
 
 .error {
-    color: #ff6666; /* Softer red for errors, still visible but less harsh */
+    color: #ff6666;
     font-weight: bold;
 }
 
 a {
-    color: #add8e6; /* Lighter blue for links, ensures better visibility */
+    color: #add8e6;
 }
 
 a:hover {
-    color: #ffffff; /* White on hover for clear interaction feedback */
+    color: #ffffff;
     text-decoration: underline;
 }
 
-/* Hover effect on table rows for interactivity */
+
 tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 . button {
-    position: fixed; /* Locks the button's position relative to the viewport */
-    bottom: 20px; /* 20px from the bottom */
-    right: 20px; /* 20px from the right */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background-color: #6d8a9f;
     color: white;
     padding: 12px 24px;
     font-size: 16px;
     border-radius: 6px;
-    text-decoration: none; /* Removes underline from links */
+    text-decoration: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 . button:hover {
-    background-color: #559bad; /* Changes to a darker shade on hover */
-    color: #000000; /* Changes text color to black for contrast */
-    transform: scale(1.05); /* Slightly enlarges the button */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Increases shadow for a 3D effect */
+    background-color: #559bad;
+    color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 

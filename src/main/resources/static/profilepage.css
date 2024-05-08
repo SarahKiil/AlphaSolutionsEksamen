@@ -1,14 +1,14 @@
-/* CSS Variables for enhanced theme management and easier maintenance */
+
 :root {
     --primary-bg-color: #4a6c73;
     --hover-bg-color: #3c5c7e;
     --font-color: #fff;
-    --button-padding: 12px 24px;  /* Slightly larger padding for better touch interaction */
+    --button-padding: 12px 24px;
     --font-size-base: 16px;
-    --line-height-base: 1.8;  /* Increased for better readability */
-    --container-padding: 24px;  /* Increased padding for a more spacious layout */
-    --container-margin: 30px;  /* Increased margin to give more breathing room */
-    --container-radius: 15px;  /* Larger radius for a softer look */
+    --line-height-base: 1.8;
+    --container-padding: 24px;
+    --container-margin: 30px;
+    --container-radius: 15px;
     --box-shadow-base: 0 6px 10px rgba(0, 0, 0, 0.2);
     --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
     --background-opacity: 0.6;
@@ -42,13 +42,13 @@ body {
     overflow: hidden;
 }
 
-/* Refined styling for table and text elements */
+
 th, td {
     background-color: var(--primary-bg-color);
     color: var(--font-color);
-    padding: 12px;  /* Uniform padding */
+    padding: 12px;
     text-align: left;
-    border-bottom: 2px solid #ffffff44;  /* Thicker bottom border for clarity */
+    border-bottom: 2px solid #ffffff44;
 }
 
 p, th, td {
@@ -80,19 +80,19 @@ strong {
     font-weight: bold;
 }
 
-/* Media queries for adaptive responsive design */
+
 @media (max-width: 768px) {
     body {
         align-items: flex-start;
-        padding: 15px;  /* Increased padding for mobile */
+        padding: 15px;
         text-align: left;
     }
     .container, .user-info {
         width: 100%;
-        margin-top: 10px;  /* Reduced margin for compact layout */
+        margin-top: 10px;
     }
     button {
-        font-size: 18px;  /* Larger font for easier interaction */
+        font-size: 18px;
     }
 }
 
@@ -109,7 +109,7 @@ strong {
 }
 
 .user-info h1, .user-info p {
-    margin: 12px 0;  /* Adjusted margin for uniformity */
+    margin: 12px 0;
     color: var(--primary-bg-color);
     font-size: var(--font-size-base);
 }
