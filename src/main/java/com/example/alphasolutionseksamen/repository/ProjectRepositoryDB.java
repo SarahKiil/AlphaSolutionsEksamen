@@ -244,7 +244,20 @@ public class ProjectRepositoryDB {
         }
         return tasks;
     }
-}
+
+    public void updateProject(String projectName, Project project) {
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "UPDATE PROJECTS SET NAME=? AND DESCRIPTION=?  WHERE NAME=?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, project.getName());
+            ps.setString(2, project.getDescription());
+            ps.setString(3, projectName);
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    }
 
 
 

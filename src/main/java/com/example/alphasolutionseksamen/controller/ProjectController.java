@@ -143,14 +143,15 @@ public class ProjectController {
 
     @GetMapping("/{name}/edit")
     public String updateProject(@PathVariable String name, Model model){
-        Project project = projectService.showProject(name);
+        //Project project = projectService.showProject(name);
+        Project project = projectRepositoryDB.showProject(name);
         model.addAttribute("project", project);
         return "updateproject";
     }
 
     @PostMapping("/{name}/update")
     public String updateProject(@PathVariable String name, Project project){
-        projectService.updateProject(name, project);
+        projectRepositoryDB.updateProject(name, project);
         return "redirect:/project/overview";
     }
 
