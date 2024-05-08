@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/assignpost'}" th:object="${user}" method="post">
+<form th:action="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/assignpost'}" th:object="${user}" method="post">
     <p>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>

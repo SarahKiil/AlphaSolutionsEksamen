@@ -172,6 +172,58 @@ public class ProjectRepositoryDB {
         return subproject;
     }
 
+    public Task showTask(String projectName, String subprojectName, String taskName) {
+        Task task = new Task();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            int projectID = 0;
+            int subprojectID = 0;
+            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, projectName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                projectID = (rs.getInt(1));
+            }
+            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=? ";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setInt(1, projectID);
+            ps1.setString(2, subprojectName);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                subprojectID = (rs1.getInt(1));
+            }
+
+            String SQL2 = "SELECT * FROM TASKS WHERE SUBPROJECT_ID=? AND NAME=?";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setInt(1, subprojectID);
+            ps2.setString(2, taskName);
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                task = new Task(rs2.getString(2), rs2.getString(3), rs2.getDouble(4), rs2.getDouble(5));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return task;
+    }
+
+    public User showUser(String username) {
+        User user = new User();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "SELECT * FROM USERS WHERE USERNAME=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(10), rs.getInt(9), rs.getString(11));
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return user;
+    }
+
 
     public List<Project> showProjects() {
         List<Project> projects = new ArrayList<>();
@@ -328,7 +380,7 @@ public class ProjectRepositoryDB {
 
 
 
-    public void updateProject(String projectName, Project project) {
+                public void updateProject(String projectName, Project project) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "UPDATE PROJECTS SET NAME=?, DESCRIPTION=?  WHERE NAME=?";
             PreparedStatement ps = connection.prepareStatement(SQL);

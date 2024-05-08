@@ -293,8 +293,8 @@ public class ProjectController {
             model.addAttribute("userError", "No user with this username exists");
             return "assignment";
         }
-        User userToAdd = projectService.showUser(user.getUsername());
-        projectService.addUser(project, subproject, task, userToAdd);
+        User userToAdd = projectRepositoryDB.showUser(user.getUsername());
+        projectRepositoryDB.addUser(name, subprojectname, taskname, userToAdd);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
