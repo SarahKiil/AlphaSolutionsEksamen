@@ -54,7 +54,9 @@ public class ProjectRepositoryDB {
             //ps.setInt(1, id);
             ps1.setString(1, subproject.getName());
             ps1.setString(2, subproject.getDescription());
-            ps1.setInt(3, id);
+            ps1.setDouble(3, 0);
+            ps1.setDouble(4, 0);
+            ps1.setInt(5, id);
             int rs1 = ps1.executeUpdate();
 
         } catch (SQLException e) {
