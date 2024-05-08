@@ -8,6 +8,7 @@
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
+
 <form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/update'}" method="post" th:object="${task}">
   <p th:text="${project.name}">
   </p>

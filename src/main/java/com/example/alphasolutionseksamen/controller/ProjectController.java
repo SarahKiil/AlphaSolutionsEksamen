@@ -33,7 +33,7 @@ public class ProjectController {
 
     @GetMapping("")
     public String getIndex(HttpSession session){
-        User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+      /*  User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user);
         loggedInUser = (User) session.getAttribute("key");
@@ -41,8 +41,8 @@ public class ProjectController {
             loggedInUser = new User();
             session.setAttribute("key", userToBeLoggedIn);
         return "frontpage";
-    }
-        return "frontpage";}
+    }*/
+        return "index";}
 
     @GetMapping("/frontpage")
     public String getFrontpage(){
@@ -158,8 +158,8 @@ public class ProjectController {
 
     @GetMapping("/{name}/{subprojectname}/edit")
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         return "updatesubproject";
@@ -167,17 +167,16 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/update")
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Subproject subproject){
-        Project project = projectService.showProject(name);
-        projectService.updateSubproject(subprojectname, project, subproject);
+        projectRepositoryDB.updateSubproject(name, subprojectname, subproject);
         return "redirect:/project/{name}/subprojects";
     }
 
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edit")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        Task task = projectService.showTask(subproject, taskname);
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
+        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -186,17 +185,17 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        Project project = projectService.showProject(name);
-        Subproject subproject =projectService.showSubproject(project, subprojectname);
-        projectService.updateTask(project, taskname, subproject, task);
+        //Project project = projectRepositoryDB.showProject(name);
+       // Subproject subproject =projectRepositoryDB.showSubproject(project, subprojectname);
+        projectRepositoryDB.updateTask(name, subprojectname, task, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edithours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        Task task = projectService.showTask(subproject, taskname);
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
+        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -205,9 +204,7 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/updatehours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        Project project = projectService.showProject(name);
-        Subproject subproject =projectService.showSubproject(project, subprojectname);
-        projectService.updateHours(project, taskname, subproject, task);
+        projectRepositoryDB.updateHours(name, subprojectname, taskname, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
@@ -219,7 +216,7 @@ public class ProjectController {
 
     @PostMapping("/user/save")
     public String createUser(@ModelAttribute User user, Model model, HttpSession session){
-        if (!projectService.checkMail(user))
+        if (!projectRepositoryDB.checkMail(user))
         {
             model.addAttribute("mailError", "This is not a valid mail");
             return "createuser";
@@ -232,11 +229,11 @@ public class ProjectController {
             model.addAttribute("lastNameError", "You need to have a last name");
             return "createuser";
         }
-        if (!projectService.checkNumber(user)){
+        if (!projectRepositoryDB.checkNumber(user)){
             model.addAttribute("numberError", "This is not a valid phone number");
             return "createuser";
         }
-        projectService.createUser(user);
+        projectRepositoryDB.createUser(user);
         loggedInUser = new User();
         session.setAttribute("key", user);
         return "redirect:/project/profile";
@@ -250,13 +247,13 @@ public class ProjectController {
 
     @PostMapping("/user/postlogin")
     public String login(@ModelAttribute User user, Model model, HttpSession session) {
-        if (!projectService.checkLogin(user)) {
+        if (!projectRepositoryDB.checkLogin(user)) {
             model.addAttribute("loginError", "Username or password is incorrect");
             return "loginpage";
         } else {
 
 
-            User userToBeLoggedIn = projectService.showUser(user);
+            User userToBeLoggedIn = projectRepositoryDB.showUser(user.getUsername());
             loggedInUser = (User) session.getAttribute("key");
             if (loggedInUser == null) {
                 loggedInUser = new User();
@@ -269,7 +266,7 @@ public class ProjectController {
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
-        List<Project> assignedProjects =projectService.showProjectsForUser(loggedInUser);
+        List<Project> assignedProjects =projectRepositoryDB.showsProjectsForUser(loggedInUser);
         model.addAttribute("user", loggedInUser);
         model.addAttribute("projects", assignedProjects);
         return "profilepage";
@@ -277,9 +274,9 @@ public class ProjectController {
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/assign")
     public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        Task task = projectService.showTask(subproject, taskname);
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
+        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -289,10 +286,10 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/assignpost")
     public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, User user, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject =projectService.showSubproject(project, subprojectname);
-        Task task = projectService.showTask(subproject, taskname);
-        if (!projectService.checkUser(user.getUsername())){
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject =projectRepositoryDB.showSubproject(name, subprojectname);
+        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
+        if (!projectRepositoryDB.checkUsers(user.getUsername())){
             model.addAttribute("userError", "No user with this username exists");
             return "assignment";
         }
@@ -303,10 +300,11 @@ public class ProjectController {
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/assignments")
     public String showAssigned(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        Task task = projectService.showTask(subproject, taskname);
-        List<User>assignedUsers = task.getAssignedUsers();
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
+        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
+        List<String>assignedUsers = projectRepositoryDB.showAssignedUsers(name, subprojectname, taskname);
+
         if (assignedUsers.size()>0){
             model.addAttribute("usersassigned", "usersassignet");
         }
