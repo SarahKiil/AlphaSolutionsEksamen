@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Create project</title>
-    <link th:href="@{/createproject.css}" rel="stylesheet">
     <link th:href="@{/headerloggedin.css}" rel="stylesheet">
+    <link th:href="@{/createproject.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
+
+<h1 class="create-heading">Create a project</h1>
 
 <form action="/project/save" th:object="${project}" method="post">
     <p>

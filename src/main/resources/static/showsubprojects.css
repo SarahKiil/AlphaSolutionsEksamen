@@ -1,14 +1,15 @@
 body {
-    background-color: black;
+    background-color: white;
     background-image: linear-gradient(to right, #023554, #779095, #9eada8, #efead8);
     font-family: 'Roboto', sans-serif;
-    color: black;
-    overflow-y: scroll; /* Enable vertical scrolling */
+    color: white;
+    overflow-y: scroll;
 }
 
 table {
     width: 80%;
     margin: 20px auto;
+    margin-top: 130px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -24,14 +25,14 @@ table:hover {
 th, td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid rgb(233, 243, 243);
+    border-bottom: 1px solid #e9f3f3; /* Ensures better visibility of separation */
 }
 
 th {
     background-color: #1b232f;
     font-size: 1.1em;
+    color: #ffffff; /* Ensures text in headers is clearly readable */
 }
-
 
 .button {
     background-color: #6d8a9f;
@@ -45,7 +46,8 @@ th {
 }
 
 .button:hover {
-    background-color: #e9f3f3;
+    background-color: #559bad; /* Darker shade of the button color for subtle effect */
+    color: #000000; /* Changes text color to black for contrast */
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
@@ -56,16 +58,16 @@ p, a {
 }
 
 strong {
-    color: #f0f0f0; /* Lighter color for strong emphasis */
+    color: #f0f0f0; /* Lighter color for strong emphasis, ensuring it stands out */
 }
 
 .error {
-    color: #ff0000; /* More vivid color for errors */
+    color: #ff6666; /* Softer red for errors, still visible but less harsh */
     font-weight: bold;
 }
 
 a {
-    color: #add8e6; /* Lighter blue for links, better visibility */
+    color: #add8e6; /* Lighter blue for links, ensures better visibility */
 }
 
 a:hover {
@@ -77,3 +79,25 @@ a:hover {
 tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
 }
+
+. button {
+    position: fixed; /* Locks the button's position relative to the viewport */
+    bottom: 20px; /* 20px from the bottom */
+    right: 20px; /* 20px from the right */
+    background-color: #6d8a9f;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    text-decoration: none; /* Removes underline from links */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+. button:hover {
+    background-color: #559bad; /* Changes to a darker shade on hover */
+    color: #000000; /* Changes text color to black for contrast */
+    transform: scale(1.05); /* Slightly enlarges the button */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Increases shadow for a 3D effect */
+}
+

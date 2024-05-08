@@ -1,36 +1,42 @@
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
+    background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
     padding-top: 120px;
 }
 
+.create-heading {
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    margin: 0 0 10px;
+}
 
 form {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 500px;
+    margin: auto;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
+
 
 form p {
     margin-bottom: 15px;
-    margin-top: 100px;
 }
-
-form, .main-content {
-    margin-top: 20px;  /* Adjust as needed to ensure no overlap */
-}
-
 
 
 label {
     display: block;
     color: #333;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 300; /* Sets the font weight to lighter, adjust as needed between 100 to 400 */
 }
 
 
@@ -53,6 +59,7 @@ button.button {
     border-radius: 4px;
     text-transform: uppercase;
     transition: background-color 0.3s;
+    margin-top: 30px;
 }
 
 input[type="submit"]:hover,
@@ -66,5 +73,31 @@ button.button {
 }
 
 button.button:hover {
+    background-color: #ff0000;
+}
+
+input[type="submit"],
+button.button,
+a.button {
+    cursor: pointer;
+    background-color: #546a8c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+input[type="submit"]:hover,
+button.button:hover,
+a.button:hover {
+    background-color: #3c5c7e;
+}
+
+a.button:hover {
     background-color: #ff0000;
 }
