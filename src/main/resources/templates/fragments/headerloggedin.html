@@ -1,20 +1,17 @@
+<head>
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
+</head>
 <header class="site-header">
-    <button onclick="window.location.href='/project/frontpage'" class="logo-link">
-        <link th:href="@{/loggedinheader.css}" rel="stylesheet">
+    <a href="/project" class="logo-link">
         <img src="https://i.pinimg.com/originals/c3/90/1a/c3901af7776cb18611068bea31f3fcd3.png" alt="AlphaCalc Logo" class="logo">
-    </button>
-    <div class="header-title">
-        <a href="/project/frontpage" class="header-title">AlphaCalc</a>
-        </div>
-
-    <div class="login-button">
-        <a href="/project/profile" class="login-button">My profile</a>
+    </a>
+    <div class="header-title">AlphaCalc</div>
+    <div class="myprofile-button">
+        <a href="/project/user/profile" class="myprofile-link">My Profile</a>
     </div>
-    <div class="Signup-button">
-        <form method="post" action="/project/user/logout" class="Signup-button">
-            <button type="submit" class="login-button">Logout</button>
-        </form>
+
+    <div class="logout-button">
+        <a href="/project/user/logout" class="logout-link">Log out</a>
     </div>
 
 </header>
-

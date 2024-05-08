@@ -1,46 +1,115 @@
+/* CSS Variables for enhanced theme management and easier maintenance */
+:root {
+    --primary-bg-color: #4a6c73;
+    --hover-bg-color: #3c5c7e;
+    --font-color: #fff;
+    --button-padding: 12px 24px;  /* Slightly larger padding for better touch interaction */
+    --font-size-base: 16px;
+    --line-height-base: 1.8;  /* Increased for better readability */
+    --container-padding: 24px;  /* Increased padding for a more spacious layout */
+    --container-margin: 30px;  /* Increased margin to give more breathing room */
+    --container-radius: 15px;  /* Larger radius for a softer look */
+    --box-shadow-base: 0 6px 10px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
+    --background-opacity: 0.6;
+    --transition-speed: 0.35s;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    margin-top: 150px;
+    margin: 0;
     padding: 0;
-    background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, var(--background-opacity)), rgba(0, 0, 0, var(--background-opacity))),
+    url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: black;
+    position: relative;
+    text-align: center;
 }
 
+.container {
+    width: 80%;
+    max-width: 960px;
+    padding: var(--container-padding);
+    margin-top: var(--container-margin);
+    background-color: rgba(0, 0, 0, var(--background-opacity));
+    border-radius: var(--container-radius);
+    box-shadow: var(--box-shadow-base);
+    overflow: hidden;
+}
 
-th {
-    background-color: #4a6c73;
-    color: black;
-    padding: 10px;
+/* Refined styling for table and text elements */
+th, td {
+    background-color: var(--primary-bg-color);
+    color: var(--font-color);
+    padding: 12px;  /* Uniform padding */
     text-align: left;
+    border-bottom: 2px solid #ffffff44;  /* Thicker bottom border for clarity */
 }
 
-td {
-    padding: 10px;
-}
-
-p {
-    margin: 5px 0;
+p, th, td {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
 }
 
 button {
-    padding: 10px 20px;
+    padding: var(--button-padding);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4a6c73;
-    color: #fff;
-    font-size: 16px;
+    background-color: var(--primary-bg-color);
+    color: var(--font-color);
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: var(--box-shadow-base);
+    position: relative;
+    z-index: 2;
 }
 
-button:hover {
-    background-color: #3c5c7e;
+button:hover, button:focus {
+    background-color: var(--hover-bg-color);
+    outline: none;
+    box-shadow: var(--box-shadow-hover);
 }
 
 strong {
     font-weight: bold;
+}
+
+/* Media queries for adaptive responsive design */
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding: 15px;  /* Increased padding for mobile */
+        text-align: left;
+    }
+    .container, .user-info {
+        width: 100%;
+        margin-top: 10px;  /* Reduced margin for compact layout */
+    }
+    button {
+        font-size: 18px;  /* Larger font for easier interaction */
+    }
+}
+
+.user-info {
+    position: absolute;
+    top: 10px;  
+    left: 10px;
+    width: 320px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--container-radius);
+    box-shadow: var(--box-shadow-base);
+    z-index: 100;
+}
+
+.user-info h1, .user-info p {
+    margin: 12px 0;  /* Adjusted margin for uniformity */
+    color: var(--primary-bg-color);
+    font-size: var(--font-size-base);
 }

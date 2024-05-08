@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login page</title>
     <link th:href="@{/profilepage.css}" rel="stylesheet">
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
@@ -11,6 +12,8 @@
     <thead>
     <tr>
         <td>
+            <div class="user-info">
+                <h1>Your account info</h1>
             <p>Username: <strong th:text="${user.username}"></strong></p>
             <p>First name: <strong th:text="${user.firstName}"></strong></p>
             <p>Last name: <strong th:text="${user.lastName}"></strong></p>
@@ -21,6 +24,7 @@
                 <strong th:text="${user.postNumber}"></strong></p>
             <p><strong th:text="${user.city}"></strong>,
                 <strong th:text="${user.country}"></strong></p>
+            </div>
         </td>
     </tr>
     </thead>

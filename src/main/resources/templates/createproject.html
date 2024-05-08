@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Create project</title>
-    <div th:replace="~{fragments/headerloggedin :: header}"></div>
-
+    <link th:href="@{/createproject.css}" rel="stylesheet">
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
-
+<body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <form action="/project/save" th:object="${project}" method="post">
     <p>
@@ -17,17 +18,13 @@
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" th:field="*{description}"/>
     </p>
-    <label for="deadline">Deadline:</label>
-
-    <input type="date" id="deadline" name="deadline" value="2024-01-01" min="2024-01-01" max="2040-12-31" th:field="*{deadline}" />
-    <br>
-    <input type="submit" value="Create project" /></form>
-    <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Cancel</button>
-    </a>
-
-
+    <p>
+        <label for="deadline">Deadline:</label>
+        <input type="date" id="deadline" name="deadline" value="2024-01-01" min="2024-01-01" max="2040-12-31" th:field="*{deadline}" />
+    </p>
+    <input type="submit" value="Create project" />
 </form>
+<a th:href="@{'/project/frontpage'}" class="button">Cancel</a>
 
 </body>
 </html>
