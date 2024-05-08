@@ -18,11 +18,21 @@ public class Project {
 
     private List<User>assignedUsers;
 
+    public Project(String name, String description, String deadline, double estimatedHours, double usedHours, String username){
+        this.name =name;
+        this.description = description;
+        this.deadline=deadline;
+        this.estimatedHours=estimatedHours;
+        this.usedHours=usedHours;
+        this.username = username;
+        this.assignedUsers = new ArrayList<>();
+    }
     public Project(String name, String description, String deadline, String username){
         this.name =name;
         this.description = description;
         this.deadline=deadline;
         this.estimatedHours=0;
+        this.usedHours=usedHours;
         this.username = username;
         this.assignedUsers = new ArrayList<>();
     }

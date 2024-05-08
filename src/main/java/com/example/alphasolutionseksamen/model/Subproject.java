@@ -23,6 +23,14 @@ public class Subproject {
         this.assignedUsers = new ArrayList<>();
     }
 
+    public Subproject (String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.estimatedHours = estimatedHours;
+        this.usedHours = usedHours;
+        this.assignedUsers = new ArrayList<>();
+    }
+
     public Subproject() {}
 
     public void addTask(Task task){

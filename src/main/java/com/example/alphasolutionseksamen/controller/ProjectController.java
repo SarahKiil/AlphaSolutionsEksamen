@@ -61,7 +61,7 @@ public class ProjectController {
         loggedInUser = (User) session.getAttribute("key");
         project.setUsername(loggedInUser.getUsername());
         projectRepositoryDB.createProject(project);
-        projectService.createProject(project);
+        //projectService.createProject(project);
         return "redirect:/project/overview";
     }
 
@@ -74,7 +74,7 @@ public class ProjectController {
 
     @PostMapping("/{name}/save")
     public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
-        Project project = projectService.showProject(name);
+        Project project = projectRepositoryDB.showProject(name);
         projectRepositoryDB.createSubproject(project, subproject);
         //projectService.createSubproject(project, subproject);
         return "redirect:/project/{name}/subprojects";
@@ -90,8 +90,8 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/save")
     public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
+        Project project = projectRepositoryDB.showProject(name);
+        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
         projectRepositoryDB.createTask(project, subproject, task);
         //projectService.createTask(project, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
@@ -99,7 +99,8 @@ public class ProjectController {
 
     @GetMapping("/overview")
     public String showProjects(Model model, HttpSession session){
-        List<Project> projects = projectService.showProjects();
+        //List<Project> projects = projectService.showProjects();
+        List<Project> projects = projectRepositoryDB.showProjects();
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
         for (Project p : projects){
@@ -113,10 +114,10 @@ public class ProjectController {
     @GetMapping("/{name}/subprojects")
     public String showSubprojects(@PathVariable String name, Model model, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
-        Project project = projectService.showProject(name);
-        List<Subproject>subprojects = project.getSubprojects();
+        Project project = projectRepositoryDB.showProject(name);
+        List<Subproject>subprojects = projectRepositoryDB.showSubprojects(name);
         model.addAttribute("subprojects", subprojects);
-        model.addAttribute("projectname", project.getName());
+        model.addAttribute("projectname", name);
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this subproject");
         if (project.getUsername().equals(loggedInUser.getUsername())){
             model.addAttribute("manager", "manager");
@@ -127,12 +128,12 @@ public class ProjectController {
     @GetMapping("/{name}/{subprojectname}/tasks")
     public String showTasks(@PathVariable String name, @PathVariable String subprojectname, Model model, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
-        Project project = projectService.showProject(name);
-        Subproject subproject = projectService.showSubproject(project, subprojectname);
-        List<Task>tasks = subproject.getTasks();
+        Project project = projectRepositoryDB.showProject(name);
+       // Subproject subproject = projectService.showSubproject(project, subprojectname);
+        List<Task>tasks = projectRepositoryDB.showTasks(name, subprojectname);
         model.addAttribute("projectname", name);
         model.addAttribute("tasks", tasks);
-        model.addAttribute("subprojectname", subproject.getName());
+        model.addAttribute("subprojectname", subprojectname);
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this task");
         if (project.getUsername().equals(loggedInUser.getUsername())){
             model.addAttribute("manager", "manager");
