@@ -47,6 +47,23 @@
     </tr>
     </thead>
 </table>
+<table>
+    <thead>
+    <th>Projects you are manager for:</th>
+    <tr th:each="project : ${managedprojects}">
+        <td>
+            <p>Project name: <strong th:text="${project.name}"></strong></p>
+            <p>Description: <strong th:text="${project.description}"></strong></p>
+            <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
+            <p>
+                <a th:href="@{ ${project.name} + '/subprojects'}">
+                    <button type="button" class="button">Show project</button>
+                </a>
+            </p>
+        </td>
+    </tr>
+    </thead>
+</table>
 
 <p>
     <a th:href="@{'/project/frontpage'}">

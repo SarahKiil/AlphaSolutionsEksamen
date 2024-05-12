@@ -2,7 +2,7 @@
     <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
 <header class="site-header">
-    <a href="/project" class="logo-link">
+    <a href="/project/frontpage" class="logo-link">
         <img src="https://i.pinimg.com/originals/c3/90/1a/c3901af7776cb18611068bea31f3fcd3.png" alt="AlphaCalc Logo" class="logo">
     </a>
     <div class="header-title">AlphaCalc</div>
@@ -11,7 +11,8 @@
     </div>
 
     <div class="logout-button">
-        <a href="/project/user/logout" class="logout-link">Log out</a>
+        <form action="/project/user/logout" method="post">
+        <button type="submit" class="logout-link">Logout</button></form>
     </div>
 
 </header>

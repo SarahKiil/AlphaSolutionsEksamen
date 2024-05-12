@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -32,7 +34,7 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(HttpSession session){
+    public String getIndex(){
       /*  User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user);
@@ -101,13 +103,17 @@ public class ProjectController {
     public String showProjects(Model model, HttpSession session){
         //List<Project> projects = projectService.showProjects();
         List<Project> projects = projectRepositoryDB.showProjects();
+        List<Project> managedProjects = new ArrayList<>();
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
         for (Project p : projects){
         if (p.getUsername().equals(loggedInUser.getUsername())){
-            model.addAttribute("manager", "manager");
+            managedProjects.add(p);
         }}
-        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this project");
+
+        model.addAttribute("managedprojects", managedProjects);
+
+            model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this project");
         return "showprojects";
     }
 
@@ -130,7 +136,18 @@ public class ProjectController {
         loggedInUser = (User) session.getAttribute("key");
         Project project = projectRepositoryDB.showProject(name);
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
+        List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectRepositoryDB.showTasks(name, subprojectname);
+
+        for (Task t : tasks){
+            for (String s : projectRepositoryDB.showAssignedUsers(name, subprojectname, t.getName())){
+                if (s.equals(loggedInUser.getUsername())){
+                    assignedTasks.add(t);
+                }
+            }
+            model.addAttribute("assignedtasks", assignedTasks);
+        }
+
         model.addAttribute("projectname", name);
         model.addAttribute("tasks", tasks);
         model.addAttribute("subprojectname", subprojectname);
@@ -267,7 +284,9 @@ public class ProjectController {
     public String showProfile(Model model, HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
         List<Project> assignedProjects =projectRepositoryDB.showsProjectsForUser(loggedInUser);
+        List<Project> managedProjects = projectRepositoryDB.showProjectsForManagers(loggedInUser);
         model.addAttribute("user", loggedInUser);
+        model.addAttribute("managedprojects", managedProjects);
         model.addAttribute("projects", assignedProjects);
         return "profilepage";
     }
@@ -291,6 +310,10 @@ public class ProjectController {
         Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
         if (!projectRepositoryDB.checkUsers(user.getUsername())){
             model.addAttribute("userError", "No user with this username exists");
+            model.addAttribute("project", project);
+            model.addAttribute("subproject", subproject);
+            model.addAttribute("task", task);
+            model.addAttribute("user", new User());
             return "assignment";
         }
         User userToAdd = projectRepositoryDB.showUser(user.getUsername());

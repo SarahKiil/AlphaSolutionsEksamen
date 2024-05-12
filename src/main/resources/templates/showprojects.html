@@ -30,7 +30,7 @@
             <p>Actual used hours: <strong th:text="${project.usedHours}"></strong></p>
             <p th:if="${project.usedHours}>${project.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
-                <a th:if="${manager}"  th:href="@{ ${project.name} + '/edit'}">
+                <a th:each="p : ${managedprojects}" th:if="${p.name}==${project.name}"  th:href="@{ ${project.name} + '/edit'}">
                     <button type="button" class="button">Update project</button>
                 </a>
             </p>

@@ -6,7 +6,7 @@
     <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
 <body>
-<a th:href="@{'/project/' + ${projectname} + '/' +  ${subprojectname} + '/create'}">
+<a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/' +  ${subprojectname} + '/create'}">
     <button type="button" class="button">Add task to project</button>
 </a>
 
@@ -30,7 +30,12 @@
                 </a>
             </p>
             <p>
-                <a th:href="@{ ${task.name} + '/edithours'}">
+                <a th:each="t : ${assignedtasks}" th:if="${t.name}==${task.name}" th:href="@{ ${task.name} + '/edithours'}">
+                    <button type="button" class="button">Update used hours</button>
+                </a>
+            </p>
+            <p>
+                <a th:if="${manager}" th:href="@{ ${task.name} + '/edithours'}">
                     <button type="button" class="button">Update used hours</button>
                 </a>
             </p>

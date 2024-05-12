@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Update your project</title>
     <link th:href="@{/main.css}" rel="stylesheet">
+    <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
 <body>
-<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/updatehours'}" method="post" th:object="${task}">
     <p th:text="${task.name}">
     </p>
     <p>
         <label>Actual used hours:</label>
-        <input name="usedHours" type="usedHours" th:value="${task.usedHours}"/>
+        <input name="usedHours" type="number" th:value="${task.usedHours}"/>
     </p>
     <br>
     <p>

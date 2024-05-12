@@ -25,6 +25,41 @@ public class ProjectRepositoryDB {
 
     //ArrayList<User> users = new ArrayList<>();
 
+
+    public int getProjectID(String projectName) {
+        int id = 0;
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, projectName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                id = (rs.getInt(1));
+        }
+
+    } catch (SQLException e) {
+            throw new RuntimeException(e);}
+            return id;
+        }
+
+    public int getSubprojectID(String projectName, String subprojectName) {
+        int projectID = getProjectID(projectName);
+        int subprojectID = 0;
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=? ";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setInt(1, projectID);
+            ps.setString(2, subprojectName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                subprojectID = (rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return subprojectID;
+    }
+
     public void createProject(Project project) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "insert into projects (name, description, deadline, estimatedhours, usedhours, username) values (?, ?, ?, ?, ?, ?);";
@@ -44,25 +79,19 @@ public class ProjectRepositoryDB {
     }
 
 
-    public void createSubproject(Project project, Subproject subproject) {
+
+        public void createSubproject(Project project, Subproject subproject) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int id = getProjectID(project.getName());
+            String SQL = "insert into subprojects (name, description, estimatedhours, usedhours, project_id) values (?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, project.getName());
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                id = (rs.getInt(1));
-            }
-            String SQL1 = "insert into subprojects (name, description, estimatedhours, usedhours, project_id) values (?, ?, ?, ?, ?);";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
             //ps.setInt(1, id);
-            ps1.setString(1, subproject.getName());
-            ps1.setString(2, subproject.getDescription());
-            ps1.setDouble(3, 0);
-            ps1.setDouble(4, 0);
-            ps1.setInt(5, id);
-            int rs1 = ps1.executeUpdate();
+            ps.setString(1, subproject.getName());
+            ps.setString(2, subproject.getDescription());
+            ps.setDouble(3, 0);
+            ps.setDouble(4, 0);
+            ps.setInt(5, id);
+            int rs = ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -71,55 +100,51 @@ public class ProjectRepositoryDB {
 
     public void createTask(Project project, Subproject subproject, Task task) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = 0;
+            int id = getSubprojectID(project.getName(), subproject.getName());
             double estimatedHoursSubproject = 0;
             double estimatedHoursSubprojectNew = 0;
             double estimatedHoursProject = 0;
             double estimatedHoursprojectNew = 0;
-            String SQL = "SELECT ID FROM SUBPROJECTS WHERE NAME=?;";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, subproject.getName());
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                id = (rs.getInt(1));
-            }
-            String SQL1 = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id) values (?, ?, ?, ?, ?);";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setString(1, task.getName());
-            ps1.setString(2, task.getDescription());
-            ps1.setDouble(3, task.getEstimatedHours());
-            ps1.setDouble(4, 0);
-            ps1.setInt(5, id);
-            int rs1 = ps1.executeUpdate();
+            System.out.println(id);
 
-            String SQL2 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE NAME=?;";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setString(1, project.getName());
-            ResultSet rs2 = ps2.executeQuery();
-            while (rs2.next()) {
-                estimatedHoursProject = (rs2.getInt(1));
+            String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id) values (?, ?, ?, ?, ?);";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, task.getName());
+            ps.setString(2, task.getDescription());
+            ps.setDouble(3, task.getEstimatedHours());
+            ps.setDouble(4, 0);
+            ps.setInt(5, id);
+            int rs = ps.executeUpdate();
+
+            String SQL1 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE NAME=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setString(1, project.getName());
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                estimatedHoursProject = (rs1.getInt(1));
             }
             estimatedHoursprojectNew = estimatedHoursProject + task.getEstimatedHours();
 
-            String SQL3 = "SELECT ESTIMATEDHOURS FROM SUBPROJECTS WHERE NAME=?;";
-            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            String SQL2 = "SELECT ESTIMATEDHOURS FROM SUBPROJECTS WHERE NAME=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
             ps2.setString(1, subproject.getName());
-            ResultSet rs3 = ps2.executeQuery();
-            while (rs3.next()) {
-                estimatedHoursSubproject = (rs3.getInt(1));
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                estimatedHoursSubproject = (rs2.getInt(1));
             }
             estimatedHoursSubprojectNew = estimatedHoursSubproject + task.getEstimatedHours();
 
-            String SQL4 = "UPDATE PROJECTS SET ESTIMATEDHOURS=? WHERE NAME=?";
+            String SQL3 = "UPDATE PROJECTS SET ESTIMATEDHOURS=? WHERE NAME=?";
+            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            ps3.setDouble(1, estimatedHoursprojectNew);
+            ps3.setString(2, project.getName());
+            int rs3 = ps3.executeUpdate();
+
+            String SQL4 = "UPDATE SUBPROJECTS SET ESTIMATEDHOURS=? WHERE NAME=?";
             PreparedStatement ps4 = connection.prepareStatement(SQL4);
-            ps4.setDouble(1, estimatedHoursprojectNew);
-            ps4.setString(2, project.getName());
+            ps4.setDouble(1, estimatedHoursSubprojectNew);
+            ps4.setString(2, subproject.getName());
             int rs4 = ps4.executeUpdate();
-            String SQL5 = "UPDATE SUBPROJECTS SET ESTIMATEDHOURS=? WHERE NAME=?";
-            PreparedStatement ps5 = connection.prepareStatement(SQL5);
-            ps5.setDouble(1, estimatedHoursSubprojectNew);
-            ps5.setString(2, subproject.getName());
-            int rs5 = ps5.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -148,14 +173,8 @@ public class ProjectRepositoryDB {
     public Subproject showSubproject(String projectName, String subprojectName) {
         Subproject subproject = new Subproject();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                id = (rs.getInt(1));
-            }
+            int id = getSubprojectID(projectName, subprojectName);
+
             String SQL1 = "SELECT * FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=?";
             PreparedStatement ps1 = connection.prepareStatement(SQL1);
             ps1.setInt(1, id);
@@ -175,23 +194,7 @@ public class ProjectRepositoryDB {
     public Task showTask(String projectName, String subprojectName, String taskName) {
         Task task = new Task();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            int subprojectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                projectID = (rs.getInt(1));
-            }
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=? ";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setInt(1, projectID);
-            ps1.setString(2, subprojectName);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojectID = (rs1.getInt(1));
-            }
+            int subprojectID = getSubprojectID(projectName, subprojectName);
 
             String SQL2 = "SELECT * FROM TASKS WHERE SUBPROJECT_ID=? AND NAME=?";
             PreparedStatement ps2 = connection.prepareStatement(SQL2);
@@ -243,20 +246,14 @@ public class ProjectRepositoryDB {
     public List<Subproject> showSubprojects(String project) {
         List<Subproject> subprojects = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int id = getProjectID(project);
+
+            String SQL = "SELECT * FROM SUBPROJECTS WHERE PROJECT_ID=? ";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, project);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                id = (rs.getInt(1));
-            }
-            String SQL1 = "SELECT * FROM SUBPROJECTS WHERE PROJECT_ID=? ";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setInt(1, id);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojects.add(new Subproject(rs1.getString(2), rs1.getString(3), rs1.getDouble(4), rs1.getDouble(5)));
+                subprojects.add(new Subproject(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -267,30 +264,14 @@ public class ProjectRepositoryDB {
     public List<Task> showTasks(String project, String subproject) {
         List<Task> tasks = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            int subprojectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int subprojectID = getSubprojectID(project, subproject);
+
+            String SQL = "SELECT * FROM TASKS WHERE SUBPROJECT_ID=? ";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, project);
+            ps.setInt(1, subprojectID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                projectID = (rs.getInt(1));
-            }
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=? ";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setInt(1, projectID);
-            ps1.setString(2, subproject);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojectID = (rs1.getInt(1));
-            }
-
-            String SQL2 = "SELECT * FROM TASKS WHERE SUBPROJECT_ID=? ";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setInt(1, subprojectID);
-            ResultSet rs2 = ps2.executeQuery();
-            while (rs2.next()) {
-                tasks.add(new Task(rs2.getString(2), rs2.getString(3), rs2.getDouble(4), rs2.getDouble(5)));
+                tasks.add(new Task(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -301,6 +282,7 @@ public class ProjectRepositoryDB {
     public List<Project> showsProjectsForUser(User user) {
         HashSet<Integer> taskIDS = new HashSet<>();
         HashSet<Integer> subprojectIDS = new HashSet<>();
+        HashSet<Integer> projectIDS = new HashSet<>();
         List<Project> projects = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "SELECT TASK_ID FROM TASKS_USERS WHERE USERNAME=?;";
@@ -310,22 +292,32 @@ public class ProjectRepositoryDB {
             while (rs.next()) {
                 taskIDS.add(rs.getInt(1));
             }
-            for (int i : taskIDS) {
-                String SQL1 = "SELECT PROJECT_ID FROM SUBPROJECTS WHERE ID=?;";
+            for (int i: taskIDS) {
+                String SQL1 = "SELECT SUBPROJECT_ID FROM TASKS WHERE ID=?;";
                 PreparedStatement ps1 = connection.prepareStatement(SQL1);
                 ps1.setInt(1, i);
                 ResultSet rs1 = ps1.executeQuery();
                 while (rs1.next()) {
                     subprojectIDS.add(rs1.getInt(1));
                 }
+
             }
             for (int i : subprojectIDS) {
-                String SQL2 = "SELECT * FROM PROJECTS WHERE ID=?;";
+                String SQL2 = "SELECT PROJECT_ID FROM SUBPROJECTS WHERE ID=?;";
                 PreparedStatement ps2 = connection.prepareStatement(SQL2);
                 ps2.setInt(1, i);
                 ResultSet rs2 = ps2.executeQuery();
                 while (rs2.next()) {
-                    projects.add(new Project(rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDouble(5), rs2.getDouble(6), rs2.getString(7)));
+                    projectIDS.add(rs2.getInt(1));
+                }
+            }
+            for (int i : projectIDS) {
+                String SQL3 = "SELECT * FROM PROJECTS WHERE ID=?;";
+                PreparedStatement ps3 = connection.prepareStatement(SQL3);
+                ps3.setInt(1, i);
+                ResultSet rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    projects.add(new Project(rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getDouble(5), rs3.getDouble(6), rs3.getString(7)));
                 }
             }
         } catch (SQLException e) {
@@ -334,41 +326,41 @@ public class ProjectRepositoryDB {
         return projects;
     }
 
-    public List<String> showAssignedUsers(String projectName, String subprojectName, String taskName) {
-        List<String> users = new ArrayList<>();
+    public List<Project> showProjectsForManagers(User user) {
+        List<Project> projects = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            String SQL = "SELECT * FROM PROJECTS WHERE USERNAME=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
+            ps.setString(1, user.getUsername());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                projectID = (rs.getInt(1));
+                projects.add(new Project(rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7)));
             }
-            int subprojectID = 0;
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE NAME=? AND PROJECT_ID=?;";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return projects;
+    }
+
+        public List<String> showAssignedUsers(String projectName, String subprojectName, String taskName) {
+        List<String> users = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            int subprojectID = getSubprojectID(projectName, subprojectName);
+            int taskID = 0;
+            String SQL = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, taskName);
+            ps.setInt(2, subprojectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                taskID = rs.getInt(1);
+            }
+            String SQL1 = "SELECT USERNAME FROM TASKS_USERS WHERE TASK_ID=?;";
             PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setString(1, subprojectName);
-            ps1.setInt(2, projectID);
+            ps1.setInt(1, taskID);
             ResultSet rs1 = ps1.executeQuery();
             while (rs1.next()) {
-                subprojectID = (rs1.getInt(1));
-            }
-            int taskID = 0;
-            String SQL2 = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setString(1, taskName);
-            ps2.setInt(2, subprojectID);
-            ResultSet rs2 = ps2.executeQuery();
-            while (rs2.next()) {
-                taskID = rs2.getInt(1);
-            }
-            String SQL3 = "SELECT USERNAME FROM TASKS_USERS WHERE TASK_ID=?;";
-            PreparedStatement ps3 = connection.prepareStatement(SQL3);
-            ps3.setInt(1, taskID);
-            ResultSet rs3 = ps3.executeQuery();
-            while (rs3.next()) {
-                users.add(rs3.getString(1));
+                users.add(rs1.getString(1));
             }
 
         } catch (SQLException e) {
@@ -380,7 +372,7 @@ public class ProjectRepositoryDB {
 
 
 
-                public void updateProject(String projectName, Project project) {
+    public void updateProject(String projectName, Project project) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "UPDATE PROJECTS SET NAME=?, DESCRIPTION=?  WHERE NAME=?";
             PreparedStatement ps = connection.prepareStatement(SQL);
@@ -395,95 +387,74 @@ public class ProjectRepositoryDB {
 
     public void updateSubproject(String projectName, String subprojectName, Subproject subproject) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int id = getProjectID(projectName);
+            String SQL = "UPDATE SUBPROJECTS SET NAME=?, DESCRIPTION=? WHERE NAME=? AND PROJECT_ID=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                id = (rs.getInt(1));
-            }
-            String SQL1 = "UPDATE SUBPROJECTS SET NAME=?, DESCRIPTION=? WHERE NAME=? AND PROJECT_ID=?;";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setString(1, subproject.getName());
-            ps1.setString(2, subproject.getDescription());
-            ps1.setString(3, subprojectName);
-            ps1.setInt(4, id);
-            int rs1 = ps1.executeUpdate();
+            ps.setString(1, subproject.getName());
+            ps.setString(2, subproject.getDescription());
+            ps.setString(3, subprojectName);
+            ps.setInt(4, id);
+            int rs = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
     public void updateTask(String projectName, String subprojectName, Task task, String taskName) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                projectID = (rs.getInt(1));
-            }
-            int subprojectID = 0;
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE NAME=? AND PROJECT_ID=?;";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setString(1, subprojectName);
-            ps1.setInt(2, projectID);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojectID = (rs1.getInt(1));
-            }
+            int projectID = getProjectID(projectName);
+            int subprojectID = getSubprojectID(projectName, subprojectName);
             double estimatedHoursTask = 0;
-            String SQL2 = "SELECT ESTIMATEDHOURS FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setString(1, taskName);
-            ps2.setInt(2, subprojectID);
-            ResultSet rs2 = ps2.executeQuery();
-            while (rs2.next()){
-                estimatedHoursTask=rs2.getDouble(1);
+            String SQL = "SELECT ESTIMATEDHOURS FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, taskName);
+            ps.setInt(2, subprojectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                estimatedHoursTask=rs.getDouble(1);
             }
 
-            String SQL3 = "UPDATE TASKS SET NAME=?, DESCRIPTION=?, ESTIMATEDHOURS=? WHERE NAME=? AND SUBPROJECT_ID=?;";
-            PreparedStatement ps3 = connection.prepareStatement(SQL3);
-            ps3.setString(1, task.getName());
-            ps3.setString(2, task.getDescription());
-            ps3.setDouble(3, task.getEstimatedHours());
-            ps3.setString(4, taskName);
-            ps3.setInt(5, subprojectID);
-            int rs3 = ps3.executeUpdate();
-            String SQL4 = "SELECT ESTIMATEDHOURS FROM SUBPROJECTS WHERE ID=?;";
-            PreparedStatement ps4 = connection.prepareStatement(SQL4);
-            ps4.setInt(1, subprojectID);
-            ResultSet rs4 = ps4.executeQuery();
+            String SQL1 = "UPDATE TASKS SET NAME=?, DESCRIPTION=?, ESTIMATEDHOURS=? WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setString(1, task.getName());
+            ps1.setString(2, task.getDescription());
+            ps1.setDouble(3, task.getEstimatedHours());
+            ps1.setString(4, taskName);
+            ps1.setInt(5, subprojectID);
+            int rs1 = ps1.executeUpdate();
+
+            String SQL2 = "SELECT ESTIMATEDHOURS FROM SUBPROJECTS WHERE ID=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setInt(1, subprojectID);
+            ResultSet rs2 = ps2.executeQuery();
             double estimatedHoursSubproject = 0;
-            while (rs4.next()) {
-                estimatedHoursSubproject = (rs4.getDouble(1));
+            while (rs2.next()) {
+                estimatedHoursSubproject = (rs2.getDouble(1));
 
             }
             double estimatedHoursSubprojectNew = estimatedHoursSubproject - estimatedHoursTask + task.getEstimatedHours();
-            String SQL5 = "UPDATE SUBPROJECTS SET ESTIMATEDHOURS=? WHERE NAME=? AND PROJECT_ID=?;";
-            PreparedStatement ps5 = connection.prepareStatement(SQL5);
-            ps5.setDouble(1, estimatedHoursSubprojectNew);
-            ps5.setString(2, subprojectName);
-            ps5.setInt(3, projectID);
-            int rs5 = ps5.executeUpdate();
+            String SQL3 = "UPDATE SUBPROJECTS SET ESTIMATEDHOURS=? WHERE NAME=? AND PROJECT_ID=?;";
+            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            ps3.setDouble(1, estimatedHoursSubprojectNew);
+            ps3.setString(2, subprojectName);
+            ps3.setInt(3, projectID);
+            int rs3 = ps3.executeUpdate();
 
-            String SQL6 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE ID=?;";
-            PreparedStatement ps6 = connection.prepareStatement(SQL6);
-            ps6.setInt(1, subprojectID);
-            ResultSet rs6 = ps6.executeQuery();
+            String SQL4 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE ID=?;";
+            PreparedStatement ps4 = connection.prepareStatement(SQL4);
+            ps4.setInt(1, projectID);
+            ResultSet rs4 = ps4.executeQuery();
             double estimatedHoursProject = 0;
-            while (rs6.next()) {
-                estimatedHoursProject = (rs6.getDouble(1));
+            while (rs4.next()) {
+                estimatedHoursProject = (rs4.getDouble(1));
 
             }
             double estimatedHoursProjectNew = estimatedHoursProject - estimatedHoursSubproject+estimatedHoursSubprojectNew;
 
-            String SQL7 = "UPDATE PROJECTS SET ESTIMATEDHOURS=? WHERE ID=?;";
-            PreparedStatement ps7 = connection.prepareStatement(SQL7);
-            ps7.setDouble(1, estimatedHoursProjectNew);
-            ps7.setInt(2, projectID);
-            int rs7 = ps7.executeUpdate();
+            String SQL5 = "UPDATE PROJECTS SET ESTIMATEDHOURS=? WHERE ID=?;";
+            PreparedStatement ps5 = connection.prepareStatement(SQL5);
+            ps5.setDouble(1, estimatedHoursProjectNew);
+            ps5.setInt(2, projectID);
+            int rs5 = ps5.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -491,72 +462,57 @@ public class ProjectRepositoryDB {
 
     public void updateHours(String projectName, String subprojectName, String taskName, Task task) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int projectID = getProjectID(projectName);
+            int subprojectID = getSubprojectID(projectName, subprojectName);
+            String SQL = "SELECT USEDHOURS FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
+            ps.setString(1, taskName);
+            ps.setInt(2, subprojectID);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                projectID = (rs.getInt(1));
-            }
-            int subprojectID = 0;
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE NAME=? AND PROJECT_ID=?;";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setString(1, subprojectName);
-            ps1.setInt(2, projectID);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojectID = (rs1.getInt(1));
-            }
-            String SQL2 = "SELECT USEDHOURS FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setString(1, taskName);
-            ps2.setInt(2, subprojectID);
-            ResultSet rs2 = ps2.executeQuery();
             double usedHoursTask=0;
-            while (rs2.next()){
-                usedHoursTask=rs2.getDouble(1);
+            while (rs.next()){
+                usedHoursTask=rs.getDouble(1);
             }
-            String SQL3 = "UPDATE TASKS SET USEDHOURS=? WHERE NAME=? AND SUBPROJECT_ID=?;";
-            PreparedStatement ps3 = connection.prepareStatement(SQL3);
-            ps3.setDouble(1, task.getUsedHours());
-            ps3.setString(2, taskName);
-            ps3.setInt(3, subprojectID);
-            int rs3 = ps3.executeUpdate();
+            String SQL1 = "UPDATE TASKS SET USEDHOURS=? WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setDouble(1, task.getUsedHours());
+            ps1.setString(2, taskName);
+            ps1.setInt(3, subprojectID);
+            int rs1 = ps1.executeUpdate();
 
-            String SQL4 = "SELECT USEDHOURS FROM SUBPROJECTS WHERE ID=?;";
-            PreparedStatement ps4 = connection.prepareStatement(SQL4);
-            ps4.setInt(1, subprojectID);
-            ResultSet rs4 = ps4.executeQuery();
+            String SQL2 = "SELECT USEDHOURS FROM SUBPROJECTS WHERE ID=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setInt(1, subprojectID);
+            ResultSet rs2 = ps2.executeQuery();
             double usedHoursSubproject = 0;
-            while (rs4.next()) {
-                usedHoursSubproject = (rs4.getDouble(1));
+            while (rs2.next()) {
+                usedHoursSubproject = (rs2.getDouble(1));
 
             }
             double usedHoursSubprojectNew = usedHoursSubproject - usedHoursTask+task.getUsedHours();
-            String SQL5 = "UPDATE SUBPROJECTS SET USEDHOURS=? WHERE NAME=? AND PROJECT_ID=?;";
-            PreparedStatement ps5 = connection.prepareStatement(SQL5);
-            ps5.setDouble(1, usedHoursSubprojectNew);
-            ps5.setString(2, subprojectName);
-            ps5.setInt(3, projectID);
-            int rs5 = ps5.executeUpdate();
+            String SQL3 = "UPDATE SUBPROJECTS SET USEDHOURS=? WHERE NAME=? AND PROJECT_ID=?;";
+            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            ps3.setDouble(1, usedHoursSubprojectNew);
+            ps3.setString(2, subprojectName);
+            ps3.setInt(3, projectID);
+            int rs3 = ps3.executeUpdate();
 
-            String SQL6 = "SELECT USEDHOURS FROM PROJECTS WHERE ID=?;";
-            PreparedStatement ps6 = connection.prepareStatement(SQL6);
-            ps6.setInt(1, subprojectID);
-            ResultSet rs6 = ps6.executeQuery();
+            String SQL4 = "SELECT USEDHOURS FROM PROJECTS WHERE ID=?;";
+            PreparedStatement ps4 = connection.prepareStatement(SQL4);
+            ps4.setInt(1, projectID);
+            ResultSet rs4 = ps4.executeQuery();
             double usedHoursProject = 0;
-            while (rs6.next()) {
-                usedHoursProject = (rs6.getDouble(1));
+            while (rs4.next()) {
+                usedHoursProject = (rs4.getDouble(1));
 
             }
             double usedHoursProjectNew = usedHoursProject - usedHoursSubproject+usedHoursSubprojectNew;
 
-            String SQL7 = "UPDATE PROJECTS SET USEDHOURS=? WHERE ID=?;";
-            PreparedStatement ps7 = connection.prepareStatement(SQL7);
-            ps7.setDouble(1, usedHoursProjectNew);
-            ps7.setInt(2, projectID);
-            int rs7 = ps7.executeUpdate();
+            String SQL5 = "UPDATE PROJECTS SET USEDHOURS=? WHERE ID=?;";
+            PreparedStatement ps5 = connection.prepareStatement(SQL5);
+            ps5.setDouble(1, usedHoursProjectNew);
+            ps5.setInt(2, projectID);
+            int rs5 = ps5.executeUpdate();
 
     } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -650,38 +606,22 @@ public boolean checkLogin(User user) {
     }
     public void addUser(String projectName, String subprojectName, String taskName, User user){
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int projectID = 0;
-            String SQL = "SELECT ID FROM PROJECTS WHERE NAME=?;";
+            int subprojectID = getSubprojectID(projectName, subprojectName);
+            int taskID = 0;
+            String SQL = "SELECT ID FROM TASKS WHERE SUBPROJECT_ID=? AND NAME=?";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setString(1, projectName);
+            ps.setInt(1, subprojectID);
+            ps.setString(2, taskName);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                projectID = (rs.getInt(1));
-            }
-            int subprojectID = 0;
-            String SQL1 = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=?";
-            PreparedStatement ps1 = connection.prepareStatement(SQL1);
-            ps1.setInt(1, projectID);
-            ps1.setString(2, subprojectName);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                subprojectID = rs1.getInt(1);
-                     }
-            int taskID = 0;
-            String SQL2 = "SELECT ID FROM TASKS WHERE SUBPROJECT_ID=? AND NAME=?";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setInt(1, subprojectID);
-            ps2.setString(2, taskName);
-            ResultSet rs2 = ps2.executeQuery();
-            while (rs2.next()) {
-                taskID = rs2.getInt(1);
+                taskID = rs.getInt(1);
             }
 
-            String SQL3 = "INSERT INTO TASKS_USERS (task_ID, username) values (?, ?);";
-            PreparedStatement ps3 = connection.prepareStatement(SQL3);
-            ps3.setInt(1, taskID);
-            ps3.setString(2, user.getUsername());
-            int rs3 = ps3.executeUpdate();
+            String SQL1 = "INSERT INTO TASKS_USERS (task_ID, username) values (?, ?);";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setInt(1, taskID);
+            ps1.setString(2, user.getUsername());
+            int rs1 = ps1.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
