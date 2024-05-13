@@ -22,11 +22,12 @@ public class ProjectController {
 
     private User loggedInUser;
     private ProjectRepository rp = new ProjectRepository();
-    private ProjectService projectService = new ProjectService(rp);
+    private ProjectService projectService;
 
     private ProjectRepositoryDB projectRepositoryDB;
-    public ProjectController(ProjectRepositoryDB projectRepositoryDB){
-        this.projectRepositoryDB =projectRepositoryDB;
+
+    public ProjectController(ProjectService projectService){
+        this.projectService =projectService;
     }
     /*public ProjectController(ProjectService projectService){
         this.projectService = projectService;
@@ -62,7 +63,7 @@ public class ProjectController {
     public String createProject(@ModelAttribute Project project, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
         project.setUsername(loggedInUser.getUsername());
-        projectRepositoryDB.createProject(project);
+        projectService.createProject(project);
         //projectService.createProject(project);
         return "redirect:/project/overview";
     }
@@ -76,8 +77,8 @@ public class ProjectController {
 
     @PostMapping("/{name}/save")
     public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
-        Project project = projectRepositoryDB.showProject(name);
-        projectRepositoryDB.createSubproject(project, subproject);
+        Project project = projectService.showProject(name);
+        projectService.createSubproject(project, subproject);
         //projectService.createSubproject(project, subproject);
         return "redirect:/project/{name}/subprojects";
     }
@@ -92,9 +93,9 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/save")
     public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
-        projectRepositoryDB.createTask(project, subproject, task);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        projectService.createTask(project, subproject, task);
         //projectService.createTask(project, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
@@ -102,7 +103,7 @@ public class ProjectController {
     @GetMapping("/overview")
     public String showProjects(Model model, HttpSession session){
         //List<Project> projects = projectService.showProjects();
-        List<Project> projects = projectRepositoryDB.showProjects();
+        List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
@@ -120,8 +121,8 @@ public class ProjectController {
     @GetMapping("/{name}/subprojects")
     public String showSubprojects(@PathVariable String name, Model model, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
-        Project project = projectRepositoryDB.showProject(name);
-        List<Subproject>subprojects = projectRepositoryDB.showSubprojects(name);
+        Project project = projectService.showProject(name);
+        List<Subproject>subprojects = projectService.showSubprojects(name);
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("projectname", name);
         model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this subproject");
@@ -134,13 +135,13 @@ public class ProjectController {
     @GetMapping("/{name}/{subprojectname}/tasks")
     public String showTasks(@PathVariable String name, @PathVariable String subprojectname, Model model, HttpSession session){
         loggedInUser = (User) session.getAttribute("key");
-        Project project = projectRepositoryDB.showProject(name);
+        Project project = projectService.showProject(name);
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task> assignedTasks = new ArrayList<>();
-        List<Task>tasks = projectRepositoryDB.showTasks(name, subprojectname);
+        List<Task>tasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
-            for (String s : projectRepositoryDB.showAssignedUsers(name, subprojectname, t.getName())){
+            for (String s : projectService.showAssignedUsers(name, subprojectname, t.getName())){
                 if (s.equals(loggedInUser.getUsername())){
                     assignedTasks.add(t);
                 }
@@ -161,22 +162,22 @@ public class ProjectController {
     @GetMapping("/{name}/edit")
     public String updateProject(@PathVariable String name, Model model){
         //Project project = projectService.showProject(name);
-        Project project = projectRepositoryDB.showProject(name);
+        Project project = projectService.showProject(name);
         model.addAttribute("project", project);
         return "updateproject";
     }
 
     @PostMapping("/{name}/update")
     public String updateProject(@PathVariable String name, Project project){
-        projectRepositoryDB.updateProject(name, project);
+        projectService.updateProject(name, project);
         return "redirect:/project/overview";
     }
 
 
     @GetMapping("/{name}/{subprojectname}/edit")
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         return "updatesubproject";
@@ -184,16 +185,16 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/update")
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Subproject subproject){
-        projectRepositoryDB.updateSubproject(name, subprojectname, subproject);
+        projectService.updateSubproject(name, subprojectname, subproject);
         return "redirect:/project/{name}/subprojects";
     }
 
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edit")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
-        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -204,15 +205,15 @@ public class ProjectController {
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
         //Project project = projectRepositoryDB.showProject(name);
        // Subproject subproject =projectRepositoryDB.showSubproject(project, subprojectname);
-        projectRepositoryDB.updateTask(name, subprojectname, task, taskname);
+        projectService.updateTask(name, subprojectname, task, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edithours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
-        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -221,7 +222,7 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/updatehours")
     public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        projectRepositoryDB.updateHours(name, subprojectname, taskname, task);
+        projectService.updateHours(name, subprojectname, taskname, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
@@ -233,7 +234,7 @@ public class ProjectController {
 
     @PostMapping("/user/save")
     public String createUser(@ModelAttribute User user, Model model, HttpSession session){
-        if (!projectRepositoryDB.checkMail(user))
+        if (!projectService.checkMail(user))
         {
             model.addAttribute("mailError", "This is not a valid mail");
             return "createuser";
@@ -246,11 +247,11 @@ public class ProjectController {
             model.addAttribute("lastNameError", "You need to have a last name");
             return "createuser";
         }
-        if (!projectRepositoryDB.checkNumber(user)){
+        if (!projectService.checkNumber(user)){
             model.addAttribute("numberError", "This is not a valid phone number");
             return "createuser";
         }
-        projectRepositoryDB.createUser(user);
+        projectService.createUser(user);
         loggedInUser = new User();
         session.setAttribute("key", user);
         return "redirect:/project/profile";
@@ -264,13 +265,13 @@ public class ProjectController {
 
     @PostMapping("/user/postlogin")
     public String login(@ModelAttribute User user, Model model, HttpSession session) {
-        if (!projectRepositoryDB.checkLogin(user)) {
+        if (!projectService.checkLogin(user)) {
             model.addAttribute("loginError", "Username or password is incorrect");
             return "loginpage";
         } else {
 
 
-            User userToBeLoggedIn = projectRepositoryDB.showUser(user.getUsername());
+            User userToBeLoggedIn = projectService.showUser(user.getUsername());
             loggedInUser = (User) session.getAttribute("key");
             if (loggedInUser == null) {
                 loggedInUser = new User();
@@ -283,8 +284,8 @@ public class ProjectController {
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
-        List<Project> assignedProjects =projectRepositoryDB.showsProjectsForUser(loggedInUser);
-        List<Project> managedProjects = projectRepositoryDB.showProjectsForManagers(loggedInUser);
+        List<Project> assignedProjects =projectService.showsProjectsForUser(loggedInUser);
+        List<Project> managedProjects = projectService.showProjectsForManagers(loggedInUser);
         model.addAttribute("user", loggedInUser);
         model.addAttribute("managedprojects", managedProjects);
         model.addAttribute("projects", assignedProjects);
@@ -293,9 +294,9 @@ public class ProjectController {
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/assign")
     public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
-        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
@@ -305,10 +306,10 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/assignpost")
     public String assignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, User user, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject =projectRepositoryDB.showSubproject(name, subprojectname);
-        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
-        if (!projectRepositoryDB.checkUsers(user.getUsername())){
+        Project project = projectService.showProject(name);
+        Subproject subproject =projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
+        if (!projectService.checkUsers(user.getUsername())){
             model.addAttribute("userError", "No user with this username exists");
             model.addAttribute("project", project);
             model.addAttribute("subproject", subproject);
@@ -316,17 +317,17 @@ public class ProjectController {
             model.addAttribute("user", new User());
             return "assignment";
         }
-        User userToAdd = projectRepositoryDB.showUser(user.getUsername());
-        projectRepositoryDB.addUser(name, subprojectname, taskname, userToAdd);
+        User userToAdd = projectService.showUser(user.getUsername());
+        projectService.addUser(name, subprojectname, taskname, userToAdd);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/assignments")
     public String showAssigned(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
-        Project project = projectRepositoryDB.showProject(name);
-        Subproject subproject = projectRepositoryDB.showSubproject(name, subprojectname);
-        Task task = projectRepositoryDB.showTask(name, subprojectname, taskname);
-        List<String>assignedUsers = projectRepositoryDB.showAssignedUsers(name, subprojectname, taskname);
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
+        List<String>assignedUsers = projectService.showAssignedUsers(name, subprojectname, taskname);
 
         if (assignedUsers.size()>0){
             model.addAttribute("usersassigned", "usersassignet");

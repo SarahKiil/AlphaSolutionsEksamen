@@ -5,6 +5,7 @@ import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
 import com.example.alphasolutionseksamen.model.User;
 import com.example.alphasolutionseksamen.repository.ProjectRepository;
+import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,11 +13,107 @@ import java.util.List;
 
 @Service
 public class ProjectService {
-private ProjectRepository rp;
-public ProjectService (ProjectRepository rp) {
-    this.rp = rp;
+private ProjectRepositoryDB rpd;
+public ProjectService (ProjectRepositoryDB rpd) {
+    this.rpd = rpd;
 }
 
+public void createProject(Project project){
+    rpd.createProject(project);
+}
+
+public Project showProject(String projectName) {
+    return rpd.showProject(projectName);
+}
+
+
+
+    public void createSubproject(Project project, Subproject subproject) {
+    rpd.createSubproject(project, subproject);
+    }
+
+    public Subproject showSubproject(String projectName, String subprojectName) {
+    return rpd.showSubproject(projectName, subprojectName);
+    }
+
+    public Task showTask(String projectName, String subprojectName, String taskName) {
+    return rpd.showTask(projectName, subprojectName, taskName);
+    }
+
+    public User showUser(String username) {
+    return rpd.showUser(username);
+    }
+
+    public List<Project> showProjects() {
+        return rpd.showProjects();
+    }
+
+    public List<Subproject> showSubprojects(String project) {
+    return rpd.showSubprojects(project);
+    }
+
+    public List<Task> showTasks(String project, String subproject) {
+    return rpd.showTasks(project, subproject);
+    }
+
+    public List<String> showAssignedUsers(String projectName, String subprojectName, String taskName) {
+    return rpd.showAssignedUsers(projectName, subprojectName, taskName);
+    }
+
+    public List<Project> showsProjectsForUser(User user) {
+    return rpd.showsProjectsForUser(user);
+    }
+
+    public List<Project> showProjectsForManagers(User user) {
+    return rpd.showProjectsForManagers(user);
+    }
+
+    public void createTask(Project project, Subproject subproject, Task task) {
+    rpd.createTask(project, subproject, task);
+    }
+
+    public void createUser(User user) {
+    rpd.createUser(user);
+    }
+
+    public void updateProject(String projectName, Project project) {
+    rpd.updateProject(projectName, project);
+    }
+
+    public void updateSubproject(String projectName, String subprojectName, Subproject subproject) {
+    rpd.updateSubproject(projectName, subprojectName, subproject);
+    }
+
+    public void updateTask(String projectName, String subprojectName, Task task, String taskName) {
+    rpd.updateTask(projectName, subprojectName, task, taskName);
+    }
+
+    public void updateHours(String projectName, String subprojectName, String taskName, Task task) {
+    rpd.updateHours(projectName, subprojectName, taskName, task);
+    }
+
+    public boolean checkMail(User user){
+    return rpd.checkMail(user);
+    }
+
+    public boolean checkNumber(User user){
+    return rpd.checkNumber(user);
+    }
+
+    public boolean checkLogin(User user) {
+    return rpd.checkLogin(user);
+    }
+
+    public boolean checkUsers(String username){
+    return rpd.checkUsers(username);
+    }
+
+    public void addUser(String projectName, String subprojectName, String taskName, User user){
+    rpd.addUser(projectName, subprojectName, taskName, user);
+    }
+
+
+/*
 public void createProject(Project project){
     rp.createProject(project);
 }
@@ -93,5 +190,5 @@ public void updateHours(Project project, String taskName, Subproject subproject,
 
     public List<Project> showProjectsForUser(User user){
     return rp.showsProjectsForUser(user);
-    }
+    }*/
 }
