@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update your project</title>
+    <title>Opdater dit projekt</title>
     <link th:href="@{/main.css}" rel="stylesheet">
     <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
@@ -12,15 +12,15 @@
     <p th:text="${task.name}">
     </p>
     <p>
-        <label>Actual used hours:</label>
+        <label>Brugte timer:</label>
         <input name="usedHours" type="number" th:value="${task.usedHours}"/>
     </p>
     <br>
     <p>
-        <button type="submit" class="button">Update task</button>
+        <button type="submit" class="button">Opdater task</button>
 
         <a th:href="@{'/project/frontpage'}">
-            <button type="button" class="button">Cancel</button>
+            <button type="button" class="button">Fortryd</button>
         </a>
     </p>
 </form>

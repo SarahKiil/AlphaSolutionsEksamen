@@ -2,19 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your  projects</title>
+    <title>Dine  subprojekter</title>
     <div th:replace="~{fragments/headerloggedin :: header}"></div>
     <link th:href="@{/showsubprojects.css}" rel="stylesheet">
 </head>
 <body>
 <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/create'}">
-    <button type="button" class="button">Add subproject</button>
+    <button type="button" class="button">Tilføjø subprojekt</button>
 </a>
 
 <table>
     <thead>
     <tr>
-        <a th:text="${projectname}">Project name</a>
+        <a th:text="${projectname}">Projektnavn</a>
     </tr>
     </thead>
     <tbody>
@@ -23,13 +23,13 @@
             <a th:href="@{${subproject.name} + '/tasks'}">
                 <button type="button" class="button" th:text="${subproject.name}"></button>
             </a>
-            <p>Description: <strong th:text="${subproject.description}"></strong></p>
-            <p>Estimated hours: <strong th:text="${subproject.estimatedHours}"></strong></p>
-            <p>Actual hours: <strong th:text="${subproject.usedHours}"></strong></p>
+            <p>Beskrivelse: <strong th:text="${subproject.description}"></strong></p>
+            <p>Forventede timer: <strong th:text="${subproject.estimatedHours}"></strong></p>
+            <p>Brugte timer: <strong th:text="${subproject.usedHours}"></strong></p>
             <p th:if="${subproject.usedHours}>${subproject.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
                 <a th:if="${manager}" th:href="@{ ${subproject.name} + '/edit'}">
-                    <button type="button" class="button">Update subproject</button>
+                    <button type="button" class="button">Opdater subprojekt</button>
                 </a>
             </p>
         </td>
@@ -39,7 +39,7 @@
 
 <p>
     <a th:href="@{'/project/overview'}">
-        <button type="button" class="button">Go back</button>
+        <button type="button" class="button">Gå tilbage</button>
     </a>
 </p>
 </body>

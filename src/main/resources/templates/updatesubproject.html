@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update your project</title>
+    <title>Opdater dit projekt</title>
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
@@ -17,15 +17,15 @@
     </p>
 
     <p>
-        <label>Description:</label>
+        <label>Beskrivelse:</label>
         <input name="description" type="description" th:value="${subproject.description}"/>
     </p>
     <br>
     <p>
-        <button type="submit" class="button">Update subproject</button>
+        <button type="submit" class="button">Opdater subprojekt</button>
 
         <a th:href="@{'/project/frontpage'}">
-            <button type="button" class="button">Cancel</button>
+            <button type="button" class="button">Fortryd</button>
         </a>
     </p>
 </form>

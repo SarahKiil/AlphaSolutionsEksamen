@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login page</title>
+    <title>Profil</title>
     <link th:href="@{/profilepage.css}" rel="stylesheet">
     <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
@@ -13,17 +13,17 @@
     <tr>
         <td>
             <div class="user-info">
-                <h1>Your account info</h1>
-            <p>Username: <strong th:text="${user.username}"></strong></p>
-            <p>First name: <strong th:text="${user.firstName}"></strong></p>
-            <p>Last name: <strong th:text="${user.lastName}"></strong></p>
-            <p>Email: <strong th:text="${user.email}"></strong></p>
-            <p>Phone number: <strong th:text="${user.phoneNumber}"></strong></p>
-            <p>Address: <strong th:text="${user.streetName}"></strong>
-                <strong th:text="${user.streetNumber}"></strong>,
-                <strong th:text="${user.postNumber}"></strong></p>
-            <p><strong th:text="${user.city}"></strong>,
-                <strong th:text="${user.country}"></strong></p>
+                <h1>Dine informationer</h1>
+                <p>Brugernavn: <strong th:text="${user.username}"></strong></p>
+                <p>Fornavn: <strong th:text="${user.firstName}"></strong></p>
+                <p>Efternavn: <strong th:text="${user.lastName}"></strong></p>
+                <p>Email: <strong th:text="${user.email}"></strong></p>
+                <p>Telefonnummer: <strong th:text="${user.phoneNumber}"></strong></p>
+                <p>Addresse: <strong th:text="${user.streetName}"></strong>
+                    <strong th:text="${user.streetNumber}"></strong>,
+                    <strong th:text="${user.postNumber}"></strong></p>
+                <p><strong th:text="${user.city}"></strong>,
+                    <strong th:text="${user.country}"></strong></p>
             </div>
         </td>
     </tr>
@@ -32,15 +32,15 @@
 <br>
 <table>
     <thead>
-    <th>Your assigned projects:</th>
+    <th>Dine tildelte projekter:</th>
     <tr th:each="project : ${projects}">
         <td>
-            <p>Project name: <strong th:text="${project.name}"></strong></p>
-            <p>Description: <strong th:text="${project.description}"></strong></p>
+            <p>Projektnavn: <strong th:text="${project.name}"></strong></p>
+            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
             <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
             <p>
                 <a th:href="@{ ${project.name} + '/subprojects'}">
-                    <button type="button" class="button">Show project</button>
+                    <button type="button" class="button">Vis projekt</button>
                 </a>
             </p>
         </td>
@@ -49,15 +49,15 @@
 </table>
 <table>
     <thead>
-    <th>Projects you are manager for:</th>
+    <th>Projekter du er manager for:</th>
     <tr th:each="project : ${managedprojects}">
         <td>
-            <p>Project name: <strong th:text="${project.name}"></strong></p>
-            <p>Description: <strong th:text="${project.description}"></strong></p>
+            <p>Projektnavn: <strong th:text="${project.name}"></strong></p>
+            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
             <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
             <p>
                 <a th:href="@{ ${project.name} + '/subprojects'}">
-                    <button type="button" class="button">Show project</button>
+                    <button type="button" class="button">Vis projekt</button>
                 </a>
             </p>
         </td>
@@ -67,7 +67,7 @@
 
 <p>
     <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Go back</button>
+        <button type="button" class="button">Gå tilbage</button>
     </a>
 </p>
 </body>

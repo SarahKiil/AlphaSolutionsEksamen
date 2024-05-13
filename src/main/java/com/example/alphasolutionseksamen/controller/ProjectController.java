@@ -35,10 +35,10 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(){
-      /*  User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+    public String getIndex(HttpSession session){
+       /* User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
-        User userToBeLoggedIn = projectService.showUser(user);
+        User userToBeLoggedIn = projectService.showUser(user.getUsername());
         loggedInUser = (User) session.getAttribute("key");
         if (loggedInUser == null) {
             loggedInUser = new User();
@@ -114,7 +114,7 @@ public class ProjectController {
 
         model.addAttribute("managedprojects", managedProjects);
 
-            model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this project");
+            model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
     }
 
@@ -125,7 +125,7 @@ public class ProjectController {
         List<Subproject>subprojects = projectService.showSubprojects(name);
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("projectname", name);
-        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this subproject");
+        model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette subprojekt!");
         if (project.getUsername().equals(loggedInUser.getUsername())){
             model.addAttribute("manager", "manager");
         }
@@ -152,7 +152,7 @@ public class ProjectController {
         model.addAttribute("projectname", name);
         model.addAttribute("tasks", tasks);
         model.addAttribute("subprojectname", subprojectname);
-        model.addAttribute("hoursError", "Your used hours are higher than your estimated hours for this task");
+        model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for denne task!");
         if (project.getUsername().equals(loggedInUser.getUsername())){
             model.addAttribute("manager", "manager");
         }
@@ -236,19 +236,19 @@ public class ProjectController {
     public String createUser(@ModelAttribute User user, Model model, HttpSession session){
         if (!projectService.checkMail(user))
         {
-            model.addAttribute("mailError", "This is not a valid mail");
+            model.addAttribute("mailError", "Dette er ikke en gyldig emailadresse");
             return "createuser";
         }
         if (user.getFirstName().length()<1){
-            model.addAttribute("firstNameError", "You need to have a first name");
+            model.addAttribute("firstNameError", "Du skal have et fornavn");
             return "createuser";
         }
         if (user.getLastName().length()<1) {
-            model.addAttribute("lastNameError", "You need to have a last name");
+            model.addAttribute("lastNameError", "Du skal have et efternavn");
             return "createuser";
         }
         if (!projectService.checkNumber(user)){
-            model.addAttribute("numberError", "This is not a valid phone number");
+            model.addAttribute("numberError", "Dette er ikke et gyldigt telefonnummer");
             return "createuser";
         }
         projectService.createUser(user);
@@ -266,7 +266,7 @@ public class ProjectController {
     @PostMapping("/user/postlogin")
     public String login(@ModelAttribute User user, Model model, HttpSession session) {
         if (!projectService.checkLogin(user)) {
-            model.addAttribute("loginError", "Username or password is incorrect");
+            model.addAttribute("loginError", "Brugernavnet eller kodeordet er forkert");
             return "loginpage";
         } else {
 
@@ -310,7 +310,7 @@ public class ProjectController {
         Subproject subproject =projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
         if (!projectService.checkUsers(user.getUsername())){
-            model.addAttribute("userError", "No user with this username exists");
+            model.addAttribute("userError", "Der kunne ikke findes nogle brugere med dette brugernavn.");
             model.addAttribute("project", project);
             model.addAttribute("subproject", subproject);
             model.addAttribute("task", task);

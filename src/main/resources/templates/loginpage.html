@@ -10,22 +10,22 @@
 
 
 <main class="Login">
-    <h1>Login to your account</h1>
+    <h1>Log ind på din konto</h1>
     <form action="/project/user/postlogin" method="post" class="Login">
         <div class="Login">
-            <label for="username">Name:</label>
+            <label for="username">Navn:</label>
             <input type="text" id="username" name="username" required />
-            <label for="password">Password:</label>
+            <label for="password">Kodeord:</label>
             <input type="password" id="password" name="password" required />
-            <button type="submit" class="button">Login</button>
+            <button type="submit" class="button">Log ind</button>
 
             <p th:if="${loginError}" th:text="${loginError}" class="error-message"></p>
 
         </div>
     </form>
-    <p>Don't have an account? Sign up here:</p>
+    <p>Har du ikke en konto? Opret en her;</p>
     <div class="signup-button">
-        <a href="/project/user/create" class="signup-button">Sign Up</a>
+        <a href="/project/user/create" class="signup-button">Opret konto</a>
     </div>
 </main>
 

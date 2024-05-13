@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your  projects</title>
+    <title>Dine  projekter</title>
     <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
 <body>
@@ -11,14 +11,14 @@
 <table>
     <thead>
     <tr>
-        <a th:text="${project.name}">Project name</a>
-        <a th:text="${task.name}">Task name</a>
+        <a th:text="${project.name}">Projektnavn</a>
+        <a th:text="${task.name}">Tasknavn</a>
     </tr>
     </thead>
     <tbody>
     <tr th:each="String : ${users}">
         <td>
-            <p> Name: <strong th:if="${usersassigned}" th:text="${String}"></strong></p>
+            <p> Brugernavn: <strong th:if="${usersassigned}" th:text="${String}"></strong></p>
 
 
         </td>
@@ -28,7 +28,7 @@
 </table>
 <p>
     <a th:href="@{'/project/overview'}">
-        <button type="button" class="button">Go back</button>
+        <button type="button" class="button">Gå tilbage</button>
     </a>
 </p>
 </body>

@@ -14,7 +14,7 @@
 <table>
     <thead>
     <tr>
-        <th>Your projects:</th>
+        <th>Dine projekter:</th>
     </tr>
     </thead>
     <tbody>
@@ -23,15 +23,15 @@
             <a th:href="@{ ${project.name} + '/subprojects'}">
                 <button type="button" class="button" th:text="${project.name}"></button>
             </a>
-            <p>Project manager: <strong th:text="${project.username}"></strong></p>
-            <p>Description: <strong th:text="${project.description}"></strong></p>
+            <p>Projektmanager: <strong th:text="${project.username}"></strong></p>
+            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
             <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
-            <p>Estimated hours: <strong th:text="${project.estimatedHours}"></strong></p>
-            <p>Actual used hours: <strong th:text="${project.usedHours}"></strong></p>
+            <p>Forventede timer: <strong th:text="${project.estimatedHours}"></strong></p>
+            <p>Brugte timer: <strong th:text="${project.usedHours}"></strong></p>
             <p th:if="${project.usedHours}>${project.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
                 <a th:each="p : ${managedprojects}" th:if="${p.name}==${project.name}"  th:href="@{ ${project.name} + '/edit'}">
-                    <button type="button" class="button">Update project</button>
+                    <button type="button" class="button">Opdater projekt</button>
                 </a>
             </p>
         </td>
@@ -40,7 +40,7 @@
 </table>
 <p>
     <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Go home</button>
+        <button type="button" class="button">Gå tilbage</button>
     </a>
 </p>
 </body>

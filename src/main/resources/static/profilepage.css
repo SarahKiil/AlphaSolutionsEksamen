@@ -17,7 +17,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
+    margin-top: 200px;
     padding: 0;
     background: linear-gradient(rgba(0, 0, 0, var(--background-opacity)), rgba(0, 0, 0, var(--background-opacity))),
     url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
@@ -98,7 +98,7 @@ strong {
 
 .user-info {
     position: absolute;
-    top: 10px;  
+    top: 10px;
     left: 10px;
     width: 320px;
     padding: 20px;

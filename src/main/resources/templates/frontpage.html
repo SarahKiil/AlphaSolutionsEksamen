@@ -12,20 +12,20 @@
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <main>
-    <h1 class="welcome-heading">Welcome to your AlphaCalc profile!</h1>
-    <p class="project-description">See or create a project here.</p>
+    <h1 class="welcome-heading">Velkommen til din AlphaCalc profil!</h1>
+    <p class="project-description">Se dine projekter eller opret et nyt projekt.</p>
 
 
 
     <div class="button-container">
         <div class="button-wrapper">
             <a th:href="@{'/project/create'}">
-                <button type="button" class="button">Create project</button>
+                <button type="button" class="button">Opret projekt</button>
             </a>
         </div>
         <div class="button-wrapper">
             <a th:href="@{'/project/overview'}">
-                <button type="button" class="button">See projects</button>
+                <button type="button" class="button">Vis projekter</button>
             </a>
         </div>
     </div>
