@@ -46,7 +46,7 @@ public class ProjectRepositoryDB {
         int projectID = getProjectID(projectName);
         int subprojectID = 0;
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            String SQL = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=? ";
+            String SQL = "SELECT ID FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ps.setInt(1, projectID);
             ps.setString(2, subprojectName);
@@ -105,7 +105,6 @@ public class ProjectRepositoryDB {
             double estimatedHoursSubprojectNew = 0;
             double estimatedHoursProject = 0;
             double estimatedHoursprojectNew = 0;
-            System.out.println(id);
 
             String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id) values (?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
@@ -172,8 +171,9 @@ public class ProjectRepositoryDB {
 
     public Subproject showSubproject(String projectName, String subprojectName) {
         Subproject subproject = new Subproject();
+
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
-            int id = getSubprojectID(projectName, subprojectName);
+            int id = getProjectID(projectName);
 
             String SQL1 = "SELECT * FROM SUBPROJECTS WHERE PROJECT_ID=? AND NAME=?";
             PreparedStatement ps1 = connection.prepareStatement(SQL1);
@@ -279,7 +279,31 @@ public class ProjectRepositoryDB {
         return tasks;
     }
 
-    public List<Project> showsProjectsForUser(User user) {
+    public List<User> showUsers(){
+    List<User> users = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            Statement stmt = connection.createStatement();
+            String SQL = "SELECT * FROM USERS";
+            ResultSet rs = stmt.executeQuery(SQL);
+            while (rs.next()) {
+                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11)));
+            }
+
+    } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;}
+
+    public List<String> showUserNames(){
+        List<User> users = showUsers();
+        List<String> userNames = new ArrayList<>();
+        for(User u : users){
+            userNames.add(u.getUsername());
+        }
+        return userNames;
+    }
+
+        public List<Project> showsProjectsForUser(User user) {
         HashSet<Integer> taskIDS = new HashSet<>();
         HashSet<Integer> subprojectIDS = new HashSet<>();
         HashSet<Integer> projectIDS = new HashSet<>();

@@ -234,9 +234,19 @@ public class ProjectController {
 
     @PostMapping("/user/save")
     public String createUser(@ModelAttribute User user, Model model, HttpSession session){
-        if (!projectService.checkMail(user))
-        {
-            model.addAttribute("mailError", "Dette er ikke en gyldig emailadresse");
+        if (user.getUsername().length()<1){
+            model.addAttribute("userNameError", "Du skal have et brugernavn");
+            return "createuser";
+        }
+        List<String> usedUserNames = projectService.showUserNames();
+        for (String s : usedUserNames){
+            if (s.equalsIgnoreCase(user.getUsername())){
+                model.addAttribute("usedUserNameError", "Dette brugernavn er allerede brugt");
+                return "createuser";
+            }
+        }
+        if (user.getPassword().length()<1){
+            model.addAttribute("passwordError", "Du skal have et kodeord");
             return "createuser";
         }
         if (user.getFirstName().length()<1){
@@ -245,6 +255,31 @@ public class ProjectController {
         }
         if (user.getLastName().length()<1) {
             model.addAttribute("lastNameError", "Du skal have et efternavn");
+            return "createuser";
+        }
+        if (user.getStreetName().length()<1) {
+            model.addAttribute("streetNameError", "Du skal indtaste et vejnavn");
+            return "createuser";
+        }
+        if (user.getStreetNumber().length()<1) {
+            model.addAttribute("streetNumberError", "Du skal indtaste et vejnummer");
+            return "createuser";
+        }
+        if (user.getPostNumber()<1) {
+            model.addAttribute("postNumberError", "Du skal indtaste et postnummer");
+            return "createuser";
+        }
+        if (user.getCity().length()<1) {
+            model.addAttribute("cityError", "Du skal indtaste en by");
+            return "createuser";
+        }
+        if (user.getCountry().length()<1) {
+            model.addAttribute("countryError", "Du skal indtaste et land");
+            return "createuser";
+        }
+        if (!projectService.checkMail(user))
+        {
+            model.addAttribute("mailError", "Dette er ikke en gyldig emailadresse");
             return "createuser";
         }
         if (!projectService.checkNumber(user)){

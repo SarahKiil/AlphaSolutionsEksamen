@@ -56,6 +56,14 @@ public Project showProject(String projectName) {
     return rpd.showTasks(project, subproject);
     }
 
+    public List<User> showUsers(){
+    return rpd.showUsers();
+    }
+
+    public List<String> showUserNames(){
+    return rpd.showUserNames();
+    }
+
     public List<String> showAssignedUsers(String projectName, String subprojectName, String taskName) {
     return rpd.showAssignedUsers(projectName, subprojectName, taskName);
     }

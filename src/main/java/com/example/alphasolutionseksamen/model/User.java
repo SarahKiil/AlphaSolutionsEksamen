@@ -29,6 +29,19 @@ public class User {
         this.country = country;
     }
 
+    public User(String username, String firstName, String lastName, String email, String streetName, String streetNumber, int postNumber, int phoneNumber, String city, String country) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.postNumber = postNumber;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.country = country;
+    }
+
     public User(){}
 
     public String getUsername() {

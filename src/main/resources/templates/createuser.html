@@ -59,9 +59,18 @@
         <label for="phoneNumber">Telefonnummer:</label>
         <input type="number" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
     </p>
-    <p th:if="${mailError}" th:text="${mailError}" class="error-message"></p>
+    <p th:if="${userNameError}" th:text="${userNameError}" class="error-message"></p>
+    <p th:if="${usedUserNameError}" th:text="${usedUserNameError}" class="error-message"></p>
+    <p th:if="${passwordError}" th:text="${passwordError}" class="error-message"></p>
+
     <p th:if="${firstNameError}" th:text="${firstNameError}" class="error-message"></p>
     <p th:if="${lastNameError}" th:text="${lastNameError}" class="error-message"></p>
+    <p th:if="${streetNameError}" th:text="${streetNameError}" class="error-message"></p>
+    <p th:if="${streetNumberError}" th:text="${streetNumberError}" class="error-message"></p>
+    <p th:if="${cityError}" th:text="${cityError}" class="error-message"></p>
+    <p th:if="${postNumberError}" th:text="${postNumberError}" class="error-message"></p>
+    <p th:if="${countryError}" th:text="${countryError}" class="error-message"></p>
+    <p th:if="${mailError}" th:text="${mailError}" class="error-message"></p>
     <p th:if="${numberError}" th:text="${numberError}" class="error-message"></p>
     <input type="submit" value="Opret bruger" class="button"/>
     <a th:href="@{'/project/frontpage'}">
