@@ -344,6 +344,18 @@ public class ProjectController {
         Project project = projectService.showProject(name);
         Subproject subproject =projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
+        List<String>assignedUsers = projectService.showAssignedUsers(name, subprojectname, taskname);
+        for (String s : assignedUsers){
+            if (s.equalsIgnoreCase(user.getUsername())){
+                model.addAttribute("assignmentError", "Denne bruger er allerede tildelt denne task");
+                model.addAttribute("project", project);
+                model.addAttribute("subproject", subproject);
+                model.addAttribute("task", task);
+                model.addAttribute("user", new User());
+                return "assignment";
+
+            }
+        }
         if (!projectService.checkUsers(user.getUsername())){
             model.addAttribute("userError", "Der kunne ikke findes nogle brugere med dette brugernavn.");
             model.addAttribute("project", project);

@@ -13,6 +13,7 @@
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
+    <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
     <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
 
     <br>
