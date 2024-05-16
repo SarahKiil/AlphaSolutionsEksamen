@@ -13,6 +13,7 @@ public class Project {
     private double usedHours;
 
     private String username;
+    private boolean done;
 
     private List<Subproject>subprojects = new ArrayList<>();
 
@@ -25,6 +26,7 @@ public class Project {
         this.estimatedHours=estimatedHours;
         this.usedHours=usedHours;
         this.username = username;
+        this.done=false;
         this.assignedUsers = new ArrayList<>();
     }
     public Project(String name, String description, String deadline, String username){
@@ -107,5 +109,13 @@ public class Project {
 
     public void addUser(User user){
         assignedUsers.add(user);
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

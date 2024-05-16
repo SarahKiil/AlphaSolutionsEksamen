@@ -30,6 +30,7 @@
             <p>Used Hours: <strong th:text="${subproject.usedHours}"></strong></p>
             <p th:if="${subproject.usedHours} > ${subproject.estimatedHours}" class="error" th:text="${hoursError}"></p>
             <p>
+            <p th:if="${donesubprojects.contains(subproject)}"><b>DONE</b></p>
                 <a th:if="${manager}" th:href="@{${subproject.name} + '/edit'}">
                     <button type="button" class="button">Update Subproject</button>
                 </a>

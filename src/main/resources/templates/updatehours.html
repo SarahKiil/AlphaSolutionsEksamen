@@ -17,7 +17,14 @@
         </p>
 
         <div class="button-container">
-            <button type="submit" class="button">Update Task</button>
+            <button type="submit" class="button">Update Hours</button>
+
+                <a th:if="${notdone}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name}+ '/' + ${task.name} + '/' + 'done'}">
+                    <button type="button" class="button cancel-button">Markér som færdigt</button>
+                </a>
+                <a th:if="${manager}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name}+ '/' + ${task.name} + '/' + 'done'}">
+                <button type="button" class="button cancel-button">Genoptag tasken</button>
+                </a>
             <a th:href="@{'/project/frontpage'}">
                 <button type="button" class="button cancel-button">Cancel</button>
             </a>

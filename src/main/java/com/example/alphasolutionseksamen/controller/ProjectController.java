@@ -305,7 +305,6 @@ public class ProjectController {
             return "loginpage";
         } else {
 
-
             User userToBeLoggedIn = projectService.showUser(user.getUsername());
             loggedInUser = (User) session.getAttribute("key");
             if (loggedInUser == null) {

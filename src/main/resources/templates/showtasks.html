@@ -5,7 +5,6 @@
     <title>Dine projekter</title>
     <link th:href="@{/showtasks.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
-    <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
 <body>
 <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/' +  ${subprojectname} + '/create'}">

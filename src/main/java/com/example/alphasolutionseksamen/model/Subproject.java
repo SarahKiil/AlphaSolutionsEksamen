@@ -9,6 +9,7 @@ public class Subproject {
     private double estimatedHours;
 
     private double usedHours;
+    private boolean done;
 
     private List<Task>tasks = new ArrayList<>() {
     };
@@ -20,6 +21,7 @@ public class Subproject {
         this.description = description;
         this.estimatedHours = estimatedHours;
         this.usedHours = usedHours;
+        this.done = false;
         this.assignedUsers = new ArrayList<>();
     }
 
@@ -65,9 +67,6 @@ public class Subproject {
         return estimatedHours;
     }
 
-
-
-
     public void setEstimatedHours(double estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
@@ -86,5 +85,13 @@ public class Subproject {
 
     public void addUser(User user){
         assignedUsers.add(user);
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

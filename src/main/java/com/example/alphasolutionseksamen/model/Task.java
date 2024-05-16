@@ -9,6 +9,7 @@ public class Task {
     private double estimatedHours;
 
     private double usedHours;
+    private boolean done;
 
     private List<User> assignedUsers;
 
@@ -65,4 +66,14 @@ public class Task {
     public void setAssignedUsers(List<User> assignedUsers) {
         this.assignedUsers = assignedUsers;
     }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+
 }
