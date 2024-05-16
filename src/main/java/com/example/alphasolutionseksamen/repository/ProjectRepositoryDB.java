@@ -105,14 +105,19 @@ public class ProjectRepositoryDB {
             double estimatedHoursSubprojectNew = 0;
             double estimatedHoursProject = 0;
             double estimatedHoursprojectNew = 0;
+            String done = "f";
+            if (task.isDone()){
+                done="t";
+            }
 
-            String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id) values (?, ?, ?, ?, ?);";
+            String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id, done) values (?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ps.setString(1, task.getName());
             ps.setString(2, task.getDescription());
             ps.setDouble(3, task.getEstimatedHours());
             ps.setDouble(4, 0);
             ps.setInt(5, id);
+            ps.setString(6, done);
             int rs = ps.executeUpdate();
 
             String SQL1 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE NAME=?;";
@@ -203,6 +208,9 @@ public class ProjectRepositoryDB {
             ResultSet rs2 = ps2.executeQuery();
             while (rs2.next()) {
                 task = new Task(rs2.getString(2), rs2.getString(3), rs2.getDouble(4), rs2.getDouble(5));
+                if (rs2.getString(7).equals("t")) {
+                    task.setDone(true);
+                }
             }
 
         } catch (SQLException e) {
@@ -263,6 +271,7 @@ public class ProjectRepositoryDB {
 
     public List<Task> showTasks(String project, String subproject) {
         List<Task> tasks = new ArrayList<>();
+        Task task = new Task();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int subprojectID = getSubprojectID(project, subproject);
 
@@ -271,7 +280,11 @@ public class ProjectRepositoryDB {
             ps.setInt(1, subprojectID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                tasks.add(new Task(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5)));
+                task = new Task(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5));
+                if (rs.getString(7).equals("t")){
+                    task.setDone(true);
+                }
+                tasks.add(task);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -544,6 +557,24 @@ public class ProjectRepositoryDB {
 
     }
 
+    public void finishATask(String projectName, String subprojectName, Task task) {
+        int id = getSubprojectID(projectName, subprojectName);
+        String isDone = "f";
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            if (task.isDone()){
+                isDone="t";
+            }
+            String SQL = "UPDATE TASKS SET DONE=? WHERE SUBPROJECT_ID=? AND NAME=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, isDone);
+            ps.setInt(2, id);
+            ps.setString(3, task.getName());
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 public void createUser(User user) {
     try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
@@ -628,6 +659,44 @@ public boolean checkLogin(User user) {
         }
         return false;
     }
+
+    public List<Project> checkStatusProject(List<Project>projects) {
+        for (Project p : projects) {
+            p.setDone(true);
+            List<Subproject> subprojects = showSubprojects(p.getName());
+            if (subprojects.size() < 1) {
+                p.setDone(false);
+            } else {
+                for (Subproject s : checkStatusSubproject(p.getName(), subprojects)) {
+                    if (!s.isDone()) {
+                        p.setDone(false);
+                    }
+                }
+            }
+        }
+
+        return projects;
+    }
+
+    public List<Subproject> checkStatusSubproject(String projectName, List<Subproject>subprojects){
+        for (Subproject s : subprojects) {
+            s.setDone(true);
+            List<Task> tasks = showTasks(projectName, s.getName());
+            if (tasks.size()<1){
+                s.setDone(false);
+
+            }
+            else{
+                for (Task t: tasks){
+                    if (!t.isDone()){
+                        s.setDone(false);
+
+                    }
+                }
+            }
+        }
+        return subprojects;
+    }
     public void addUser(String projectName, String subprojectName, String taskName, User user){
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int subprojectID = getSubprojectID(projectName, subprojectName);
@@ -646,6 +715,64 @@ public boolean checkLogin(User user) {
             ps1.setInt(1, taskID);
             ps1.setString(2, user.getUsername());
             int rs1 = ps1.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteProject(String projectName){
+        int projectID = getProjectID(projectName);
+        List<Subproject>subprojects = showSubprojects(projectName);
+        for (Subproject s : subprojects){
+            deleteSubproject(projectName, s.getName());
+        }
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "DELETE FROM PROJECTS WHERE ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setInt(1, projectID);
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void deleteSubproject(String projectName, String subprojectName){
+        int projectID = getProjectID(projectName);
+        int subprojectID = getSubprojectID(projectName, subprojectName);
+        List<Task>tasks = showTasks(projectName, subprojectName);
+        for (Task t : tasks){
+            deleteTask(projectName, subprojectName, t.getName());
+        }
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "DELETE FROM SUBPROJECTS WHERE ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setInt(1, subprojectID);
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteTask(String projectName, String subprojectName, String taskName){
+        int subprojectID = getSubprojectID(projectName, subprojectName);
+        int taskID = 0;
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, taskName);
+            ps.setInt(2, subprojectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                taskID = rs.getInt(1);
+            }
+            String SQL1 = "DELETE FROM TASKS_USERS WHERE TASK_ID=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setInt(1, taskID);
+            int rs1 = ps1.executeUpdate();
+            String SQL2 = "DELETE FROM TASKS WHERE ID=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setInt(1, taskID);
+            int rs2 = ps2.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

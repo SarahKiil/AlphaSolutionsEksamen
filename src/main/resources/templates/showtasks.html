@@ -24,6 +24,7 @@
             <p>Beskrivelse: <strong th:text="${task.description}"></strong></p>
             <p>Forventede timer: <strong th:text="${task.estimatedHours}"></strong></p>
             <p>Brugte timer: <strong th:text="${task.usedHours}"></strong></p>
+            <p th:if="${donetasks.contains(task)}"><b>DONE</b></p>
             <p th:if="${task.usedHours}>${task.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
                 <a th:if="${manager}" th:href="@{ ${task.name} + '/edit'}">

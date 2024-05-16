@@ -96,6 +96,10 @@ public Project showProject(String projectName) {
     rpd.updateTask(projectName, subprojectName, task, taskName);
     }
 
+    public void finishATask(String projectName, String subprojectName, Task task){
+    rpd.finishATask(projectName, subprojectName, task);
+    }
+
     public void updateHours(String projectName, String subprojectName, String taskName, Task task) {
     rpd.updateHours(projectName, subprojectName, taskName, task);
     }
@@ -116,8 +120,28 @@ public Project showProject(String projectName) {
     return rpd.checkUsers(username);
     }
 
+    public List<Project> checkStatusProject(List<Project> projects){
+    return rpd.checkStatusProject(projects);
+    }
+
+    public List<Subproject> checkStatusSubproject(String projectName, List<Subproject>subprojects){
+    return rpd.checkStatusSubproject(projectName, subprojects);
+    }
+
     public void addUser(String projectName, String subprojectName, String taskName, User user){
     rpd.addUser(projectName, subprojectName, taskName, user);
+    }
+
+    public void deleteProject(String projectName){
+    rpd.deleteProject(projectName);
+    }
+
+    public void deleteSubproject(String projectName, String subprojectName){
+    rpd.deleteSubproject(projectName, subprojectName);
+    }
+
+    public void deleteTask(String projectName, String subprojectName, String taskName){
+    rpd.deleteTask(projectName, subprojectName, taskName);
     }
 
 

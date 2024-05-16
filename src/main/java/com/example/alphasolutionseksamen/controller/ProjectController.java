@@ -105,14 +105,29 @@ public class ProjectController {
         //List<Project> projects = projectService.showProjects();
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
+        List<Project>doneProjects = new ArrayList<>();
+        List<Project>projectsWithTasks = new ArrayList<>();
+        projectService.checkStatusProject(projects);
+
+        for (Project p : projects){
+            if (p.isDone()) {
+                doneProjects.add(p);
+            }
+            model.addAttribute("doneprojects", doneProjects);
+        }
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
         for (Project p : projects){
         if (p.getUsername().equals(loggedInUser.getUsername())){
             managedProjects.add(p);
-        }}
+        }
+            if (projectService.showSubprojects(p.getName()).size()>0) {
+                projectsWithTasks.add(p);}
 
         model.addAttribute("managedprojects", managedProjects);
+        model.addAttribute("projectswithtasks", projectsWithTasks);
+
+        }
 
             model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
@@ -123,6 +138,21 @@ public class ProjectController {
         loggedInUser = (User) session.getAttribute("key");
         Project project = projectService.showProject(name);
         List<Subproject>subprojects = projectService.showSubprojects(name);
+        List<Subproject>doneSubprojects = new ArrayList<>();
+        List<Subproject>subprojectsWithTasks = new ArrayList<>();
+        projectService.checkStatusSubproject(name, subprojects);
+
+        for (Subproject s : subprojects){
+            if (s.isDone()) {
+                doneSubprojects.add(s);
+            }
+            model.addAttribute("donesubprojects", doneSubprojects);
+            if (projectService.showTasks(name, s.getName()).size()>0) {
+                subprojectsWithTasks.add(s);
+            }
+            model.addAttribute("subprojectswithtasks", subprojectsWithTasks);
+        }
+
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("projectname", name);
         model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette subprojekt!");
@@ -139,6 +169,7 @@ public class ProjectController {
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
+        List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
             for (String s : projectService.showAssignedUsers(name, subprojectname, t.getName())){
@@ -147,6 +178,12 @@ public class ProjectController {
                 }
             }
             model.addAttribute("assignedtasks", assignedTasks);
+        }
+        for (Task t : tasks){
+            if (t.isDone()) {
+               doneTasks.add(t);
+            }
+            model.addAttribute("donetasks", doneTasks);
         }
 
         model.addAttribute("projectname", name);
@@ -210,13 +247,20 @@ public class ProjectController {
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edithours")
-    public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
+    public String updateHours(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
+        if (!task.isDone()){
+            model.addAttribute("notdone", "notDone");
+        }
+        if (task.isDone() && project.getUsername().equals(loggedInUser.getUsername())){
+            model.addAttribute("manager", "manager");
+        }
         return "updatehours";
     }
 
@@ -389,6 +433,36 @@ public class ProjectController {
     public String logout(HttpSession session){
         session.removeAttribute("key");
         return "redirect:/project";
+    }
+
+    @GetMapping("/{name}/{subprojectname}/{taskname}/done")
+    public String setAsDone(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname){
+        Task task = projectService.showTask(name, subprojectname, taskname);
+        if (task.isDone()){
+            task.setDone(false);
+        }
+        else {
+            task.setDone(true);
+        }
+        projectService.finishATask(name, subprojectname, task);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
+    }
+
+    @GetMapping("/{name}/delete")
+    public String deleteProject(@PathVariable String name){
+        projectService.deleteProject(name);
+        return "redirect:/project/overview";
+    }
+    @GetMapping("/{name}/{subprojectname}/delete")
+    public String deleteSubproject(@PathVariable String name, @PathVariable String subprojectname){;
+        projectService.deleteSubproject(name, subprojectname);
+        return "redirect:/project/{name}/subprojects";
+    }
+
+    @GetMapping("/{name}/{subprojectname}/{taskname}/delete")
+    public String deleteTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname){
+        projectService.deleteTask(name, subprojectname, taskname);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
 

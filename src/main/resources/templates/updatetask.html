@@ -29,6 +29,9 @@
   <br>
   <p>
     <button type="submit" class="button">Opdater task</button>
+    <a th:href="@{'/project/'+${project.name}+'/'+${subproject.name}+'/'+${task.name}+'/delete'}">
+      <button type="button" class="button">Slet task</button>
+    </a>
 
     <a th:href="@{'/project/frontpage'}">
       <button type="button" class="button">Fortryd</button>

@@ -19,6 +19,7 @@ public class Task {
         this.estimatedHours = estimatedHours;
         this.usedHours = usedHours;
         this.assignedUsers = new ArrayList<>();
+        this.done =false;
     }
 
     public Task () {}

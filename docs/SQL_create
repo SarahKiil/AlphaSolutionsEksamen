@@ -50,8 +50,10 @@ estimatedhours double,
 usedhours double,
 subproject_ID int,
 foreign key (subproject_ID) references subprojects(ID),
-primary key (ID)
+primary key (ID),
+done varchar (1)
 );
+
 
 CREATE TABLE Tasks_Users (
 Task_ID int,
