@@ -2,73 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profil</title>
-    <link th:href="@{/profilepage.css}" rel="stylesheet">
-    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/profilepage.css}">
+    <link rel="stylesheet" th:href="@{/headerloggedin.css}">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
-<table>
-    <thead>
-    <tr>
-        <td>
-            <div class="user-info">
-                <h1>Dine informationer</h1>
-                <p>Brugernavn: <strong th:text="${user.username}"></strong></p>
-                <p>Fornavn: <strong th:text="${user.firstName}"></strong></p>
-                <p>Efternavn: <strong th:text="${user.lastName}"></strong></p>
-                <p>Email: <strong th:text="${user.email}"></strong></p>
-                <p>Telefonnummer: <strong th:text="${user.phoneNumber}"></strong></p>
-                <p>Addresse: <strong th:text="${user.streetName}"></strong>
-                    <strong th:text="${user.streetNumber}"></strong>,
-                    <strong th:text="${user.postNumber}"></strong></p>
-                <p><strong th:text="${user.city}"></strong>,
-                    <strong th:text="${user.country}"></strong></p>
-            </div>
-        </td>
-    </tr>
-    </thead>
-</table>
-<br>
-<table>
-    <thead>
-    <th>Dine tildelte projekter:</th>
-    <tr th:each="project : ${projects}">
-        <td>
-            <p>Projektnavn: <strong th:text="${project.name}"></strong></p>
-            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
-            <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
-            <p>
-                <a th:href="@{ ${project.name} + '/subprojects'}">
-                    <button type="button" class="button">Vis projekt</button>
-                </a>
-            </p>
-        </td>
-    </tr>
-    </thead>
-</table>
-<table>
-    <thead>
-    <th>Projekter du er manager for:</th>
-    <tr th:each="project : ${managedprojects}">
-        <td>
-            <p>Projektnavn: <strong th:text="${project.name}"></strong></p>
-            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
-            <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
-            <p>
-                <a th:href="@{ ${project.name} + '/subprojects'}">
-                    <button type="button" class="button">Vis projekt</button>
-                </a>
-            </p>
-        </td>
-    </tr>
-    </thead>
-</table>
+<div class="container">
+    <div class="user-info">
+        <h1>Your Information</h1>
+        <p>Username: <strong th:text="${user.username}"></strong></p>
+        <p>First Name: <strong th:text="${user.firstName}"></strong></p>
+        <p>Last Name: <strong th:text="${user.lastName}"></strong></p>
+        <p>Email: <strong th:text="${user.email}"></strong></p>
+        <p>Phone Number: <strong th:text="${user.phoneNumber}"></strong></p>
+        <p>Address: <strong th:text="${user.streetName}"></strong>
+            <strong th:text="${user.streetNumber}"></strong>,
+            <strong th:text="${user.postNumber}"></strong></p>
+        <p><strong th:text="${user.city}"></strong>,
+            <strong th:text="${user.country}"></strong></p>
+    </div>
 
-<p>
-    <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Gå tilbage</button>
-    </a>
-</p>
+    <div class="project-section">
+        <h2>Your Assigned Projects</h2>
+        <table class="project-table">
+            <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}">
+                <td><strong th:text="${project.name}"></strong></td>
+                <td><strong th:text="${project.description}"></strong></td>
+                <td><strong th:text="${project.deadline}"></strong></td>
+                <td>
+                    <a th:href="@{ ${project.name} + '/subprojects'}">
+                        <button type="button" class="button">View Project</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="project-section">
+        <h2>Projects You Manage</h2>
+        <table class="managed-project-table">
+            <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${managedprojects}">
+                <td><strong th:text="${project.name}"></strong></td>
+                <td><strong th:text="${project.description}"></strong></td>
+                <td><strong th:text="${project.deadline}"></strong></td>
+                <td>
+                    <a th:href="@{ ${project.name} + '/subprojects'}">
+                        <button type="button" class="button">View Project</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        <a th:href="@{'/project/frontpage'}">
+            <button type="button" class="button">Go Back</button>
+        </a>
+    </p>
+</div>
 </body>
 </html>

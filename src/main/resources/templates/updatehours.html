@@ -2,27 +2,27 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Opdater dit projekt</title>
+    <title>Update Your Project</title>
+    <link th:href="@{/updatehours.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
     <div th:replace="~{fragments/headerloggedin :: header}"></div>
 </head>
 <body>
+<div class="container">
+    <form th:action="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/' + ${task.name} + '/updatehours'}" method="post" th:object="${task}">
+        <p th:text="${task.name}"></p>
+        <p>
+            <label for="usedHours">Used Hours:</label>
+            <input id="usedHours" name="usedHours" type="number" th:value="${task.usedHours}"/>
+        </p>
 
-<form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/updatehours'}" method="post" th:object="${task}">
-    <p th:text="${task.name}">
-    </p>
-    <p>
-        <label>Brugte timer:</label>
-        <input name="usedHours" type="number" th:value="${task.usedHours}"/>
-    </p>
-    <br>
-    <p>
-        <button type="submit" class="button">Opdater task</button>
-
-        <a th:href="@{'/project/frontpage'}">
-            <button type="button" class="button">Fortryd</button>
-        </a>
-    </p>
-</form>
+        <div class="button-container">
+            <button type="submit" class="button">Update Task</button>
+            <a th:href="@{'/project/frontpage'}">
+                <button type="button" class="button cancel-button">Cancel</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

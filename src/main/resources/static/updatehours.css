@@ -1,0 +1,87 @@
+/* General body styling */
+body {
+    background: linear-gradient(to bottom right, #f0f0f0, #d9e4f5);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container styling for the form */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Form styling */
+form {
+    width: 100%;
+}
+
+/* Form paragraph styling */
+form p {
+    margin: 20px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Input field styling */
+input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Label styling */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    color: #333;
+}
+
+/* Button styling */
+.button {
+    background-color: #6d8a9f;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #559bad;
+    color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Link styling */
+a {
+    text-decoration: none;
+}
+
+.cancel-button {
+    background-color: #d9534f;
+}
+
+.cancel-button:hover {
+    background-color: #c9302c;
+    color: #ffffff;
+}

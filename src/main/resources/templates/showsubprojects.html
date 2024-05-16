@@ -2,19 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dine  subprojekter</title>
-    <div th:replace="~{fragments/headerloggedin :: header}"></div>
+    <title>Your Subprojects</title>
     <link th:href="@{/showsubprojects.css}" rel="stylesheet">
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
+
 <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/create'}">
-    <button type="button" class="button">Tilføjø subprojekt</button>
+    <button type="button" class="button">Add Subproject</button>
 </a>
 
 <table>
     <thead>
     <tr>
-        <a th:text="${projectname}">Projektnavn</a>
+        <th colspan="2" th:text="${projectname}">Project Name</th>
     </tr>
     </thead>
     <tbody>
@@ -23,13 +25,13 @@
             <a th:href="@{${subproject.name} + '/tasks'}">
                 <button type="button" class="button" th:text="${subproject.name}"></button>
             </a>
-            <p>Beskrivelse: <strong th:text="${subproject.description}"></strong></p>
-            <p>Forventede timer: <strong th:text="${subproject.estimatedHours}"></strong></p>
-            <p>Brugte timer: <strong th:text="${subproject.usedHours}"></strong></p>
-            <p th:if="${subproject.usedHours}>${subproject.estimatedHours}" th:text="${hoursError}"><p/>
+            <p>Description: <strong th:text="${subproject.description}"></strong></p>
+            <p>Estimated Hours: <strong th:text="${subproject.estimatedHours}"></strong></p>
+            <p>Used Hours: <strong th:text="${subproject.usedHours}"></strong></p>
+            <p th:if="${subproject.usedHours} > ${subproject.estimatedHours}" class="error" th:text="${hoursError}"></p>
             <p>
-                <a th:if="${manager}" th:href="@{ ${subproject.name} + '/edit'}">
-                    <button type="button" class="button">Opdater subprojekt</button>
+                <a th:if="${manager}" th:href="@{${subproject.name} + '/edit'}">
+                    <button type="button" class="button">Update Subproject</button>
                 </a>
             </p>
         </td>
@@ -39,7 +41,7 @@
 
 <p>
     <a th:href="@{'/project/overview'}">
-        <button type="button" class="button">Gå tilbage</button>
+        <button type="button" class="button">Go Back</button>
     </a>
 </p>
 </body>

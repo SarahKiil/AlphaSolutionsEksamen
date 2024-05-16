@@ -2,32 +2,35 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Opdater dit projekt</title>
+    <title>Update Your Project</title>
+    <link th:href="@{/updatesubproject.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
-<form th:action="@{'/project/' +${project.name} + '/' + ${subproject.name} + '/update'}" method="post" th:object="${subproject}">
-    <p th:text="${project.name}">
-    </p>
+<div class="container">
+    <form th:action="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/update'}" method="post" th:object="${subproject}">
+        <p th:text="${project.name}"></p>
 
-    <p>
-        <input name="name" type="name" th:value="${subproject.name}"/>
-    </p>
+        <p>
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text" th:value="${subproject.name}"/>
+        </p>
 
-    <p>
-        <label>Beskrivelse:</label>
-        <input name="description" type="description" th:value="${subproject.description}"/>
-    </p>
-    <br>
-    <p>
-        <button type="submit" class="button">Opdater subprojekt</button>
+        <p>
+            <label for="description">Description:</label>
+            <input id="description" name="description" type="text" th:value="${subproject.description}"/>
+        </p>
 
-        <a th:href="@{'/project/frontpage'}">
-            <button type="button" class="button">Fortryd</button>
-        </a>
-    </p>
-</form>
+        <div class="button-container">
+            <button type="submit" class="button">Update Subproject</button>
+
+            <a th:href="@{'/project/frontpage'}">
+                <button type="button" class="button cancel-button">Cancel</button>
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

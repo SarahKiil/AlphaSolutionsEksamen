@@ -4,12 +4,13 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     overflow-y: scroll;
+    padding-top: 60px; /* Adjusted for fixed header */
 }
 
 table {
     width: 80%;
     margin: 20px auto;
-    margin-top: 130px;
+    margin-top: 30px; /* Adjusted margin for spacing */
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -43,6 +44,7 @@ th {
     border-radius: 6px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    text-decoration: none; /* Ensure buttons are not underlined */
 }
 
 .button:hover {
@@ -75,12 +77,12 @@ a:hover {
     text-decoration: underline;
 }
 
-
 tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-. button {
+/* Fixed position button (e.g., Add Subproject button) */
+.fixed-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -94,10 +96,9 @@ tbody tr:hover {
     transition: all 0.3s ease;
 }
 
-. button:hover {
+.fixed-button:hover {
     background-color: #559bad;
     color: #000000;
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
-

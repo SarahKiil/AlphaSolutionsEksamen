@@ -1,115 +1,101 @@
-
-:root {
-    --primary-bg-color: #4a6c73;
-    --hover-bg-color: #3c5c7e;
-    --font-color: #fff;
-    --button-padding: 12px 24px;
-    --font-size-base: 16px;
-    --line-height-base: 1.8;
-    --container-padding: 24px;
-    --container-margin: 30px;
-    --container-radius: 15px;
-    --box-shadow-base: 0 6px 10px rgba(0, 0, 0, 0.2);
-    --box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
-    --background-opacity: 0.6;
-    --transition-speed: 0.35s;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
-    margin-top: 200px;
+    margin: 0;
     padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, var(--background-opacity)), rgba(0, 0, 0, var(--background-opacity))),
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
     background-size: cover;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    text-align: center;
+    color: #fff;
 }
 
 .container {
     width: 80%;
     max-width: 960px;
-    padding: var(--container-padding);
-    margin-top: var(--container-margin);
-    background-color: rgba(0, 0, 0, var(--background-opacity));
-    border-radius: var(--container-radius);
-    box-shadow: var(--box-shadow-base);
+    padding: 24px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
+.user-info {
+    margin-bottom: 30px;
+}
+
+.user-info h1, .user-info p {
+    margin: 12px 0;
+    font-size: 16px;
+}
+
+.project-section {
+    margin-bottom: 30px;
+}
+
+.project-section h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 6px;
+}
+
+.project-table, .managed-project-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
 
 th, td {
-    background-color: var(--primary-bg-color);
-    color: var(--font-color);
+    background-color: #4a6c73;
+    color: #fff;
     padding: 12px;
     text-align: left;
     border-bottom: 2px solid #ffffff44;
 }
 
-p, th, td {
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
+th {
+    background-color: #3c5c7e;
 }
 
-button {
-    padding: var(--button-padding);
+p, th, td {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.button {
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: var(--primary-bg-color);
-    color: var(--font-color);
-    font-size: var(--font-size-base);
-    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-    box-shadow: var(--box-shadow-base);
-    position: relative;
-    z-index: 2;
+    background-color: #4a6c73;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.35s, box-shadow 0.35s;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-button:hover, button:focus {
-    background-color: var(--hover-bg-color);
+.button:hover, .button:focus {
+    background-color: #3c5c7e;
     outline: none;
-    box-shadow: var(--box-shadow-hover);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 strong {
     font-weight: bold;
 }
 
-
 @media (max-width: 768px) {
     body {
-        align-items: flex-start;
         padding: 15px;
         text-align: left;
     }
-    .container, .user-info {
+
+    .container {
         width: 100%;
         margin-top: 10px;
     }
-    button {
+
+    .button {
         font-size: 18px;
     }
-}
-
-.user-info {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 320px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: var(--container-radius);
-    box-shadow: var(--box-shadow-base);
-    z-index: 100;
-}
-
-.user-info h1, .user-info p {
-    margin: 12px 0;
-    color: var(--primary-bg-color);
-    font-size: var(--font-size-base);
 }
