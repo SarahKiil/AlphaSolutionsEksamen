@@ -6,14 +6,14 @@ Insert into users(username, firstname, lastname, password, email, streetname, st
 
 -- Projekter:
 
-Insert into projects(name, description, deadline, username) values ('Eksamen', 'dette er en eksamen', '2024-05-29', 'Bobby');
-Insert into projects(name, description, deadline, username) values ('Skoleprojekt', 'dette er et projekt til skolen i foråret 2024', '2024-05-31', 'Bobby');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Eksamen', 'dette er en eksamen', '2024-05-29', 13, 0, 'Bobby');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Skoleprojekt', 'dette er et projekt til skolen i foråret 2024', '2024-05-31', 0, 0,  'Bobby');
 
 -- subprojects:
 
-Insert into subprojects(name, description, project_ID) values ('PO meeting', 'Mødes med Luise', 1);
-Insert into subprojects(name, description, project_ID) values ('Code review', 'Mødes med Tine',1);
-Insert into subprojects(name, description, project_ID) values ('Business', 'Stuff',2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('PO meeting', 'Mødes med Luise', 11, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Code review', 'Mødes med Tine', 2, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Business', 'Stuff', 0, 0, 2);
 
 -- tasks:
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done) values ('Userstory 1', 'vis userstory til Luise', 5, 0, 1, 'f');

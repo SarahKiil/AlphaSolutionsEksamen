@@ -36,7 +36,7 @@ public class ProjectController {
 
     @GetMapping("")
     public String getIndex(HttpSession session){
-       /* User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+        /*User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user.getUsername());
         loggedInUser = (User) session.getAttribute("key");
@@ -105,10 +105,20 @@ public class ProjectController {
         //List<Project> projects = projectService.showProjects();
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
-        List<Project>doneProjects = projectService.showDoneProjects();
+        List<Project> doneProjects = projectService.showDoneProjects();
         List<Project>projectsWithTasks = new ArrayList<>();
-        projectService.checkStatusProject(projects);
-        model.addAttribute("doneprojects", doneProjects);
+        for (Project p : doneProjects){
+            for (Project po : projects){
+                if(p.getName().equals(po.getName())){
+                    project=po;
+                }
+            }
+            projects.remove(project);
+            }
+
+
+
+
 
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
@@ -128,12 +138,30 @@ public class ProjectController {
         return "showprojects";
     }
 
-    @GetMapping("/overview/archive")
+    @GetMapping("/archive")
     public String showDoneProjects(Model model){
         List<Project> doneProjects = projectService.showDoneProjects();
         model.addAttribute("doneprojects", doneProjects);
         return "showarchive";
     }
+
+    @GetMapping("/yourarchive")
+    public String showYourDoneProjects(Model model, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
+        Project project = new Project();
+        List<Project> projects = new ArrayList<>();
+        List<Project> doneProjects = projectService.showDoneProjects();
+        for (Project p : doneProjects) {
+            if (p.getUsername().equals(loggedInUser.getUsername())) {
+                projects.add(p);
+            }
+        }
+
+        model.addAttribute("projects", projects);
+        return "showyourarchive";
+
+    }
+
 
     @GetMapping("/{name}/subprojects")
     public String showSubprojects(@PathVariable String name, Model model, HttpSession session){
@@ -366,6 +394,22 @@ public class ProjectController {
         loggedInUser = (User)session.getAttribute("key");
         List<Project> assignedProjects =projectService.showsProjectsForUser(loggedInUser);
         List<Project> managedProjects = projectService.showProjectsForManagers(loggedInUser);
+        List<Project> doneProjects = projectService.showDoneProjects();
+        Project project = new Project();
+        for (Project p : doneProjects){
+            for (Project po : assignedProjects){
+                if(p.getName().equals(po.getName())){
+                    project = po;
+                }
+            }
+        assignedProjects.remove(project);
+            for (Project po : managedProjects){
+                if(p.getName().equals(po.getName())){
+                    project = po;
+                }
+            }
+            managedProjects.remove(project);}
+
         model.addAttribute("user", loggedInUser);
         model.addAttribute("managedprojects", managedProjects);
         model.addAttribute("projects", assignedProjects);

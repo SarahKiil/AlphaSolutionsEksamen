@@ -14,13 +14,13 @@
 <table>
     <thead>
     <tr>
-        <th>Dine projekter:</th>
+        <th>Dine arkiverede projekter:</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="project : ${projects}">
         <td>
-            <a th:href="@{ ${project.name} + '/subprojects'}">
+            <a th:href="@{${project.name} + '/subprojects'}">
                 <button type="button" class="button" th:text="${project.name}"></button>
             </a>
             <p>Projektmanager: <strong th:text="${project.username}"></strong></p>
@@ -30,11 +30,10 @@
             <p>Brugte timer: <strong th:text="${project.usedHours}"></strong></p>
             <p th:if="${project.usedHours}>${project.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
-                <a th:each="p : ${managedprojects}" th:if="${p.name}==${project.name}"  th:href="@{ ${project.name} + '/edit'}">
+                <a th:href="@{ ${project.name} + '/edit'}">
                     <button type="button" class="button">Opdater projekt</button>
                 </a>
             </p>
-            <p th:if="${projectswithtasks.contains(project)}"><b>Dette projekt indeholder subprojekter!!!</b></p>
             <p>
                 <a th:each="p : ${managedprojects}" th:if="${p.name}==${project.name}"  th:href="@{ ${project.name} + '/delete'}">
                     <button type="button" class="button">Slet projekt</button>
@@ -47,11 +46,6 @@
 <p>
     <a th:href="@{'/project/frontpage'}">
         <button type="button" class="button">Gå tilbage</button>
-    </a>
-</p>
-<p>
-    <a th:href="@{'/project/archive'}">
-        <button type="button" class="button">Vis arkiv</button>
     </a>
 </p>
 </body>

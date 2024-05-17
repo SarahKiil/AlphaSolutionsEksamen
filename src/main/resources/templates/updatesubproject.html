@@ -7,7 +7,6 @@
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <div class="container">
     <form th:action="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/update'}" method="post" th:object="${subproject}">

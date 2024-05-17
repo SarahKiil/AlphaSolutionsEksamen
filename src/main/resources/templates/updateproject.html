@@ -6,7 +6,6 @@
   <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <form th:action="@{'/project/' +${project.name} + '/update'}" method="post" th:object="${project}">
   <p th:text="${project.name}">
