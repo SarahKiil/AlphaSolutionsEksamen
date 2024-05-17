@@ -251,6 +251,7 @@ public class ProjectRepositoryDB {
         return projects;
     }
 
+
     public List<Subproject> showSubprojects(String project) {
         List<Subproject> subprojects = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
@@ -696,6 +697,17 @@ public boolean checkLogin(User user) {
             }
         }
         return subprojects;
+    }
+
+    public List<Project> showDoneProjects(){
+        List<Project> projects = checkStatusProject(showProjects());
+        List<Project> doneProjects = new ArrayList<>();
+        for (Project p : projects){
+            if (p.isDone()){
+                doneProjects.add(p);
+            }
+        }
+        return doneProjects;
     }
     public void addUser(String projectName, String subprojectName, String taskName, User user){
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {

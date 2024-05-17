@@ -48,6 +48,10 @@ public Project showProject(String projectName) {
         return rpd.showProjects();
     }
 
+    public List<Project> showDoneProjects(){
+    return rpd.showDoneProjects();
+    }
+
     public List<Subproject> showSubprojects(String project) {
     return rpd.showSubprojects(project);
     }

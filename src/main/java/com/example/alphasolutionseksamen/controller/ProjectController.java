@@ -105,16 +105,11 @@ public class ProjectController {
         //List<Project> projects = projectService.showProjects();
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
-        List<Project>doneProjects = new ArrayList<>();
+        List<Project>doneProjects = projectService.showDoneProjects();
         List<Project>projectsWithTasks = new ArrayList<>();
         projectService.checkStatusProject(projects);
+        model.addAttribute("doneprojects", doneProjects);
 
-        for (Project p : projects){
-            if (p.isDone()) {
-                doneProjects.add(p);
-            }
-            model.addAttribute("doneprojects", doneProjects);
-        }
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
         for (Project p : projects){
@@ -131,6 +126,13 @@ public class ProjectController {
 
             model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
+    }
+
+    @GetMapping("/overview/archive")
+    public String showDoneProjects(Model model){
+        List<Project> doneProjects = projectService.showDoneProjects();
+        model.addAttribute("doneprojects", doneProjects);
+        return "showarchive";
     }
 
     @GetMapping("/{name}/subprojects")
