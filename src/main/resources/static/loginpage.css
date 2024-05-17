@@ -37,7 +37,7 @@ input[type="password"] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    color: black; /* Updated color to black */
+    color: #1b232f;
     border: 2px solid #f0f0f0;
     border-radius: 6px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
@@ -101,7 +101,7 @@ input[type="password"]:focus {
 }
 
 .error-message {
-    color: #ff6347;
+    color: #ff0000;
     font-size: 0.9rem;
     margin-top: 10px;
 }
