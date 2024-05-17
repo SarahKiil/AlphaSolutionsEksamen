@@ -102,7 +102,8 @@ public class ProjectController {
 
     @GetMapping("/overview")
     public String showProjects(Model model, HttpSession session){
-        //List<Project> projects = projectService.showProjects();
+        List<Project> allProjects = projectService.showProjects();
+        Project project = new Project();
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
         List<Project> doneProjects = projectService.showDoneProjects();
