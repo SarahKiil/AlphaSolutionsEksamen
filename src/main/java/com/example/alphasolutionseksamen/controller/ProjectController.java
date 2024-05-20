@@ -89,6 +89,8 @@ public class ProjectController {
         model.addAttribute("projectname", name);
         model.addAttribute("subprojectname", subproject);
         model.addAttribute("task", new Task());
+        List <String> statusPriorities = projectService.showStatus();
+        model.addAttribute("statusPriorities", statusPriorities);
         return "createtask";
     }
 
@@ -269,9 +271,12 @@ public class ProjectController {
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
+        List <String> statusPriorities = projectService.showStatus();
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
+        model.addAttribute("statusPriorities", statusPriorities);
+
         return "updatetask";
     }
 
