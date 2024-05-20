@@ -13,42 +13,43 @@ body {
 
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 600px;
     background: #ffffff;
     padding: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    margin-top: 20px;
     text-align: center;
 }
 
-table {
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #e9f3f3;
+form p {
+    margin: 10px 0;
+    font-size: 16px;
+    width: 100%;
 }
 
-th {
-    background-color: #1b232f;
-    color: #ffffff;
-    font-size: 1.1em;
-    text-transform: uppercase;
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-td {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
+input[type="text"],
+input[type="description"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 .button {
@@ -60,7 +61,7 @@ tbody tr:hover {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 10px 0;
+    margin: 10px 5px 0 0;
     display: inline-block;
 }
 
@@ -76,40 +77,9 @@ a {
     color: inherit;
 }
 
-p {
-    margin: 10px 0;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-strong {
-    font-weight: bold;
-}
-
 .error {
     color: #ff6666;
     font-weight: bold;
-}
-
-.go-back {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #6d8a9f;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.go-back:hover {
-    background-color: #ff0000;
-    color: #000000;
-    transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .delete-button {
@@ -119,4 +89,19 @@ strong {
 .delete-button:hover {
     background-color: #c9302c;
     color: #ffffff;
+}
+
+.cancel-button {
+    background-color: #f0ad4e;
+}
+
+.cancel-button:hover {
+    background-color: #ec971f;
+    color: #ffffff;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

@@ -4,30 +4,32 @@
   <meta charset="UTF-8">
   <title>Opdater dit projekt</title>
   <link th:href="@{/main.css}" rel="stylesheet">
+  <link th:href="@{/updateproject.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
-<form th:action="@{'/project/' +${project.name} + '/update'}" method="post" th:object="${project}">
-  <p th:text="${project.name}">
-  </p>
+<div class="container">
+  <form th:action="@{'/project/' +${project.name} + '/update'}" method="post" th:object="${project}">
+    <p th:text="${project.name}"></p>
 
-  <p>
-    <input name="name" type="name" th:value="${project.name}"/>
-  </p>
+    <p>
+      <label for="name">Navn:</label>
+      <input id="name" name="name" type="text" th:value="${project.name}"/>
+    </p>
 
-  <p>
-    <label>Beskrivelse:</label>
-      <input name="description" type="description" th:value="${project.description}"/>
-  </p>
-  <br>
-  <p>
-    <button type="submit" class="button">Opdater projekt</button>
+    <p>
+      <label for="description">Beskrivelse:</label>
+      <input id="description" name="description" type="text" th:value="${project.description}"/>
+    </p>
 
-    <a th:href="@{'/project/frontpage'}">
-      <button type="button" class="button">Fortryd</button>
-    </a>
-  </p>
-</form>
+    <div class="button-group">
+      <button type="submit" class="button">Opdater projekt</button>
+      <a th:href="@{'/project/frontpage'}">
+        <button type="button" class="button cancel-button">Fortryd</button>
+      </a>
+    </div>
+  </form>
+</div>
 </body>
 </html>

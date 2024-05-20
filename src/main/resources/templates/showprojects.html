@@ -6,8 +6,8 @@
     <title>AlphaCalc</title>
     <link th:href="@{/showsubprojects.css}" rel="stylesheet">
     <link th:href="@{/headerloggedin.css}" rel="stylesheet">
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
-
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
@@ -45,10 +45,8 @@
     </tr>
     </tbody>
 </table>
-<p>
-    <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Gå tilbage</button>
-    </a>
-</p>
+
+<a th:href="@{'/project/frontpage'}" class="go-back">Gå tilbage</a>
+
 </body>
 </html>

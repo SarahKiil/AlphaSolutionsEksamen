@@ -11,52 +11,52 @@
 <body>
 <div class="form-container">
     <div class="form-header">
-        <h1 class="signup-header">Velkommen til AlphaCalc</h1>
+        <h1 class="signup-header">Welcome to AlphaCalc</h1>
         <p class="project-description">Opret en AlphaCalc konto for at fortsætte til AplhaCalc.com</p>
     </div>
 <form action="/project/user/save" th:object="${user}" method="post">
     <p>
-        <label for="username">Brugernavn:</label>
+        <label for="username">Username</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
     <p>
-        <label for="password">Kodeord:</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password" th:field="*{password}"/>
     </p>
     <p>
-        <label for="firstName">Fornavn:</label>
+        <label for="firstName">First name</label>
         <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/>
     </p>
     <p>
-        <label for="lastName">Efternavn;</label>
+        <label for="lastName">Last name</label>
         <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/>
     </p>
     <p>
-        <label for="streetName">Vejnavn:</label>
+        <label for="streetName">Street name</label>
         <input type="text" id="streetName" name="streetName" th:field="*{streetName}"/>
     </p>
     <p>
-        <label for="streetNumber">Vejnummer:</label>
+        <label for="streetNumber">House number</label>
         <input type="text" id="streetNumber" name="streetNumber" th:field="*{streetNumber}"/>
     </p>
     <p>
-        <label for="postNumber">Postnummer:</label>
+        <label for="postNumber">Post number</label>
         <input type="number" id="postNumber" name="postNumber" th:field="*{postNumber}"/>
     </p>
     <p>
-        <label for="city">By:</label>
+        <label for="city">City</label>
         <input type="text" id="city" name="city" th:field="*{city}"/>
     </p>
     <p>
-        <label for="country">Land:</label>
+        <label for="country">Country</label>
         <input type="text" id="country" name="country" th:field="*{country}"/>
     </p>
     <p>
-        <label for="email">Email:</label>
+        <label for="email">Email</label>
         <input type="text" id="email" name="email" th:field="*{email}"/>
     </p>
     <p>
-        <label for="phoneNumber">Telefonnummer:</label>
+        <label for="phoneNumber">Phone number</label>
         <input type="number" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
     </p>
     <p th:if="${userNameError}" th:text="${userNameError}" class="error-message"></p>
@@ -74,7 +74,7 @@
     <p th:if="${numberError}" th:text="${numberError}" class="error-message"></p>
     <input type="submit" value="Opret bruger" class="button"/>
     <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Fortryd</button>
+        <button type="button" class="button">Cancel</button>
     </a>
 </form>
 </body>

@@ -4,19 +4,148 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     overflow-y: scroll;
-    padding-top: 60px; /* Adjusted for fixed header */
+    padding-top: 60px;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.container:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+form {
+    width: 100%;
+}
+
+form p {
+    margin: 15px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    color: #333;
+}
+
+.button {
+    background-color: #6d8a9f;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin: 20px 0;
+}
+
+.button:hover {
+    background-color: #559bad;
+    color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.go-back {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #6d8a9f;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.go-back:hover {
+    background-color: #ff0000;
+    color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.cancel-button {
+    background-color: #d9534f;
+}
+
+.cancel-button:hover {
+    background-color: #c9302c;
+    color: #ffffff;
 }
 
 table {
     width: 80%;
-    margin: 20px auto;
-    margin-top: 30px; /* Adjusted margin for spacing */
+    margin-top: 100px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease-in-out;
     border-radius: 8px;
+}
+
+.delete-button {
+    background-color: #d9534f;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+    color: #ffffff;
 }
 
 table:hover {
@@ -35,70 +164,12 @@ th {
     color: #ffffff;
 }
 
-.button {
-    background-color: #6d8a9f;
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    text-decoration: none; /* Ensure buttons are not underlined */
-}
-
-.button:hover {
-    background-color: #559bad;
-    color: #000000;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-p, a {
-    margin: 5px 0;
-    transition: color 0.3s ease;
-}
-
-strong {
-    color: #f0f0f0;
-}
-
 .error {
     color: #ff6666;
     font-weight: bold;
 }
 
-a {
-    color: #add8e6;
-}
-
-a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
 tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-
-/* Fixed position button (e.g., Add Subproject button) */
-.fixed-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #6d8a9f;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.fixed-button:hover {
-    background-color: #559bad;
-    color: #000000;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
+q

@@ -1,65 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dine projekter</title>
-    <link th:href="@{/showtasks.css}" rel="stylesheet">
+    <title>Your Subprojects</title>
+    <link th:href="@{/showsubprojects.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
-<a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/' +  ${subprojectname} + '/create'}">
-    <button type="button" class="button">Tilføj task til projektet</button>
-</a>
-
-<table>
-    <thead>
-    <tr>
-        <a th:text="${subprojectname}">Projekt navn</a>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="task : ${tasks}">
-        <td>
-            <p>Navn: <strong th:text="${task.name}"></strong></p>
-            <p>Beskrivelse: <strong th:text="${task.description}"></strong></p>
-            <p>Forventede timer: <strong th:text="${task.estimatedHours}"></strong></p>
-            <p>Brugte timer: <strong th:text="${task.usedHours}"></strong></p>
-            <p th:if="${donetasks.contains(task)}"><b>DONE</b></p>
-            <p th:if="${task.usedHours}>${task.estimatedHours}" th:text="${hoursError}"><p/>
-            <p>
-                <a th:if="${manager}" th:href="@{ ${task.name} + '/edit'}">
-                    <button type="button" class="button">Opdater task</button>
-                </a>
-            </p>
-            <p>
-                <a th:each="t : ${assignedtasks}" th:if="${t.name}==${task.name}" th:href="@{ ${task.name} + '/edithours'}">
-                    <button type="button" class="button">Opdater brugte timer</button>
-                </a>
-            </p>
-            <p>
-                <a th:if="${manager}" th:href="@{ ${task.name} + '/edithours'}">
-                    <button type="button" class="button">Opdater brugte timer</button>
-                </a>
-            </p>
-            <p>
-                <a th:href="@{ ${task.name} + '/assignments'}">
-                    <button type="button" class="button">Vis tildelte brugere</button>
-                </a>
-            </p>
-            <p>
-                <a th:if="${manager}" th:href="@{${task.name}+'/assign'}">
-                    <button type="button" class="button">Tildel en bruger</button>
-                </a>
-            </p>
-
-        </td>
-    </tr>
-    </tbody>
-</table>
-<p>
-    <a th:href="@{'/project/overview'}">
-        <button type="button" class="button">Gå tilbage</button>
+<div class="container">
+    <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/' +  ${subprojectname} + '/create'}">
+        <button type="button" class="button">Tilføj task til projektet</button>
     </a>
-</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2" th:text="${subprojectname}">Projekt navn</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td>
+                <p>Navn: <strong th:text="${task.name}"></strong></p>
+                <p>Beskrivelse: <strong th:text="${task.description}"></strong></p>
+                <p>Forventede timer: <strong th:text="${task.estimatedHours}"></strong></p>
+                <p>Brugte timer: <strong th:text="${task.usedHours}"></strong></p>
+                <p th:if="${donetasks.contains(task)}"><b>DONE</b></p>
+                <p th:if="${task.usedHours}>${task.estimatedHours}" th:text="${hoursError}"></p>
+                <p>
+                    <a th:if="${manager}" th:href="@{ ${task.name} + '/edit'}">
+                        <button type="button" class="button">Opdater task</button>
+                    </a>
+                </p>
+                <p>
+                    <a th:each="t : ${assignedtasks}" th:if="${t.name}==${task.name}" th:href="@{ ${task.name} + '/edithours'}">
+                        <button type="button" class="button">Opdater brugte timer</button>
+                    </a>
+                </p>
+                <p>
+                    <a th:if="${manager}" th:href="@{ ${task.name} + '/edithours'}">
+                        <button type="button" class="button">Opdater brugte timer</button>
+                    </a>
+                </p>
+                <p>
+                    <a th:href="@{ ${task.name} + '/assignments'}">
+                        <button type="button" class="button">Vis tildelte brugere</button>
+                    </a>
+                </p>
+                <p>
+                    <a th:if="${manager}" th:href="@{${task.name}+'/assign'}">
+                        <button type="button" class="button">Tildel en bruger</button>
+                    </a>
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{'/project/overview'}" class="go-back">Gå tilbage</a>
+</div>
 </body>
 </html>

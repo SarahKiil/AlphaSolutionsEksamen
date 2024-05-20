@@ -36,7 +36,7 @@ public class ProjectController {
 
     @GetMapping("")
     public String getIndex(HttpSession session){
-       /* User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+        User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user.getUsername());
         loggedInUser = (User) session.getAttribute("key");
@@ -44,8 +44,8 @@ public class ProjectController {
             loggedInUser = new User();
             session.setAttribute("key", userToBeLoggedIn);
         return "frontpage";
-    }*/
-        return "index";}
+    }
+        return "frontpage";}
 
     @GetMapping("/frontpage")
     public String getFrontpage(){
