@@ -318,14 +318,19 @@ public class ProjectRepositoryDB {
                 else if (rs.getString(8).equals("low")){
                     task.setStatus(Priority.LOW);
                 }
-                else task.setStatus(Priority.UNCATEGORIZED);
-            }
+                else if (rs.getString(8).equals("uncategorized")){
+                task.setStatus(Priority.UNCATEGORIZED);}
                 tasks.add(task);
-            System.out.println(task.getName());
+            }
+
             } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return tasks;
+    }
+
+    public List<String> showStatus(){
+        return List.of("HIGH", "MEDIUM", "LOW", "UNCATEGORIZED");
     }
 
     public List<User> showUsers(){

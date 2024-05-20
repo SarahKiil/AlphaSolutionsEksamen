@@ -22,6 +22,12 @@
             <label for="estimatedhours">Estimated Hours:</label>
             <input type="number" id="estimatedhours" name="estimatedhours" th:field="*{estimatedHours}"/>
         </p>
+        <p>
+            <label for="status">Select status:</label>
+            <select id="status" name="status" th:field="*{status}">
+                <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
+            </select>
+        </p>
         <input type="submit" value="Create Task" />
     </form>
 </div>

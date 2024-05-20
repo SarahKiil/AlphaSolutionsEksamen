@@ -201,10 +201,11 @@ public class ProjectController {
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
+        tasks.sort(new TaskComparator());
         for (Task t : tasks){
             System.out.println(t.getName());
         }
-        tasks.sort(new TaskComparator());
+
         List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
