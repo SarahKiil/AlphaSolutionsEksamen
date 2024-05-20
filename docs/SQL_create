@@ -51,7 +51,8 @@ usedhours double,
 subproject_ID int,
 foreign key (subproject_ID) references subprojects(ID),
 primary key (ID),
-done varchar (1)
+done varchar (1),
+status varchar(15);
 );
 
 

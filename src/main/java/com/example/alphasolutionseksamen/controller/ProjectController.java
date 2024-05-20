@@ -1,5 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
+import com.example.alphasolutionseksamen.TaskComparator;
 import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import jakarta.servlet.http.HttpSession;
@@ -36,7 +37,7 @@ public class ProjectController {
 
     @GetMapping("")
     public String getIndex(HttpSession session){
-        User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
+        /*User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user.getUsername());
         loggedInUser = (User) session.getAttribute("key");
@@ -44,8 +45,8 @@ public class ProjectController {
             loggedInUser = new User();
             session.setAttribute("key", userToBeLoggedIn);
         return "frontpage";
-    }
-        return "frontpage";}
+    }*/
+        return "index";}
 
     @GetMapping("/frontpage")
     public String getFrontpage(){
@@ -102,19 +103,25 @@ public class ProjectController {
 
     @GetMapping("/overview")
     public String showProjects(Model model, HttpSession session){
-        //List<Project> projects = projectService.showProjects();
+        List<Project> allProjects = projectService.showProjects();
+        Project project = new Project();
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
-        List<Project>doneProjects = new ArrayList<>();
+        List<Project> doneProjects = projectService.showDoneProjects();
         List<Project>projectsWithTasks = new ArrayList<>();
-        projectService.checkStatusProject(projects);
-
-        for (Project p : projects){
-            if (p.isDone()) {
-                doneProjects.add(p);
+        for (Project p : doneProjects){
+            for (Project po : projects){
+                if(p.getName().equals(po.getName())){
+                    project=po;
+                }
             }
-            model.addAttribute("doneprojects", doneProjects);
-        }
+            projects.remove(project);
+            }
+
+
+
+
+
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
         for (Project p : projects){
@@ -132,6 +139,31 @@ public class ProjectController {
             model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
     }
+
+    @GetMapping("/archive")
+    public String showDoneProjects(Model model){
+        List<Project> doneProjects = projectService.showDoneProjects();
+        model.addAttribute("doneprojects", doneProjects);
+        return "showarchive";
+    }
+
+    @GetMapping("/yourarchive")
+    public String showYourDoneProjects(Model model, HttpSession session){
+        loggedInUser = (User) session.getAttribute("key");
+        Project project = new Project();
+        List<Project> projects = new ArrayList<>();
+        List<Project> doneProjects = projectService.showDoneProjects();
+        for (Project p : doneProjects) {
+            if (p.getUsername().equals(loggedInUser.getUsername())) {
+                projects.add(p);
+            }
+        }
+
+        model.addAttribute("projects", projects);
+        return "showyourarchive";
+
+    }
+
 
     @GetMapping("/{name}/subprojects")
     public String showSubprojects(@PathVariable String name, Model model, HttpSession session){
@@ -169,6 +201,10 @@ public class ProjectController {
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
+        for (Task t : tasks){
+            System.out.println(t.getName());
+        }
+        tasks.sort(new TaskComparator());
         List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
@@ -364,6 +400,22 @@ public class ProjectController {
         loggedInUser = (User)session.getAttribute("key");
         List<Project> assignedProjects =projectService.showsProjectsForUser(loggedInUser);
         List<Project> managedProjects = projectService.showProjectsForManagers(loggedInUser);
+        List<Project> doneProjects = projectService.showDoneProjects();
+        Project project = new Project();
+        for (Project p : doneProjects){
+            for (Project po : assignedProjects){
+                if(p.getName().equals(po.getName())){
+                    project = po;
+                }
+            }
+        assignedProjects.remove(project);
+            for (Project po : managedProjects){
+                if(p.getName().equals(po.getName())){
+                    project = po;
+                }
+            }
+            managedProjects.remove(project);}
+
         model.addAttribute("user", loggedInUser);
         model.addAttribute("managedprojects", managedProjects);
         model.addAttribute("projects", assignedProjects);
