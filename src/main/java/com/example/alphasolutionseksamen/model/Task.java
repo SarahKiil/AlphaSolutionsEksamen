@@ -1,5 +1,7 @@
 package com.example.alphasolutionseksamen.model;
 
+import com.example.alphasolutionseksamen.Priority;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,16 @@ public class Task {
     private boolean done;
 
     private List<User> assignedUsers;
+
+    public Priority getStatus() {
+        return status;
+    }
+
+    public void setStatus(Priority status) {
+        this.status = status;
+    }
+
+    private Priority status;
 
     public Task (String name, String description, double estimatedHours, double usedHours) {
         this.name = name;

@@ -16,9 +16,9 @@ Insert into subprojects(name, description, estimatedhours, usedhours, project_ID
 Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Business', 'Stuff', 0, 0, 2);
 
 -- tasks:
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done) values ('Userstory 1', 'vis userstory til Luise', 5, 0, 1, 'f');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done) values ('Userstory 2', 'vis userstory til Luise', 6, 0, 1, 'f');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done) values ('Userstory 3', 'vis userstory til Luise igen', 2, 0, 2, 'f');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 1', 'vis userstory til Luise', 5, 0, 1, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 2', 'vis userstory til Luise', 6, 0, 1, 'f', 'uncategorized');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 3', 'vis userstory til Luise igen', 2, 0, 2, 'f', 'uncategorized');
 
 
 -- Assign users to tasks:

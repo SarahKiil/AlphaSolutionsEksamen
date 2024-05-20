@@ -1,5 +1,6 @@
 package com.example.alphasolutionseksamen.repository;
 
+import com.example.alphasolutionseksamen.Priority;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
@@ -105,12 +106,21 @@ public class ProjectRepositoryDB {
             double estimatedHoursSubprojectNew = 0;
             double estimatedHoursProject = 0;
             double estimatedHoursprojectNew = 0;
+            String priority = "uncategorized";
+            if (task.getStatus()==Priority.HIGH){
+                priority = "high";}
+            else if (task.getStatus()==Priority.MEDIUM){
+                priority = "medium";
+                }
+            else if (task.getStatus()==Priority.LOW){
+                priority = "low";
+            }
             String done = "f";
             if (task.isDone()){
                 done="t";
             }
 
-            String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id, done) values (?, ?, ?, ?, ?, ?);";
+            String SQL = "insert into tasks (name, description, estimatedhours, usedhours, subproject_id, done, status) values (?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ps.setString(1, task.getName());
             ps.setString(2, task.getDescription());
@@ -118,6 +128,7 @@ public class ProjectRepositoryDB {
             ps.setDouble(4, 0);
             ps.setInt(5, id);
             ps.setString(6, done);
+            ps.setString(7, priority);
             int rs = ps.executeUpdate();
 
             String SQL1 = "SELECT ESTIMATEDHOURS FROM PROJECTS WHERE NAME=?;";
@@ -211,6 +222,16 @@ public class ProjectRepositoryDB {
                 if (rs2.getString(7).equals("t")) {
                     task.setDone(true);
                 }
+                if (rs2.getString(8).equals("high")){
+                    task.setStatus(Priority.HIGH);
+                }
+                else if (rs2.getString(8).equals("medium")){
+                    task.setStatus(Priority.MEDIUM);
+                }
+                else if (rs2.getString(8).equals("low")){
+                    task.setStatus(Priority.LOW);
+                }
+                else task.setStatus(Priority.UNCATEGORIZED);
             }
 
         } catch (SQLException e) {
@@ -285,9 +306,22 @@ public class ProjectRepositoryDB {
                 if (rs.getString(7).equals("t")){
                     task.setDone(true);
                 }
-                tasks.add(task);
+                if (rs.getString(7).equals("f")) {
+                    task.setDone(true);
+                }
+                if (rs.getString(8).equals("high")){
+                    task.setStatus(Priority.HIGH);
+                }
+                else if (rs.getString(8).equals("medium")){
+                    task.setStatus(Priority.MEDIUM);
+                }
+                else if (rs.getString(8).equals("low")){
+                    task.setStatus(Priority.LOW);
+                }
+                else task.setStatus(Priority.UNCATEGORIZED);
             }
-        } catch (SQLException e) {
+                tasks.add(task);
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return tasks;

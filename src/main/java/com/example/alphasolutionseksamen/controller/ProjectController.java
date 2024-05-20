@@ -1,5 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
+import com.example.alphasolutionseksamen.TaskComparator;
 import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import jakarta.servlet.http.HttpSession;
@@ -200,6 +201,10 @@ public class ProjectController {
        // Subproject subproject = projectService.showSubproject(project, subprojectname);
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
+        for (Task t : tasks){
+            System.out.println(t.getName());
+        }
+        tasks.sort(new TaskComparator());
         List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
