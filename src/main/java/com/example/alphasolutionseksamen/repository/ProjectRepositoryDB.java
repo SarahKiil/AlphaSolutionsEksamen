@@ -307,7 +307,7 @@ public class ProjectRepositoryDB {
                     task.setDone(true);
                 }
                 if (rs.getString(7).equals("f")) {
-                    task.setDone(true);
+                    task.setDone(false);
                 }
                 if (rs.getString(8).equals("high")){
                     task.setStatus(Priority.HIGH);
@@ -321,6 +321,7 @@ public class ProjectRepositoryDB {
                 else task.setStatus(Priority.UNCATEGORIZED);
             }
                 tasks.add(task);
+            System.out.println(task.getName());
             } catch (SQLException e) {
             throw new RuntimeException(e);
         }
