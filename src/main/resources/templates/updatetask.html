@@ -26,7 +26,13 @@
       <label for="estimatedHours">Forventede timer:</label>
       <input id="estimatedHours" name="estimatedHours" type="number" th:value="${task.estimatedHours}"/>
     </p>
-
+    <p>Select status</p>
+    <p>
+      <label for="status">Select status:</label>
+      <select id="status" name="status" th:field="*{status}">
+        <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
+      </select>
+    </p>
     <div class="button-group">
       <button type="submit" class="button">Opdater task</button>
       <a th:href="@{'/project/'+${project.name}+'/'+${subproject.name}+'/'+${task.name}+'/delete'}" class="delete-button">
