@@ -110,6 +110,7 @@ public class ProjectController {
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
         List<Project> doneProjects = projectService.showDoneProjects();
+
         List<Project>projectsWithTasks = new ArrayList<>();
         for (Project p : doneProjects){
             for (Project po : projects){
@@ -119,10 +120,6 @@ public class ProjectController {
             }
             projects.remove(project);
             }
-
-
-
-
 
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
@@ -137,6 +134,7 @@ public class ProjectController {
         model.addAttribute("projectswithtasks", projectsWithTasks);
 
         }
+        model.addAttribute("doneprojects", doneProjects);
 
             model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
