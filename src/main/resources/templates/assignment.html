@@ -8,12 +8,29 @@
 
 </head>
 <body>
-
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
 <form th:action="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/assignpost'}" th:object="${user}" method="post">
     <p>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
+
+    <p>Hvilket skill vil du sortere efter? </p>
+    <div class="dropdown">
+        <button class="dropbtn">Skills</button>
+        <div class="dropdown-content">
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/java'}">Java</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/html'}">HTML</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/css'}">CSS</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/sql'}">SQL</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/python'}">Python</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/c++'}">C++</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/c#'}">C#</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/javascript'}">JavaScript</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/scrum'}">SCRUM</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/cloud'}">Cloud</a>
+        </div>
+    </div>
     <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
     <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
 

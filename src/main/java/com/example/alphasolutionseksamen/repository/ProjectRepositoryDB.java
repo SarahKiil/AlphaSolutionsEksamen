@@ -399,6 +399,25 @@ public class ProjectRepositoryDB {
                 }
                 else if (rs.getString(8).equals("uncategorized")){
                 task.setStatus(Priority.UNCATEGORIZED);}
+
+                String SQL1 = "SELECT SKILL_ID FROM SKILLS_TASKS WHERE TASK_ID=?";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setInt(1, id);
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()){
+                    skillIDs.add(rs1.getInt(1));
+                }
+                List<String> skills = new ArrayList<>();
+                for (Integer i : skillIDs){
+                    String SQL2 = "SELECT NAME FROM SKILLS WHERE ID=?";
+                    PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                    ps2.setInt(1, i);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while (rs2.next()){
+                        skills.add(rs2.getString(1));
+                    }
+                    task.setSkills(skills);
+                }
                 tasks.add(task);
             }
 
