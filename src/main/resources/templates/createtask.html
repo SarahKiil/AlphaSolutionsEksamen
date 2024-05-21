@@ -28,6 +28,13 @@
                 <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
             </select>
         </p>
+        <div class="checkbox-group">
+            <div th:each="skill : ${skills}">
+                <label th:for="${skill}">
+                    <input type="checkbox" th:id="${skill}" th:name="skills" th:value="${skill}" th:field="*{skills}" th:text="${skill}">
+                </label>
+            </div>
+        </div>
         <input type="submit" value="Create Task" />
     </form>
 </div>

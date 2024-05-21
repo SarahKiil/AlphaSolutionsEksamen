@@ -26,3 +26,33 @@ Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, d
 Insert into tasks_users(task_ID, username) values (1, 'abc');
 Insert into tasks_users(task_ID, username) values (2, 'abc');
 Insert into tasks_users(task_ID, username) values (1, 'HanneRocks');
+
+-- Skills:
+
+Insert into skills(name) values ('java');
+Insert into skills(name) values ('html');
+Insert into skills(name) values ('css');
+Insert into skills(name) values ('sql');
+Insert into skills(name) values ('python');
+Insert into skills(name) values ('c++');
+Insert into skills(name) values ('c#');
+Insert into skills(name) values ('javascript');
+Insert into skills(name) values ('scrum');
+Insert into skills(name) values ('cloud');
+
+-- Assign skills to users:
+Insert into skills_users(Skill_ID, username) values (1, 'abc');
+Insert into skills_users(Skill_ID, username) values (2, 'abc');
+Insert into skills_users(Skill_ID, username) values (5, 'abc');
+Insert into skills_users(Skill_ID, username) values (3, 'Bobby');
+Insert into skills_users(Skill_ID, username) values (4, 'Bobby');
+Insert into skills_users(Skill_ID, username) values (9, 'HanneRocks');
+Insert into skills_users(Skill_ID, username) values (10, 'HanneRocks');
+
+-- Assign skills to tasks;
+Insert into skills_tasks(Skill_ID, task_id) values (1, 1);
+Insert into skills_tasks(Skill_ID, task_id) values (2, 1);
+Insert into skills_tasks(Skill_ID, task_id) values (3, 2);
+Insert into skills_tasks(Skill_ID, task_id) values (4, 2);
+Insert into skills_tasks(Skill_ID, task_id) values (5, 3);
+Insert into skills_tasks(Skill_ID, task_id) values (6, 3);

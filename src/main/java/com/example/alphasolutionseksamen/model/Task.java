@@ -15,6 +15,8 @@ public class Task {
 
     private List<User> assignedUsers;
 
+    private List<String> skills;
+
     public Priority getStatus() {
         return status;
     }
@@ -31,6 +33,7 @@ public class Task {
         this.estimatedHours = estimatedHours;
         this.usedHours = usedHours;
         this.assignedUsers = new ArrayList<>();
+        this.skills = new ArrayList<>();
         this.done =false;
     }
 
@@ -88,5 +91,19 @@ public class Task {
         this.done = done;
     }
 
+    public List<String> getSkills() {
+        return skills;
+    }
 
+    public String getSkillsSetup() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : skills) {
+            stringBuilder.append(s);
+            stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
+    }
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
 }

@@ -66,6 +66,10 @@ public Project showProject(String projectName) {
     return rpd.showUsers();
     }
 
+    public List<User> showUsersWithSkill(String skill){
+    return rpd.showUsersWithSkill(skill);
+    }
+
     public List<String> showUserNames(){
     return rpd.showUserNames();
     }

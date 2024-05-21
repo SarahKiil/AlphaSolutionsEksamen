@@ -19,10 +19,12 @@
         </tr>
         </thead>
         <tbody>
+
         <tr th:each="task : ${tasks}">
             <td>
                 <p>Status: <strong th:text="${task.status}"></strong></p>
                 <p>Navn: <strong th:text="${task.name}"></strong></p>
+                <p>Skills: <strong th:text="${task.skillsSetup}"></strong></p>
                 <p>Beskrivelse: <strong th:text="${task.description}"></strong></p>
                 <p>Forventede timer: <strong th:text="${task.estimatedHours}"></strong></p>
                 <p>Brugte timer: <strong th:text="${task.usedHours}"></strong></p>
