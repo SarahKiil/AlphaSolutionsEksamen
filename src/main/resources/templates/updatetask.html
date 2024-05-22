@@ -5,35 +5,47 @@
   <title>Opdater dit projekt</title>
   <link th:href="@{/updatetask.css}" rel="stylesheet">
   <link th:href="@{/main.css}" rel="stylesheet">
-  <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
 <div class="container">
   <form th:action="@{'/project/' +${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/update'}" method="post" th:object="${task}">
-    <h1>Opdater dit projekt</h1>
-    <p class="project-name" th:text="${project.name}"></p>
+    <p th:text="${project.name}"></p>
 
-    <div class="form-group">
+    <p>
       <label for="name">Navn:</label>
-      <input id="name" name="name" type="text" th:value="${task.name}" required />
-    </div>
+      <input id="name" name="name" type="text" th:value="${task.name}"/>
+    </p>
 
-    <div class="form-group">
+    <p>
       <label for="description">Beskrivelse:</label>
-      <input id="description" name="description" type="text" th:value="${task.description}" required />
-    </div>
+      <input id="description" name="description" type="text" th:value="${task.description}"/>
+    </p>
 
-    <div class="form-group">
+    <p>
       <label for="estimatedHours">Forventede timer:</label>
-      <input id="estimatedHours" name="estimatedHours" type="number" th:value="${task.estimatedHours}" required />
-    </div>
-
+      <input id="estimatedHours" name="estimatedHours" type="number" th:value="${task.estimatedHours}"/>
+    </p>
+    <p>Select status</p>
+    <p>
+      <label for="status">Select status:</label>
+      <select id="status" name="status" th:field="*{status}">
+        <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
+      </select>
+    </p>
+    <p th:each="skill : ${skills}" >
+      <label th:for="${skill}">
+        <input type="checkbox" th:id="${skill}" th:name="${skill}" th:value="${skill}" th:field="*{skills}" th:text="${skill}">
+      </label>
+    </p>
     <div class="button-group">
       <button type="submit" class="button">Opdater task</button>
-      <a th:href="@{'/project/'+${project.name}+'/'+${subproject.name}+'/'+${task.name}+'/delete'}" class="button delete-button">Slet task</a>
-      <a th:href="@{'/project/frontpage'}" class="button cancel-button">Fortryd</a>
+      <a th:href="@{'/project/'+${project.name}+'/'+${subproject.name}+'/'+${task.name}+'/delete'}" class="delete-button">
+        <button type="button" class="button delete-button">Slet task</button>
+      </a>
+      <a th:href="@{'/project/frontpage'}" class="cancel-button">
+        <button type="button" class="button cancel-button">Fortryd</button>
+      </a>
     </div>
   </form>
 </div>

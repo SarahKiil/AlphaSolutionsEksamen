@@ -1,5 +1,8 @@
 package com.example.alphasolutionseksamen.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String username;
 
@@ -15,6 +18,9 @@ public class User {
     private String city;
     private String country;
 
+    private List<String>skills;
+
+
     public User(String username, String firstName, String lastName, String password, String email, String streetName, String streetNumber, int postNumber, String city, int phoneNumber, String country) {
         this.username = username;
         this.firstName = firstName;
@@ -27,6 +33,7 @@ public class User {
         this.city=city;
         this.phoneNumber = phoneNumber;
         this.country = country;
+        this.skills = new ArrayList<>();
     }
 
     public User(String username, String firstName, String lastName, String email, String streetName, String streetNumber, int postNumber, int phoneNumber, String city, String country) {
@@ -40,6 +47,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.country = country;
+        this.skills = new ArrayList<>();
     }
 
     public User(){}
@@ -130,5 +138,22 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public String getSkillsSetup() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : skills) {
+            stringBuilder.append(s);
+            stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
     }
 }

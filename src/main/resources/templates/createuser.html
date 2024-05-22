@@ -59,6 +59,14 @@
         <label for="phoneNumber">Phone number</label>
         <input type="number" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
     </p>
+    <label>Dine skills:</label>
+    <div class="checkbox-group">
+        <div th:each="skill : ${skills}">
+            <label th:for="${skill}">
+                <input type="checkbox" th:id="${skill}" th:name="skills" th:value="${skill}" th:field="*{skills}" th:text="${skill}">
+            </label>
+        </div>
+    </div>
     <p th:if="${userNameError}" th:text="${userNameError}" class="error-message"></p>
     <p th:if="${usedUserNameError}" th:text="${usedUserNameError}" class="error-message"></p>
     <p th:if="${passwordError}" th:text="${passwordError}" class="error-message"></p>

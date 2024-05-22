@@ -59,11 +59,16 @@ public Project showProject(String projectName) {
     public List<Task> showTasks(String project, String subproject) {
     return rpd.showTasks(project, subproject);
     }
+    public List<String> showSkills () { return rpd.showSkills();}
     public List <String> showStatus () {
     return rpd.showStatus();
     }
     public List<User> showUsers(){
     return rpd.showUsers();
+    }
+
+    public List<User> showUsersWithSkill(String skill){
+    return rpd.showUsersWithSkill(skill);
     }
 
     public List<String> showUserNames(){

@@ -164,9 +164,45 @@ public class ProjectRepositoryDB {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        createTaskSkills(project, subproject, task);
     }
 
-    public Project showProject(String projectName) {
+    public void createTaskSkills(Project project, Subproject subproject, Task task) {
+        int id = 0;
+        List<Integer> skillIDs = new ArrayList<>();
+        int subprojectID = getSubprojectID(project.getName(), subproject.getName());
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            String SQL = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, task.getName());
+            ps.setInt(2, subprojectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                id = (rs.getInt(1));
+            }
+            for (String s : task.getSkills()) {
+                String SQL1 = "SELECT ID FROM SKILLS WHERE NAME=?;";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setString(1, s);
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    skillIDs.add(rs1.getInt(1));
+                }
+            }
+            for (Integer i : skillIDs) {
+                String SQL2 = "INSERT INTO SKILLS_TASKS (Skill_ID, task_id) values (?, ?);";
+                PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                ps2.setInt(1, i);
+                ps2.setInt(2, id);
+                int rs2 = ps2.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+        public Project showProject(String projectName) {
         Project project = new Project();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "SELECT * FROM PROJECTS WHERE NAME=?;";
@@ -209,6 +245,8 @@ public class ProjectRepositoryDB {
 
     public Task showTask(String projectName, String subprojectName, String taskName) {
         Task task = new Task();
+        int id = 0;
+        List<Integer> skillIDs = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int subprojectID = getSubprojectID(projectName, subprojectName);
 
@@ -218,6 +256,7 @@ public class ProjectRepositoryDB {
             ps2.setString(2, taskName);
             ResultSet rs2 = ps2.executeQuery();
             while (rs2.next()) {
+                id = (rs2.getInt(1));
                 task = new Task(rs2.getString(2), rs2.getString(3), rs2.getDouble(4), rs2.getDouble(5));
                 if (rs2.getString(7).equals("t")) {
                     task.setDone(true);
@@ -233,6 +272,24 @@ public class ProjectRepositoryDB {
                 }
                 else task.setStatus(Priority.UNCATEGORIZED);
             }
+            String SQL3 = "SELECT SKILL_ID FROM SKILLS_TASKS WHERE TASK_ID=?";
+            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            ps3.setInt(1, id);
+            ResultSet rs3 = ps3.executeQuery();
+            while (rs3.next()){
+                skillIDs.add(rs3.getInt(1));
+            }
+            for (Integer i : skillIDs){
+            String SQL4 = "SELECT NAME FROM SKILLS WHERE ID=?";
+            PreparedStatement ps4 = connection.prepareStatement(SQL4);
+            ps4.setInt(1, i);
+            ResultSet rs4 = ps4.executeQuery();
+            List<String> skills = new ArrayList<>();
+            while (rs4.next()){
+                skills.add(rs4.getString(1));
+            }
+            task.setSkills(skills);
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -242,6 +299,7 @@ public class ProjectRepositoryDB {
 
     public User showUser(String username) {
         User user = new User();
+        List<Integer> skillIDs = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "SELECT * FROM USERS WHERE USERNAME=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
@@ -249,6 +307,24 @@ public class ProjectRepositoryDB {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(10), rs.getInt(9), rs.getString(11));
+                String SQL1 = "SELECT SKILL_ID FROM SKILLS_USERS WHERE USERNAME=?";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setString(1, user.getUsername());
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()){
+                    skillIDs.add(rs1.getInt(1));
+                }
+                List<String> skills = new ArrayList<>();
+                for (Integer i : skillIDs){
+                    String SQL2 = "SELECT NAME FROM SKILLS WHERE ID=?";
+                    PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                    ps2.setInt(1, i);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while (rs2.next()){
+                        skills.add(rs2.getString(1));
+                    }
+                    user.setSkills(skills);
+                }
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -301,7 +377,10 @@ public class ProjectRepositoryDB {
             PreparedStatement ps = connection.prepareStatement(SQL);
             ps.setInt(1, subprojectID);
             ResultSet rs = ps.executeQuery();
+            int id = 0;
             while (rs.next()) {
+                List<Integer> skillIDs = new ArrayList<>();
+                id = rs.getInt(1);
                 task = new Task(rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5));
                 if (rs.getString(7).equals("t")){
                     task.setDone(true);
@@ -320,6 +399,25 @@ public class ProjectRepositoryDB {
                 }
                 else if (rs.getString(8).equals("uncategorized")){
                 task.setStatus(Priority.UNCATEGORIZED);}
+
+                String SQL1 = "SELECT SKILL_ID FROM SKILLS_TASKS WHERE TASK_ID=?";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setInt(1, id);
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()){
+                    skillIDs.add(rs1.getInt(1));
+                }
+                List<String> skills = new ArrayList<>();
+                for (Integer i : skillIDs){
+                    String SQL2 = "SELECT NAME FROM SKILLS WHERE ID=?";
+                    PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                    ps2.setInt(1, i);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while (rs2.next()){
+                        skills.add(rs2.getString(1));
+                    }
+                    task.setSkills(skills);
+                }
                 tasks.add(task);
             }
 
@@ -329,24 +427,75 @@ public class ProjectRepositoryDB {
         return tasks;
     }
 
+    public List<String> showSkills(){
+        List<String> skills = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            Statement stmt = connection.createStatement();
+            String SQL = "SELECT * FROM SKILLS";
+            ResultSet rs = stmt.executeQuery(SQL);
+            while (rs.next()) {
+                skills.add(rs.getString(2));
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return skills;
+    }
+
     public List<String> showStatus(){
         return List.of("HIGH", "MEDIUM", "LOW", "UNCATEGORIZED");
     }
 
     public List<User> showUsers(){
+        User user = new User();
+
     List<User> users = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             Statement stmt = connection.createStatement();
             String SQL = "SELECT * FROM USERS";
             ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
-                users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11)));
+                List<Integer> skillIDs = new ArrayList<>();
+                user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11));
+                String SQL1 = "SELECT SKILL_ID FROM SKILLS_USERS WHERE USERNAME=?";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setString(1, user.getUsername());
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()){
+                    skillIDs.add(rs1.getInt(1));
+                }
+                List<String> skills = new ArrayList<>();
+                for (Integer i : skillIDs){
+                    String SQL2 = "SELECT NAME FROM SKILLS WHERE ID=?";
+                    PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                    ps2.setInt(1, i);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while (rs2.next()){
+                        skills.add(rs2.getString(1));
+                    }
+                    user.setSkills(skills);
+                }
+                users.add(user);
             }
 
     } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return users;}
+
+    public List<User> showUsersWithSkill(String skill){
+        List<User> usersWithSkill = new ArrayList<>();
+        List<User> users = showUsers();
+        for (User u : users){
+            for (String s : u.getSkills()){
+                if(s.equals(skill)){
+                    usersWithSkill.add(u);
+                }
+            }
+        }
+        return usersWithSkill;
+    }
 
     public List<String> showUserNames(){
         List<User> users = showUsers();
@@ -481,6 +630,8 @@ public class ProjectRepositoryDB {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int projectID = getProjectID(projectName);
             int subprojectID = getSubprojectID(projectName, subprojectName);
+            int taskID = 0;
+            List<Integer>skillsIDs = new ArrayList<>();
             double estimatedHoursTask = 0;
             String SQL = "SELECT ESTIMATEDHOURS FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
             PreparedStatement ps = connection.prepareStatement(SQL);
@@ -489,6 +640,14 @@ public class ProjectRepositoryDB {
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 estimatedHoursTask=rs.getDouble(1);
+            }
+            String SQL20 = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps20 = connection.prepareStatement(SQL20);
+            ps20.setString(1, taskName);
+            ps20.setInt(2, subprojectID);
+            ResultSet rs20 = ps20.executeQuery();
+            while (rs20.next()){
+                taskID=rs20.getInt(1);
             }
 
             String SQL1 = "UPDATE TASKS SET NAME=?, DESCRIPTION=?, ESTIMATEDHOURS=? WHERE NAME=? AND SUBPROJECT_ID=?;";
@@ -533,6 +692,29 @@ public class ProjectRepositoryDB {
             ps5.setDouble(1, estimatedHoursProjectNew);
             ps5.setInt(2, projectID);
             int rs5 = ps5.executeUpdate();
+
+            for (String s : task.getSkills()) {
+                String SQL6 = "SELECT ID FROM SKILLS WHERE NAME=?;";
+                PreparedStatement ps6 = connection.prepareStatement(SQL6);
+                ps6.setString(1, s);
+                ResultSet rs6 = ps6.executeQuery();
+                while (rs6.next()) {
+                    skillsIDs.add(rs6.getInt(1));
+                }
+            }
+            String SQL7 = "DELETE FROM SKILLS_TASKS WHERE TASK_ID=?;";
+            PreparedStatement ps7 = connection.prepareStatement(SQL7);
+            ps7.setInt(1, taskID);
+            int rs7 = ps7.executeUpdate();
+
+            for (Integer i : skillsIDs){
+                String SQL8 = "Insert into skills_tasks(Skill_ID, task_id) values (?, ?);";
+                PreparedStatement ps8 = connection.prepareStatement(SQL8);
+                ps8.setInt(1, i);
+                ps8.setInt(2, taskID);
+                int rs8 = ps8.executeUpdate();
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -636,7 +818,32 @@ public void createUser(User user) {
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
+    createUserSkills(user);
 }
+
+    public void createUserSkills(User user) {
+        List<Integer> skillIDs = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            for (String s : user.getSkills()) {
+                String SQL1 = "SELECT ID FROM SKILLS WHERE NAME=?;";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setString(1, s);
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    skillIDs.add(rs1.getInt(1));
+                }
+            }
+            for (Integer i : skillIDs) {
+                String SQL2 = "INSERT INTO SKILLS_USERS (Skill_ID, username) values (?, ?);";
+                PreparedStatement ps2 = connection.prepareStatement(SQL2);
+                ps2.setInt(1, i);
+                ps2.setString(2, user.getUsername());
+                int rs2 = ps2.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
 public boolean checkLogin(User user) {
     try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
@@ -825,6 +1032,12 @@ public boolean checkLogin(User user) {
             PreparedStatement ps2 = connection.prepareStatement(SQL2);
             ps2.setInt(1, taskID);
             int rs2 = ps2.executeUpdate();
+
+            String SQL3 = "DELETE FROM SKILLS_TASKS WHERE TASK_ID=?;";
+            PreparedStatement ps3 = connection.prepareStatement(SQL3);
+            ps3.setInt(1, taskID);
+            int rs3 = ps3.executeUpdate();
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret task</title>
+
+    <link th:href="@{/assignment.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
+<form th:action="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/assignpost'}" th:object="${user}" method="post">
+    <p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}"/>
+    </p>
+    <tr th:each="user : ${users}">
+        <td>
+            <p>Brugernavn: <strong th:text="${user.username}"></strong></p>
+            <p>Fornavn: <strong th:text="${user.firstName}"></strong></p>
+            <p>Efternavn: <strong th:text="${user.lastName}"></strong></p>
+            <p>Skills: <strong th:text="${user.skillsSetup}"></strong></p>
+    <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
+    <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
+
+    <br>
+    <input type="submit" value="Tilføj bruger" /></form>
+
+
+
+</body>
+</html>

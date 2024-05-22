@@ -4,6 +4,10 @@ drop table if exists Users;
 drop table if exists Projects;
 drop table if exists Subprojects;
 drop table if exists Task;
+drop table if exists Skills;
+drop table if exists Skills_users;
+drop table if exists Skills_Tasks;
+
 
 create table Users (
 Username varchar (50) unique,
@@ -52,7 +56,7 @@ subproject_ID int,
 foreign key (subproject_ID) references subprojects(ID),
 primary key (ID),
 done varchar (1),
-status varchar(15);
+status varchar(15)
 );
 
 
@@ -62,4 +66,26 @@ Username varchar(50),
 PRIMARY KEY (Task_ID, Username),
 FOREIGN KEY (Task_ID) REFERENCES tasks(ID),
 FOREIGN KEY (username) REFERENCES Users(username)
+);
+
+CREATE TABLE Skills(
+id int auto_increment,
+Name varchar(30),
+primary key(ID)
+);
+
+CREATE TABLE SKILLS_USERS(
+SKILL_ID int,
+Username varchar(50),
+PRIMARY KEY (SKILL_ID, Username),
+FOREIGN KEY (SKILl_ID) REFERENCES skills(ID),
+FOREIGN KEY (username) REFERENCES Users(username)
+);
+
+CREATE TABLE SKILLS_TASKS(
+SKILL_ID int,
+TASK_ID int,
+PRIMARY KEY (SKILL_ID, TASK_ID),
+FOREIGN KEY (SKILL_ID) REFERENCES skills(ID),
+FOREIGN KEY (TASK_ID) REFERENCES TASKS(ID)
 );

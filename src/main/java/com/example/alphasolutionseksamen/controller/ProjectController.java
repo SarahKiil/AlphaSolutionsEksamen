@@ -91,6 +91,7 @@ public class ProjectController {
         model.addAttribute("task", new Task());
         List <String> statusPriorities = projectService.showStatus();
         model.addAttribute("statusPriorities", statusPriorities);
+        model.addAttribute("skills", projectService.showSkills());
         return "createtask";
     }
 
@@ -110,6 +111,7 @@ public class ProjectController {
         List<Project> projects = projectService.showProjects();
         List<Project> managedProjects = new ArrayList<>();
         List<Project> doneProjects = projectService.showDoneProjects();
+
         List<Project>projectsWithTasks = new ArrayList<>();
         for (Project p : doneProjects){
             for (Project po : projects){
@@ -119,10 +121,6 @@ public class ProjectController {
             }
             projects.remove(project);
             }
-
-
-
-
 
         loggedInUser = (User) session.getAttribute("key");
         model.addAttribute("projects", projects);
@@ -137,8 +135,9 @@ public class ProjectController {
         model.addAttribute("projectswithtasks", projectsWithTasks);
 
         }
+        model.addAttribute("doneprojects", doneProjects);
 
-            model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
+        model.addAttribute("hoursError", "Antallet af brugte timer overgår antallet af forventede timer for dette projekt!");
         return "showprojects";
     }
 
@@ -204,9 +203,7 @@ public class ProjectController {
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
         tasks.sort(new TaskComparator());
-        for (Task t : tasks){
-            System.out.println(t.getName());
-        }
+
 
         List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
@@ -276,6 +273,7 @@ public class ProjectController {
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
         model.addAttribute("statusPriorities", statusPriorities);
+        model.addAttribute("skills", projectService.showSkills());
 
         return "updatetask";
     }
@@ -315,6 +313,7 @@ public class ProjectController {
     @GetMapping("/user/create")
     public String createUser(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("skills", projectService.showSkills());
         return "createuser";
     }
 
@@ -437,7 +436,24 @@ public class ProjectController {
         model.addAttribute("subproject", subproject);
         model.addAttribute("task", task);
         model.addAttribute("user", new User());
+        model.addAttribute("skills", projectService.showSkills());
         return "assignment";
+    }
+
+    @GetMapping("/{name}/{subprojectname}/{taskname}/{skill}")
+    public String assignUserBySkills(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, @PathVariable String skill, Model model){
+        Project project = projectService.showProject(name);
+        Subproject subproject = projectService.showSubproject(name, subprojectname);
+        Task task = projectService.showTask(name, subprojectname, taskname);
+        List<User> users = projectService.showUsersWithSkill(skill);
+
+        model.addAttribute("users", users);
+        model.addAttribute("project", project);
+        model.addAttribute("subproject", subproject);
+        model.addAttribute("task", task);
+        model.addAttribute("user", new User());
+        model.addAttribute("skills", projectService.showSkills());
+        return "assignmentskills";
     }
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/assignpost")
