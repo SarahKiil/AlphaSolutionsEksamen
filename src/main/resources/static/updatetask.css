@@ -3,7 +3,6 @@ body {
     background-image: linear-gradient(to right, #023554, #779095, #9eada8, #efead8);
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,29 +14,42 @@ body {
     width: 90%;
     max-width: 600px;
     background: #ffffff;
-    padding: 30px;
+    padding: 40px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-top: 20px;
     text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #023554;
+}
+
+.project-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #559bad;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
 }
 
-form p {
-    margin: 10px 0;
-    font-size: 16px;
+.form-group {
     width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 label {
     font-weight: bold;
     margin-bottom: 5px;
+    display: block;
 }
 
 input[type="text"],
@@ -63,6 +75,7 @@ input[type="number"] {
     transition: all 0.3s ease;
     margin: 10px 5px 0 0;
     display: inline-block;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -70,16 +83,6 @@ input[type="number"] {
     color: #000000;
     transform: scale(1.05);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.error {
-    color: #ff6666;
-    font-weight: bold;
 }
 
 .delete-button {
@@ -102,6 +105,6 @@ a {
 
 .button-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }

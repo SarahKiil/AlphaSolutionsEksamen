@@ -13,10 +13,10 @@ body {
     max-width: 960px;
     padding: 24px;
     margin: 30px auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 .user-info {
@@ -25,7 +25,7 @@ body {
 
 .user-info h1, .user-info p {
     margin: 12px 0;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .project-section {
@@ -34,7 +34,7 @@ body {
 
 .project-section h2 {
     margin-bottom: 12px;
-    font-size: 20px;
+    font-size: 22px;
     border-bottom: 2px solid #fff;
     padding-bottom: 6px;
 }
@@ -46,15 +46,15 @@ body {
 }
 
 th, td {
-    background-color: #4a6c73;
+    background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     padding: 12px;
     text-align: left;
-    border-bottom: 2px solid #ffffff44;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 th {
-    background-color: #3c5c7e;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 p, th, td {
@@ -67,17 +67,29 @@ p, th, td {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4a6c73;
+    background-color: rgba(30, 58, 76, 0.8);
     color: #fff;
     font-size: 16px;
     transition: background-color 0.35s, box-shadow 0.35s;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;  /* Added more spacing here */
+    text-align: center;
 }
 
 .button:hover, .button:focus {
-    background-color: #3c5c7e;
+    background-color: rgba(44, 83, 100, 0.8);
     outline: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.delete-button {
+    background-color: rgba(217, 83, 79, 0.8);
+}
+
+.delete-button:hover, .delete-button:focus {
+    background-color: rgba(201, 48, 44, 0.8);
 }
 
 strong {
@@ -85,11 +97,6 @@ strong {
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 15px;
-        text-align: left;
-    }
-
     .container {
         width: 100%;
         margin-top: 10px;

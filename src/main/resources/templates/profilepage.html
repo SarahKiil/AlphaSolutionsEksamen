@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/profilepage.css}">
-    <link rel="stylesheet" th:href="@{/headerloggedin.css}">
+    <link th:href="@{/profilepage.css}" rel="stylesheet">
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
@@ -16,11 +16,8 @@
         <p>Last Name: <strong th:text="${user.lastName}"></strong></p>
         <p>Email: <strong th:text="${user.email}"></strong></p>
         <p>Phone Number: <strong th:text="${user.phoneNumber}"></strong></p>
-        <p>Address: <strong th:text="${user.streetName}"></strong>
-            <strong th:text="${user.streetNumber}"></strong>,
-            <strong th:text="${user.postNumber}"></strong></p>
-        <p><strong th:text="${user.city}"></strong>,
-            <strong th:text="${user.country}"></strong></p>
+        <p>Address: <strong th:text="${user.streetName}"></strong> <strong th:text="${user.streetNumber}"></strong>, <strong th:text="${user.postNumber}"></strong></p>
+        <p><strong th:text="${user.city}"></strong>, <strong th:text="${user.country}"></strong></p>
     </div>
 
     <div class="project-section">
@@ -70,11 +67,10 @@
                         <button type="button" class="button">View Project</button>
                     </a>
                     <a th:href="@{ ${project.name} + '/edit'}">
-                        <button type="button" class="button">Edit project</button>
+                        <button type="button" class="button">Edit Project</button>
                     </a>
-
                     <a th:href="@{ ${project.name} + '/delete'}">
-                        <button type="button" class="button">Delete project</button>
+                        <button type="button" class="button delete-button">Delete Project</button>
                     </a>
                 </td>
             </tr>
@@ -89,7 +85,7 @@
     </p>
     <p>
         <a th:href="@{'/project/yourarchive'}">
-            <button type="button" class="button">Vis arkiv</button>
+            <button type="button" class="button">View Archive</button>
         </a>
     </p>
 </div>

@@ -5,9 +5,11 @@
     <title>Create Task</title>
     <link th:href="@{/createtask.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
-    <div th:replace="~{fragments/headerloggedin :: header}"></div>
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
+
 </head>
 <body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
 <div class="container">
     <form th:action="@{'/project/' + ${projectname} + '/' + ${subprojectname} + '/save'}" th:object="${task}" method="post">
         <p>
