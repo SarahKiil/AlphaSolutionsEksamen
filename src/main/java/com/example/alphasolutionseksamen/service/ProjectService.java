@@ -107,6 +107,13 @@ public Project showProject(String projectName) {
     rpd.updateTask(projectName, subprojectName, task, taskName);
     }
 
+    public void updateUser (User user) {
+    rpd.updateUser(user);
+    }
+    public void deleteUser (User user) {
+    rpd.deleteUser(user);
+    }
+
     public void finishATask(String projectName, String subprojectName, Task task){
     rpd.finishATask(projectName, subprojectName, task);
     }

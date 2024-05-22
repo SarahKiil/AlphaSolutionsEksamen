@@ -79,8 +79,6 @@ public class ProjectRepositoryDB {
         }
     }
 
-
-
         public void createSubproject(Project project, Subproject subproject) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int id = getProjectID(project.getName());
@@ -279,12 +277,12 @@ public class ProjectRepositoryDB {
             while (rs3.next()){
                 skillIDs.add(rs3.getInt(1));
             }
+            List<String> skills = new ArrayList<>();
             for (Integer i : skillIDs){
             String SQL4 = "SELECT NAME FROM SKILLS WHERE ID=?";
             PreparedStatement ps4 = connection.prepareStatement(SQL4);
             ps4.setInt(1, i);
             ResultSet rs4 = ps4.executeQuery();
-            List<String> skills = new ArrayList<>();
             while (rs4.next()){
                 skills.add(rs4.getString(1));
             }

@@ -14,10 +14,8 @@ public class User {
     private String streetNumber;
     private int postNumber;
     private int phoneNumber;
-
     private String city;
     private String country;
-
     private List<String>skills;
 
 
@@ -144,6 +142,9 @@ public class User {
         return skills;
     }
 
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
     public String getSkillsSetup() {
         StringBuilder stringBuilder = new StringBuilder();
         for (String s : skills) {
@@ -153,7 +154,4 @@ public class User {
         return stringBuilder.toString();
     }
 
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
 }

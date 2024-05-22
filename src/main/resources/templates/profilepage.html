@@ -19,6 +19,10 @@
         <p>Phone Number: <strong th:text="${user.phoneNumber}"></strong></p>
         <p>Address: <strong th:text="${user.streetName}"></strong> <strong th:text="${user.streetNumber}"></strong>, <strong th:text="${user.postNumber}"></strong></p>
         <p><strong th:text="${user.city}"></strong>, <strong th:text="${user.country}"></strong></p>
+        <a href="profile/edit">
+            <button type="button" class="button">Opdater dine oplysninger</button>
+        </a>
+
     </div>
 
     <div class="project-section">

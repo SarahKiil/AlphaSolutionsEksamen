@@ -9,22 +9,10 @@ public class Task {
     private String name;
     private String description;
     private double estimatedHours;
-
     private double usedHours;
     private boolean done;
-
     private List<User> assignedUsers;
-
     private List<String> skills;
-
-    public Priority getStatus() {
-        return status;
-    }
-
-    public void setStatus(Priority status) {
-        this.status = status;
-    }
-
     private Priority status;
 
     public Task (String name, String description, double estimatedHours, double usedHours) {
@@ -93,6 +81,13 @@ public class Task {
 
     public List<String> getSkills() {
         return skills;
+    }
+    public Priority getStatus() {
+        return status;
+    }
+
+    public void setStatus(Priority status) {
+        this.status = status;
     }
 
     public String getSkillsSetup() {
