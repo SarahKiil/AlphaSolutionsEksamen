@@ -106,4 +106,9 @@ public class Task {
     public void setSkills(List<String> skills) {
         this.skills = skills;
     }
+
+    public String getProgressHTML(){
+        int percentage = (int) (usedHours/estimatedHours*100);
+        return "width:"+percentage+"%";
+    }
 }

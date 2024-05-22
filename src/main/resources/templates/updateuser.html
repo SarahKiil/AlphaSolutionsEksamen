@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Your Project</title>
+    <link th:href="@{/updatesubproject.css}" rel="stylesheet">
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{'/project/profile/update'}" method="post" th:object="${user}">
+        <p>
+            <label for="username">Brugernavn (kan ikke ændres)</label>
+            <input type="text" id="username" name="username" th:field="${user.username}" readonly/>
+        </p>
+        <p>
+            <label for="firstName">Fornavn</label>
+            <input type="text" id="firstName" name="firstName" th:field="${user.firstName}"/>
+        </p>
+        <p>
+            <label for="lastName">Efternavn</label>
+            <input type="text" id="lastName" name="lastName" th:field="${user.lastName}"/>
+        </p>
+        <p>
+            <label for="streetName">Gadenavn</label>
+            <input type="text" id="streetName" name="streetName" th:field="${user.streetName}"/>
+        </p>
+        <p>
+            <label for="streetNumber">Husnummer</label>
+            <input type="text" id="streetNumber" name="streetNumber" th:field="${user.streetNumber}"/>
+        </p>
+        <p>
+            <label for="postNumber">Postnummer</label>
+            <input type="number" id="postNumber" name="postNumber" th:field="${user.postNumber}"/>
+        </p>
+        <p>
+            <label for="city">By</label>
+            <input type="text" id="city" name="city" th:field="${user.city}"/>
+        </p>
+        <p>
+            <label for="country">Land</label>
+            <input type="text" id="country" name="country" th:field="${user.country}"/>
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" th:field="${user.email}"/>
+        </p>
+        <p>
+            <label for="phoneNumber">Telefon</label>
+            <input type="number" id="phoneNumber" name="phoneNumber" th:field="${user.phoneNumber}"/>
+        </p>
+        <label>Dine skills</label>
+        <div class="checkbox-group">
+            <div th:each="skill : ${skills}">
+                <label th:for="${skill}">
+                    <input type="checkbox" th:id="${skill}" th:name="skills" th:value="${skill}" th:field="${user.skills}" th:text="${skill}">
+                </label>
+            </div>
+
+        <div class="button-container">
+            <button type="submit" class="button">Opdater din profil</button>
+            <a th:href="@{'/project/profile'+'/delete'}">
+                <button type="button" class="button cancel-button">Slet profil</button>
+            </a>
+
+            <a th:href="@{'/project/profile'}">
+                <button type="button" class="button cancel-button">Anullér</button>
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

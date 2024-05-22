@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(path="project")
@@ -36,7 +37,7 @@ public class ProjectController {
 
 
     @GetMapping("")
-    public String getIndex(HttpSession session){
+    public String getIndex(HttpSession session, Model model){
         /*User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
 
         User userToBeLoggedIn = projectService.showUser(user.getUsername());
@@ -46,6 +47,7 @@ public class ProjectController {
             session.setAttribute("key", userToBeLoggedIn);
         return "frontpage";
     }*/
+        model.addAttribute("tal", "width:100%");
         return "index";}
 
     @GetMapping("/frontpage")
@@ -203,14 +205,19 @@ public class ProjectController {
         List<Task> assignedTasks = new ArrayList<>();
         List<Task>tasks = projectService.showTasks(name, subprojectname);
         tasks.sort(new TaskComparator());
+        HashMap<String, Double> workloads = new HashMap<>();
+
 
 
         List<Task>doneTasks = projectService.showTasks(name, subprojectname);
 
         for (Task t : tasks){
             for (String s : projectService.showAssignedUsers(name, subprojectname, t.getName())){
-                if (s.equals(loggedInUser.getUsername())){
+                if (s.equals(loggedInUser.getUsername())) {
                     assignedTasks.add(t);
+                    if (projectService.calculateUserWorkload(name, subprojectname, t) >= 0) {
+                        workloads.put(t.getName(), projectService.calculateUserWorkload(name, subprojectname, t));
+                    }
                 }
             }
             model.addAttribute("assignedtasks", assignedTasks);
@@ -221,6 +228,7 @@ public class ProjectController {
             }
             model.addAttribute("donetasks", doneTasks);
         }
+        model.addAttribute("workloads", workloads);
 
         model.addAttribute("projectname", name);
         model.addAttribute("tasks", tasks);
@@ -251,8 +259,10 @@ public class ProjectController {
     public String updateSubproject(@PathVariable String name, @PathVariable String subprojectname, Model model){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
+        List<Subproject>subprojects = projectService.showSubprojects(name);
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
+        model.addAttribute("subprojects", subprojects);
         return "updatesubproject";
     }
 
@@ -268,6 +278,9 @@ public class ProjectController {
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
+        for (String s : task.getSkills()){
+            System.out.println(s);
+        }
         List <String> statusPriorities = projectService.showStatus();
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
@@ -284,6 +297,23 @@ public class ProjectController {
        // Subproject subproject =projectRepositoryDB.showSubproject(project, subprojectname);
         projectService.updateTask(name, subprojectname, task, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
+    }
+
+    @GetMapping("/profile/edit")
+    public String updateUser(Model model, HttpSession session){
+        loggedInUser = (User)session.getAttribute("key");
+        List<String>skills = projectService.showSkills();
+        model.addAttribute("user", loggedInUser);
+        model.addAttribute("skills", skills);
+        return "updateuser";
+    }
+
+    @PostMapping("/profile/update")
+    public String updateUser(User user, HttpSession session){
+        System.out.println(user.getStreetNumber());
+        session.setAttribute("key", user);
+        projectService.updateUser(user);
+        return "redirect:/project/profile";
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/edithours")
@@ -486,6 +516,12 @@ public class ProjectController {
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
+    @GetMapping("/{name}/{subprojectname}/{taskname}/{username}/unassign")
+    public String unassignUser(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, @PathVariable String username){
+        projectService.unassignUser(name, subprojectname, taskname, username);
+        return "redirect:/project/{name}/{subprojectname}/tasks";
+    }
+
     @GetMapping("/{name}/{subprojectname}/{taskname}/assignments")
     public String showAssigned(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Model model){
         Project project = projectService.showProject(name);
@@ -495,6 +531,9 @@ public class ProjectController {
 
         if (assignedUsers.size()>0){
             model.addAttribute("usersassigned", "usersassignet");
+        }
+        if (project.getUsername().equals(loggedInUser.getUsername())){
+            model.addAttribute("manager", "manager");
         }
         model.addAttribute("project", project);
         model.addAttribute("task", task);
@@ -527,10 +566,21 @@ public class ProjectController {
         projectService.deleteProject(name);
         return "redirect:/project/overview";
     }
+
+
     @GetMapping("/{name}/{subprojectname}/delete")
     public String deleteSubproject(@PathVariable String name, @PathVariable String subprojectname){;
         projectService.deleteSubproject(name, subprojectname);
         return "redirect:/project/{name}/subprojects";
+    }
+
+    @GetMapping("profile/delete")
+    public String deleteUser(HttpSession session){
+        loggedInUser = (User)session.getAttribute("key");
+        session.removeAttribute("key");
+        projectService.deleteUser(loggedInUser);
+        return "redirect:/project";
+
     }
 
     @GetMapping("/{name}/{subprojectname}/{taskname}/delete")

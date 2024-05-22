@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Subprojects</title>
+    <title>Update Your Project</title>
     <link th:href="@{/updatesubproject.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
 
-<div class="content">
-    <table>
-        <thead>
-        <tr>
-            <th  colspan="2" th:text="${projectname}">Project Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="subproject : ${subprojects}">
-            <td>
-                <a th:href="@{${subproject.name} + '/tasks'}" class="container">
-                    <button type="button" class="button" th:text="${subproject.name}"></button>
-                    <p>Description: <strong th:text="${subproject.description}"></strong></p>
-                    <p>Estimated Hours: <strong th:text="${subproject.estimatedHours}"></strong></p>
-                    <p>Used Hours: <strong th:text="${subproject.usedHours}"></strong></p>
-                    <p th:if="${subproject.usedHours} > ${subproject.estimatedHours}" class="error" th:text="${hoursError}"></p>
-                    <p th:if="${donesubprojects.contains(subproject)}"><b>DONE</b></p>
-                </a>
-                <div>
-                    <a th:if="${manager}" th:href="@{${subproject.name} + '/edit'}">
-                        <button type="button" class="button">Update Subproject</button>
-                    </a>
-                    <p th:if="${subprojectswithtasks.contains(subproject)}"><b>Dette subprojekt indeholder tasks</b></p>
-                    <a th:if="${manager}" th:href="@{${subproject.name} + '/delete'}">
-                        <button type="button" class="button">Delete Subproject</button>
-                    </a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <form th:action="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/update'}" method="post" th:object="${subproject}">
+        <p th:text="${project.name}"></p>
 
-    <p class="go-back">
-        <a th:href="@{'/project/overview'}">
-            <button type="button" class="button">Go Back</button>
-        </a>
-    </p>
+        <p>
+            <label for="name">Navn</label>
+            <input id="name" name="name" type="text" th:value="${subproject.name}"/>
+        </p>
 
-    <div class="add-subproject">
-        <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/create'}">
-            <button type="button" class="button">Add Subproject</button>
-        </a>
-    </div>
+        <p>
+            <label for="description">Beskrivelse</label>
+            <input id="description" name="description" type="text" th:value="${subproject.description}"/>
+        </p>
+
+        <div class="button-container">
+            <button type="submit" class="button">Opdater Subprojekt</button>
+
+            <a th:href="@{'/project/frontpage'}">
+                <button type="button" class="button cancel-button">Anullér</button>
+            </a>
+        </div>
+    </form>
 </div>
 </body>
 </html>

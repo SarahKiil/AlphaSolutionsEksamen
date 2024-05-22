@@ -155,6 +155,14 @@ public Project showProject(String projectName) {
     rpd.deleteTask(projectName, subprojectName, taskName);
     }
 
+    public double calculateUserWorkload(String projectName, String subprojectName, Task task){
+    return rpd.calculateUserWorkload(projectName, subprojectName, task);
+    }
+
+    public void unassignUser(String projectName, String subprojectName, String taskName, String username){
+    rpd.unassignUser(projectName, subprojectName, taskName, username);
+    }
+
 
 /*
 public void createProject(Project project){

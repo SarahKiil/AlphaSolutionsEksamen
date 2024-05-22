@@ -20,9 +20,9 @@
     <tbody>
     <tr th:each="String : ${users}">
         <td>
-            <p> Brugernavn: <strong th:if="${usersassigned}" th:text="${String}"></strong></p>
-
-
+            <p> Brugernavn <strong th:if="${usersassigned}" th:text="${String}"></strong></p>
+            <a th:if="${manager}" th:href="@{'/project/' + ${project.getName()} + '/' + ${subproject.getName()} + '/' + ${task.getName()}+'/'+${String}+'/unassign'}" class="add-subtask">
+                <button type="button" class="button">Fjern brugeren fra tasken</button>
         </td>
     </tr>
 

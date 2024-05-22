@@ -720,7 +720,54 @@ public class ProjectRepositoryDB {
         }
     }
 
-    public void updateHours(String projectName, String subprojectName, String taskName, Task task) {
+    public void updateUser(User user){
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            List<Integer> skillsIDs = new ArrayList<>();
+            String SQL = "UPDATE USERS SET FIRSTNAME=?, LASTNAME=?, EMAIL=?, STREETNAME=?, STREETNUMBER=?, POSTNUMBER=?, PHONENUMBER=?, CITY=?, COUNTRY=? WHERE USERNAME=?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            System.out.println(user.getUsername());
+            System.out.println(user.getStreetNumber());
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getStreetName());
+            ps.setString(5, user.getStreetNumber());
+            ps.setInt(6, user.getPostNumber());
+            ps.setInt(7, user.getPhoneNumber());
+            ps.setString(8, user.getCity());
+            ps.setString(9, user.getCountry());
+            ps.setString(10, user.getUsername());
+            int rs = ps.executeUpdate();
+
+            for (String s : user.getSkills()) {
+                String SQL1 = "SELECT ID FROM SKILLS WHERE NAME=?;";
+                PreparedStatement ps1 = connection.prepareStatement(SQL1);
+                ps1.setString(1, s);
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    skillsIDs.add(rs1.getInt(1));
+                }
+            }
+            String SQL2 = "DELETE FROM SKILLS_USERS WHERE USERNAME=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setString(1, user.getUsername());
+            int rs2 = ps2.executeUpdate();
+
+            for (Integer i : skillsIDs){
+                String SQL3 = "Insert into skills_users(Skill_ID, username) values (?, ?);";
+                PreparedStatement ps3 = connection.prepareStatement(SQL3);
+                ps3.setInt(1, i);
+                ps3.setString(2, user.getUsername());
+                int rs3 = ps3.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+        public void updateHours(String projectName, String subprojectName, String taskName, Task task) {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             int projectID = getProjectID(projectName);
             int subprojectID = getSubprojectID(projectName, subprojectName);
@@ -1028,20 +1075,75 @@ public boolean checkLogin(User user) {
             PreparedStatement ps1 = connection.prepareStatement(SQL1);
             ps1.setInt(1, taskID);
             int rs1 = ps1.executeUpdate();
-            String SQL2 = "DELETE FROM TASKS WHERE ID=?;";
-            PreparedStatement ps2 = connection.prepareStatement(SQL2);
-            ps2.setInt(1, taskID);
-            int rs2 = ps2.executeUpdate();
 
             String SQL3 = "DELETE FROM SKILLS_TASKS WHERE TASK_ID=?;";
             PreparedStatement ps3 = connection.prepareStatement(SQL3);
             ps3.setInt(1, taskID);
             int rs3 = ps3.executeUpdate();
 
+            String SQL2 = "DELETE FROM TASKS WHERE ID=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setInt(1, taskID);
+            int rs2 = ps2.executeUpdate();
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void deleteUser(User user){
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+
+            String SQL = "DELETE FROM SKILLS_USERS WHERE USERNAME=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, user.getUsername());
+            int rs = ps.executeUpdate();
+
+            String SQL1 = "DELETE FROM TASKS_USERS WHERE USERNAME=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setString(1, user.getUsername());
+            int rs1 = ps1.executeUpdate();
+
+            String SQL2 = "DELETE FROM USERS WHERE USERNAME=?;";
+            PreparedStatement ps2 = connection.prepareStatement(SQL2);
+            ps2.setString(1, user.getUsername());
+            int rs2 = ps2.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public double calculateUserWorkload(String projectName, String subprojectName, Task task){
+        int usersAmount = showAssignedUsers(projectName, subprojectName, task.getName()).size();
+        double hours = task.getEstimatedHours()-task.getUsedHours();
+        return hours/usersAmount;
+    }
+
+    public void unassignUser(String projectName, String subprojectName, String taskName, String username){;
+        try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
+            int subprojectID = getSubprojectID(projectName, subprojectName);
+            int taskID = 0;
+            String SQL = "SELECT ID FROM TASKS WHERE NAME=? AND SUBPROJECT_ID=?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, taskName);
+            ps.setInt(2, subprojectID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                taskID = rs.getInt(1);
+            }
+            String SQL1 = "Delete FROM TASKS_USERS WHERE TASK_ID=? AND USERNAME=?;";
+            PreparedStatement ps1 = connection.prepareStatement(SQL1);
+            ps1.setInt(1, taskID);
+            ps1.setString(2, username);
+            int rs1 = ps1.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

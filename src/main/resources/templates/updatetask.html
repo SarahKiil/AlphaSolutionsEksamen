@@ -33,11 +33,13 @@
         <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
       </select>
     </p>
-    <p th:each="skill : ${skills}" >
+    <label>Taskens nuværende skills</label>
+    <div class="checkbox-group">
+    <div th:each="skill : ${skills}" >
       <label th:for="${skill}">
-        <input type="checkbox" th:id="${skill}" th:name="${skill}" th:value="${skill}" th:field="*{skills}" th:text="${skill}">
+        <input type="checkbox" th:id="${skill}" th:name="skills" th:value="${skill}" th:field="${task.skills}" th:text="${skill}">
       </label>
-    </p>
+    </div>
     <div class="button-group">
       <button type="submit" class="button">Opdater task</button>
       <a th:href="@{'/project/'+${project.name}+'/'+${subproject.name}+'/'+${task.name}+'/delete'}" class="delete-button">
