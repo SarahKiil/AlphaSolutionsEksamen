@@ -11,11 +11,11 @@
 
 <form th:action="@{'/project/' + ${projectname} + '/save'}" th:object="${subproject}" method="post">
     <p>
-        <label for="name">Navn:</label>
+        <label for="name">Navn</label>
         <input type="text" id="name" name="name" th:field="*{name}"/>
     </p>
     <p>
-        <label for="description">Beskrivelse:</label>
+        <label for="description">Beskrivelse</label>
         <input type="text" id="description" name="description" th:field="*{description}"/>
     </p>
 

@@ -10,14 +10,14 @@
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 <div class="container">
     <div class="user-info">
-        <h1>Your Information</h1>
-        <p>Username: <strong th:text="${user.username}"></strong></p>
-        <p>Skills: <strong th:text="${user.skillsSetup}"></strong></p>
-        <p>First Name: <strong th:text="${user.firstName}"></strong></p>
-        <p>Last Name: <strong th:text="${user.lastName}"></strong></p>
-        <p>Email: <strong th:text="${user.email}"></strong></p>
-        <p>Phone Number: <strong th:text="${user.phoneNumber}"></strong></p>
-        <p>Address: <strong th:text="${user.streetName}"></strong> <strong th:text="${user.streetNumber}"></strong>, <strong th:text="${user.postNumber}"></strong></p>
+        <h1>Din information</h1>
+        <p>Brugernavn <strong th:text="${user.username}"></strong></p>
+        <p>Skills <strong th:text="${user.skillsSetup}"></strong></p>
+        <p>Fornavn <strong th:text="${user.firstName}"></strong></p>
+        <p>Efternavn <strong th:text="${user.lastName}"></strong></p>
+        <p>Email <strong th:text="${user.email}"></strong></p>
+        <p>Telefon <strong th:text="${user.phoneNumber}"></strong></p>
+        <p>Adresse: <strong th:text="${user.streetName}"></strong> <strong th:text="${user.streetNumber}"></strong>, <strong th:text="${user.postNumber}"></strong></p>
         <p><strong th:text="${user.city}"></strong>, <strong th:text="${user.country}"></strong></p>
         <a href="profile/edit">
             <button type="button" class="button">Opdater dine oplysninger</button>
@@ -26,12 +26,12 @@
     </div>
 
     <div class="project-section">
-        <h2>Your Assigned Projects</h2>
+        <h2>Dine tildelte projekter</h2>
         <table class="project-table">
             <thead>
             <tr>
-                <th>Project Name</th>
-                <th>Description</th>
+                <th>Projekt Navn</th>
+                <th>Beskrivelse</th>
                 <th>Deadline</th>
                 <th>Action</th>
             </tr>
@@ -43,7 +43,7 @@
                 <td><strong th:text="${project.deadline}"></strong></td>
                 <td>
                     <a th:href="@{ ${project.name} + '/subprojects'}">
-                        <button type="button" class="button">View Project</button>
+                        <button type="button" class="button">Se Projekt</button>
                     </a>
                 </td>
             </tr>
@@ -52,12 +52,12 @@
     </div>
 
     <div class="project-section">
-        <h2>Projects You Manage</h2>
+        <h2>Projekter du administrerer</h2>
         <table class="managed-project-table">
             <thead>
             <tr>
-                <th>Project Name</th>
-                <th>Description</th>
+                <th>Projekt navn</th>
+                <th>Beskrivelse</th>
                 <th>Deadline</th>
                 <th>Action</th>
             </tr>
@@ -69,13 +69,13 @@
                 <td><strong th:text="${project.deadline}"></strong></td>
                 <td>
                     <a th:href="@{ ${project.name} + '/subprojects'}">
-                        <button type="button" class="button">View Project</button>
+                        <button type="button" class="button">Se projekt</button>
                     </a>
                     <a th:href="@{ ${project.name} + '/edit'}">
-                        <button type="button" class="button">Edit Project</button>
+                        <button type="button" class="button">Rediger projekt</button>
                     </a>
                     <a th:href="@{ ${project.name} + '/delete'}">
-                        <button type="button" class="button delete-button">Delete Project</button>
+                        <button type="button" class="button delete-button">Slet projekt</button>
                     </a>
                 </td>
             </tr>
@@ -85,12 +85,12 @@
 
     <p>
         <a th:href="@{'/project/frontpage'}">
-            <button type="button" class="button">Go Back</button>
+            <button type="button" class="button">Tilbage</button>
         </a>
     </p>
     <p>
         <a th:href="@{'/project/yourarchive'}">
-            <button type="button" class="button">View Archive</button>
+            <button type="button" class="button">Se Arkiv</button>
         </a>
     </p>
 </div>

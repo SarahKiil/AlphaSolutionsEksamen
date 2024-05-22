@@ -11,44 +11,44 @@
 <body>
 <div class="form-container">
     <div class="form-header">
-        <h1 class="signup-header">Welcome to AlphaCalc</h1>
+        <h1 class="signup-header">Velkommen til AlphaCalc!</h1>
         <p class="project-description">Opret en AlphaCalc konto for at fortsætte til AplhaCalc.com</p>
     </div>
 <form action="/project/user/save" th:object="${user}" method="post">
     <p>
-        <label for="username">Username</label>
+        <label for="username">Brugernavn</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
     <p>
-        <label for="password">Password</label>
+        <label for="password">Adgangskode</label>
         <input type="password" id="password" name="password" th:field="*{password}"/>
     </p>
     <p>
-        <label for="firstName">First name</label>
+        <label for="firstName">Fornavn</label>
         <input type="text" id="firstName" name="firstName" th:field="*{firstName}"/>
     </p>
     <p>
-        <label for="lastName">Last name</label>
+        <label for="lastName">Efternavn</label>
         <input type="text" id="lastName" name="lastName" th:field="*{lastName}"/>
     </p>
     <p>
-        <label for="streetName">Street name</label>
+        <label for="streetName">Gadenavn</label>
         <input type="text" id="streetName" name="streetName" th:field="*{streetName}"/>
     </p>
     <p>
-        <label for="streetNumber">House number</label>
+        <label for="streetNumber">Husnummer</label>
         <input type="text" id="streetNumber" name="streetNumber" th:field="*{streetNumber}"/>
     </p>
     <p>
-        <label for="postNumber">Post number</label>
+        <label for="postNumber">Postnummer</label>
         <input type="number" id="postNumber" name="postNumber" th:field="*{postNumber}"/>
     </p>
     <p>
-        <label for="city">City</label>
+        <label for="city">By</label>
         <input type="text" id="city" name="city" th:field="*{city}"/>
     </p>
     <p>
-        <label for="country">Country</label>
+        <label for="country">Land</label>
         <input type="text" id="country" name="country" th:field="*{country}"/>
     </p>
     <p>
@@ -56,10 +56,10 @@
         <input type="text" id="email" name="email" th:field="*{email}"/>
     </p>
     <p>
-        <label for="phoneNumber">Phone number</label>
+        <label for="phoneNumber">Telefon</label>
         <input type="number" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"/>
     </p>
-    <label>Dine skills:</label>
+    <label>Dine skills</label>
     <div class="checkbox-group">
         <div th:each="skill : ${skills}">
             <label th:for="${skill}">

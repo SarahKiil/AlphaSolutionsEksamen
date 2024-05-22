@@ -22,6 +22,44 @@
         </tr>
         </thead>
         <tbody>
+        <style>
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .progress {
+                height: 30px;
+                margin-top: 20px;
+            }
+
+            .progress-bar {
+                background-color: #3d8476;
+            }
+
+            .progress-bar-striped {
+                background-image: linear-gradient(45deg, rgba(4, 17, 11, 0.25) 25%, transparent 25%, transparent 50%, rgba(4, 17, 11, 0.25) 50%, rgba(4, 17, 11, 0.25) 75%, transparent 75%, transparent);
+            }
+
+            .progress-bar-animated {
+                animation: progress-bar-stripes 1s linear infinite;
+            }
+
+            @keyframes progress-bar-stripes {
+                from { background-position: 1rem 0; }
+                to { background-position: 0 0; }
+            }
+
+            .progress-labels {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 5px;
+            }
+
+            .progress-labels span {
+                font-size: 0.9em;
+            }
+        </style>
 
         <tr th:each="task : ${tasks}">
             <td>
@@ -68,7 +106,7 @@
         </tbody>
     </table>
 
-    <a th:href="@{'/project/overview'}" class="go-back">Gå tilbage</a>
+    <a th:href="@{'/project/overview'}" class="go-back">Tilbage</a>
 
     <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/' + ${subprojectname} + '/create'}" class="add-subtask">
         <button type="button" class="button">Tilføj task til projektet</button>

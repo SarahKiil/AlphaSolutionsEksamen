@@ -13,22 +13,22 @@
     <p th:text="${project.name}"></p>
 
     <p>
-      <label for="name">Navn:</label>
+      <label for="name">Navn</label>
       <input id="name" name="name" type="text" th:value="${task.name}"/>
     </p>
 
     <p>
-      <label for="description">Beskrivelse:</label>
+      <label for="description">Beskrivelse</label>
       <input id="description" name="description" type="text" th:value="${task.description}"/>
     </p>
 
     <p>
-      <label for="estimatedHours">Forventede timer:</label>
+      <label for="estimatedHours">Forventede arbejdstimer</label>
       <input id="estimatedHours" name="estimatedHours" type="number" th:value="${task.estimatedHours}"/>
     </p>
     <p>Select status</p>
     <p>
-      <label for="status">Select status:</label>
+      <label for="status">Vælg status</label>
       <select id="status" name="status" th:field="*{status}">
         <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
       </select>

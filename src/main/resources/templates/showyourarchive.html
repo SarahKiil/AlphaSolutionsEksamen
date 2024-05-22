@@ -23,11 +23,11 @@
             <a th:href="@{${project.name} + '/subprojects'}">
                 <button type="button" class="button" th:text="${project.name}"></button>
             </a>
-            <p>Projektmanager: <strong th:text="${project.username}"></strong></p>
-            <p>Beskrivelse: <strong th:text="${project.description}"></strong></p>
-            <p>Deadline: <strong th:text="${project.deadline}"></strong></p>
-            <p>Forventede timer: <strong th:text="${project.estimatedHours}"></strong></p>
-            <p>Brugte timer: <strong th:text="${project.usedHours}"></strong></p>
+            <p>Projektmanager <strong th:text="${project.username}"></strong></p>
+            <p>Beskrivelse <strong th:text="${project.description}"></strong></p>
+            <p>Deadline <strong th:text="${project.deadline}"></strong></p>
+            <p>Forventede timer <strong th:text="${project.estimatedHours}"></strong></p>
+            <p>Brugte timer <strong th:text="${project.usedHours}"></strong></p>
             <p th:if="${project.usedHours}>${project.estimatedHours}" th:text="${hoursError}"><p/>
             <p>
                 <a th:href="@{ ${project.name} + '/edit'}">
@@ -45,7 +45,7 @@
 </table>
 <p>
     <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Gå tilbage</button>
+        <button type="button" class="button">Tilbage</button>
     </a>
 </p>
 </body>
