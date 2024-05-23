@@ -22,10 +22,6 @@ public class ProjectRepositoryDB {
     @Value("${spring.datasource.password}")
     private String pwd;
 
-    //ArrayList<Project> projects = new ArrayList<>();
-
-    //ArrayList<User> users = new ArrayList<>();
-
 
     public int getProjectID(String projectName) {
         int id = 0;
@@ -65,7 +61,6 @@ public class ProjectRepositoryDB {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "insert into projects (name, description, deadline, estimatedhours, usedhours, username) values (?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            //ps.setInt(1, id);
             ps.setString(1, project.getName());
             ps.setString(2, project.getDescription());
             ps.setString(3, project.getDeadline());
@@ -84,7 +79,6 @@ public class ProjectRepositoryDB {
             int id = getProjectID(project.getName());
             String SQL = "insert into subprojects (name, description, estimatedhours, usedhours, project_id) values (?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            //ps.setInt(1, id);
             ps.setString(1, subproject.getName());
             ps.setString(2, subproject.getDescription());
             ps.setDouble(3, 0);
