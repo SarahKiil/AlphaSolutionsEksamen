@@ -717,8 +717,6 @@ public class ProjectRepositoryDB {
             List<Integer> skillsIDs = new ArrayList<>();
             String SQL = "UPDATE USERS SET FIRSTNAME=?, LASTNAME=?, EMAIL=?, STREETNAME=?, STREETNUMBER=?, POSTNUMBER=?, PHONENUMBER=?, CITY=?, COUNTRY=? WHERE USERNAME=?";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            System.out.println(user.getUsername());
-            System.out.println(user.getStreetNumber());
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getEmail());
@@ -1105,7 +1103,6 @@ public boolean checkLogin(User user) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public double calculateUserWorkload(String projectName, String subprojectName, Task task){
@@ -1137,6 +1134,4 @@ public boolean checkLogin(User user) {
         }
 
     }
-
-
 }

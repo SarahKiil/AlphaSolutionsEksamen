@@ -1,4 +1,4 @@
-/*package com.example.alphasolutionseksamen.repository;
+package com.example.alphasolutionseksamen.repository;
 
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
@@ -114,5 +114,4 @@ class ProjectRepositoryDBTest {
 
 
 
-
-}*/
+}

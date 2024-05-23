@@ -1,7 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
 import com.example.alphasolutionseksamen.TaskComparator;
-import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import jakarta.servlet.http.HttpSession;
 import com.example.alphasolutionseksamen.model.Project;
@@ -16,14 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(path="project")
 public class ProjectController {
 
     private User loggedInUser;
-    private ProjectRepository rp = new ProjectRepository();
     private ProjectService projectService;
 
     private ProjectRepositoryDB projectRepositoryDB;
@@ -31,23 +28,8 @@ public class ProjectController {
     public ProjectController(ProjectService projectService){
         this.projectService =projectService;
     }
-    /*public ProjectController(ProjectService projectService){
-        this.projectService = projectService;
-    }*/
-
-
     @GetMapping("")
-    public String getIndex(HttpSession session, Model model){
-        /*User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
-
-        User userToBeLoggedIn = projectService.showUser(user.getUsername());
-        loggedInUser = (User) session.getAttribute("key");
-        if (loggedInUser == null) {
-            loggedInUser = new User();
-            session.setAttribute("key", userToBeLoggedIn);
-        return "frontpage";
-    }*/
-        model.addAttribute("tal", "width:100%");
+    public String getIndex(){
         return "index";}
 
     @GetMapping("/frontpage")
@@ -242,7 +224,6 @@ public class ProjectController {
 
     @GetMapping("/{name}/edit")
     public String updateProject(@PathVariable String name, Model model){
-        //Project project = projectService.showProject(name);
         Project project = projectService.showProject(name);
         model.addAttribute("project", project);
         return "updateproject";
@@ -278,9 +259,6 @@ public class ProjectController {
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
-        for (String s : task.getSkills()){
-            System.out.println(s);
-        }
         List <String> statusPriorities = projectService.showStatus();
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
@@ -293,8 +271,6 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        //Project project = projectRepositoryDB.showProject(name);
-       // Subproject subproject =projectRepositoryDB.showSubproject(project, subprojectname);
         projectService.updateTask(name, subprojectname, task, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
@@ -310,7 +286,6 @@ public class ProjectController {
 
     @PostMapping("/profile/update")
     public String updateUser(User user, HttpSession session){
-        System.out.println(user.getStreetNumber());
         session.setAttribute("key", user);
         projectService.updateUser(user);
         return "redirect:/project/profile";
@@ -573,7 +548,6 @@ public class ProjectController {
         projectService.deleteSubproject(name, subprojectname);
         return "redirect:/project/{name}/subprojects";
     }
-
     @GetMapping("profile/delete")
     public String deleteUser(HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
@@ -582,13 +556,10 @@ public class ProjectController {
         return "redirect:/project";
 
     }
-
     @GetMapping("/{name}/{subprojectname}/{taskname}/delete")
     public String deleteTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname){
         projectService.deleteTask(name, subprojectname, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
-
-
 
 }
