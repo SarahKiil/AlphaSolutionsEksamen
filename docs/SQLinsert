@@ -29,16 +29,27 @@ Insert into tasks_users(task_ID, username) values (1, 'HanneRocks');
 
 -- Skills:
 
-Insert into skills(name) values ('java');
-Insert into skills(name) values ('html');
-Insert into skills(name) values ('css');
-Insert into skills(name) values ('sql');
-Insert into skills(name) values ('python');
-Insert into skills(name) values ('c++');
-Insert into skills(name) values ('c#');
-Insert into skills(name) values ('javascript');
-Insert into skills(name) values ('scrum');
-Insert into skills(name) values ('cloud');
+Insert into skills(name) values ('Java');
+Insert into skills(name) values ('HTML');
+Insert into skills(name) values ('CSS');
+Insert into skills(name) values ('SQL');
+Insert into skills(name) values ('Python');
+Insert into skills(name) values ('C++');
+Insert into skills(name) values ('C#');
+Insert into skills(name) values ('JavaScript');
+Insert into skills(name) values ('Frontend');
+Insert into skills(name) values ('Salesforce Apex udvikling');
+Insert into skills(name) values ('Salesforce LWC udvikling');
+Insert into skills(name) values ('Salesforce CC udvikling');
+Insert into skills(name) values ('Azure integration udvikling');
+Insert into skills(name) values ('Enterprise arkitektur');
+Insert into skills(name) values ('Projektledelse');
+Insert into skills(name) values ('Programledelse');
+Insert into skills(name) values ('QA Manager');
+Insert into skills(name) values ('Manuel testing');
+Insert into skills(name) values ('Test automation');
+Insert into skills(name) values ('CRM business consultant');
+Insert into skills(name) values ('e-commerce consultant');
 
 -- Assign skills to users:
 Insert into skills_users(Skill_ID, username) values (1, 'abc');
