@@ -23,6 +23,9 @@ jobs:
 
       - name: Build with Maven
         env:
+          JDBC_DATABASE_URL: ${{JDBC_DATABASE_URL}}
+          JDBC_USERNAME: ${{JDBC_USERNAME}}
+          JDBC_PASSWORD: ${{JDBC_PASSWORD}}
         run: mvn clean install
 
       - name: Upload artifact for deployment job
