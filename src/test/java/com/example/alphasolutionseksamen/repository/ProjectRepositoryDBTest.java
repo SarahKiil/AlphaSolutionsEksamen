@@ -4,6 +4,7 @@ import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
 import com.example.alphasolutionseksamen.model.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,8 @@ class ProjectRepositoryDBTest {
 
     @Autowired
     ProjectRepositoryDB projectRepositoryDB;
+
+
     @Test
     public void getProjectId(){
         int projectId = projectRepositoryDB.getProjectID("Eksamen");
@@ -112,6 +115,59 @@ class ProjectRepositoryDBTest {
         assertEquals(6, tasks.size());
     }
 
+    @Test
+    public void updateProject(){
+        Project project = new Project("Eksamen", "Blabla", "05-05-2024", 0, 0, "Bobby");
+        projectRepositoryDB.updateProject("Eksamen", project);
+        String expectedResult = "Blabla";
+        Project projectToShow = projectRepositoryDB.showProject("Eksamen");
+        String actualResult = projectToShow.getDescription();
+        assertEquals(expectedResult, actualResult);
+
+    }
+
+    @Test
+    public void updateTask(){
+        Task task = projectRepositoryDB.showTask("Eksamen", "PO meeting", "Userstory 1");
+        Task newTask = new Task("Userstory 1", "Blabla", 5, 0);
+        projectRepositoryDB.updateTask("Eksamen", "PO meeting", newTask, "Userstory 1");
+        Task updatedTask = projectRepositoryDB.showTask("Eksamen", "PO meeting", "Userstory 1");
+        String expectedResult = "Blabla";
+        String actualResult = updatedTask.getDescription();
+        System.out.println(updatedTask.getDescription());
+        System.out.println(updatedTask.getName());
+        assertEquals(expectedResult, actualResult);
+
+    }
+
+    @Test
+    public void deleteTask(){
+        Task task = new Task ("New Task", "This is a new task", 10, 0);
+        Project project = projectRepositoryDB.showProject("Eksamen");
+        Subproject subproject = projectRepositoryDB.showSubproject("Eksamen", "PO meeting");
+        projectRepositoryDB.createTask(project, subproject, task);
+        projectRepositoryDB.deleteTask("Eksamen", "PO meeting", "New Task");
+        int expectedResult = 2;
+        int actualResult = projectRepositoryDB.showTasks("Eksamen", "PO meeting").size();
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void showAssignedUsers(){
+        int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
+        int expectedResult = 2;
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void assignUser(){
+        User user = projectRepositoryDB.showUser("Bobby");
+        projectRepositoryDB.addUser("Eksamen", "PO meeting", "Userstory 1", user);
+        int expectedResult = 3;
+        int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
+        assertEquals(expectedResult, actualResult);
+
+    }
 
 
 }

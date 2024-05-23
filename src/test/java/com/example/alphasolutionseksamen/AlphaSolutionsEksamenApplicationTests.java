@@ -1,4 +1,4 @@
-/*package com.example.alphasolutionseksamen;
+package com.example.alphasolutionseksamen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class AlphaSolutionsEksamenApplicationTests {
 
-    //@Test
+    @Test
     void contextLoads() {
     }
 
-}*/
+}
