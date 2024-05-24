@@ -1,9 +1,198 @@
-<mxfile host="app.diagrams.net" modified="2024-05-24T09:18:30.980Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" version="24.4.6" etag="PLkwxEXPhV7bl22ebRck" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-24T09:51:44.954Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="03LBBWYGUjTQIeLomx6v" version="24.4.6" type="github">
   <diagram name="Page-1" id="BIBi98vKyc31B9fN39kg">
-    <mxGraphModel>
+    <mxGraphModel dx="1795" dy="2114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="305" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-1" value="Har en bruger?" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="-50" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-6" target="HaPU3EN4g4eDBjvCJEjl-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-6" value="Bruger indtaster brugernavn og adgangskode" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-8" target="HaPU3EN4g4eDBjvCJEjl-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-8" value="Forkert brugernavn eller adgangskode" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="310" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-11" value="Nej" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="HaPU3EN4g4eDBjvCJEjl-12">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="320" y="63.5" as="sourcePoint" />
+            <mxPoint x="430" y="64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-12" value="Bruger indtaster oplysninger og opretter bruger" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="39" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-13" value="Ja" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" target="HaPU3EN4g4eDBjvCJEjl-6">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="305" y="90" as="sourcePoint" />
+            <mxPoint x="304.5" y="181" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-14" value="" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;rotation=90;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="281.67" y="50" width="46.67" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-17" value="Korrekt brugernavn og adgangskode?" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="230" y="290" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-20" value="Nej" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="HaPU3EN4g4eDBjvCJEjl-8">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="380" y="334.5" as="sourcePoint" />
+            <mxPoint x="450" y="335" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="305" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-23" value="Bruger er logget ind successfuldt" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="480" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-24" value="Ja" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.493;exitY=1.011;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-17" target="HaPU3EN4g4eDBjvCJEjl-23">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="300" y="520" as="sourcePoint" />
+            <mxPoint x="370" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-29" target="HaPU3EN4g4eDBjvCJEjl-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-29" target="HaPU3EN4g4eDBjvCJEjl-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-29" value="Forside" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="-250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-30" target="HaPU3EN4g4eDBjvCJEjl-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-30" value="- Opret projekt&lt;div&gt;- Login&lt;/div&gt;&lt;div&gt;- Se projekter&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="-150" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-34" target="HaPU3EN4g4eDBjvCJEjl-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-34" value="Opret bruger" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="-150" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-37" target="HaPU3EN4g4eDBjvCJEjl-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-37" target="HaPU3EN4g4eDBjvCJEjl-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-37" target="HaPU3EN4g4eDBjvCJEjl-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-37" value="Brugers oplysninger fremvises" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="230" y="600" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-38">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="645" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-38" value="Se projekt" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="70" y="620" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-42" target="HaPU3EN4g4eDBjvCJEjl-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-42" value="&lt;div&gt;Opdater oplysninger&lt;/div&gt;&lt;div&gt;Rediger projekt&lt;/div&gt;&lt;div&gt;Slet projekt&lt;/div&gt;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="750" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-43" value="Se arkiv" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="430" y="620" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-46" value="Bruger opdatere oplysninger, el. redigere projekt, el sletter projekt" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="860" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-48" target="HaPU3EN4g4eDBjvCJEjl-49">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-48" target="HaPU3EN4g4eDBjvCJEjl-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-48" target="HaPU3EN4g4eDBjvCJEjl-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-48" value="Subprojekter vises" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="600" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-49" target="HaPU3EN4g4eDBjvCJEjl-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-49" value="Opdater subprojekt" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="510" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-50" target="HaPU3EN4g4eDBjvCJEjl-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-50" value="Slet subprojekt" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="730" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-51" target="HaPU3EN4g4eDBjvCJEjl-62">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-51" value="Se task i subprojektet" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="620" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-55" value="Subprojektet slettes" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="830" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-57" value="Brugeren opdaterer subprojektet" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="410" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-62" target="HaPU3EN4g4eDBjvCJEjl-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-62" target="HaPU3EN4g4eDBjvCJEjl-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-62" target="HaPU3EN4g4eDBjvCJEjl-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-62" value="Tasks vises" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-470" y="600" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-64" target="HaPU3EN4g4eDBjvCJEjl-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-64" value="- Opdater tasks&lt;div&gt;- Opdater brugte timer&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-455" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-75" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-65" target="HaPU3EN4g4eDBjvCJEjl-74">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-65" value="Tilføj task til projektet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-630" y="615" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-66" target="HaPU3EN4g4eDBjvCJEjl-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-66" value="- Vis tildelte brugere&lt;div&gt;- Tildel en bruger&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-455" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-70" value="Brugeren opdaterer tasken.&lt;div&gt;Brugeren opdaterer brugte timer&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-455" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-72" value="- Tildelte brugere til tasken vises.&lt;div&gt;- Bruger tildeler en bruger til tasken&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-455" y="840" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-74" value="Bruger tilføjer task til projektet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="615" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
