@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-24T10:26:39.396Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="xVjpenrsPUw9x1gabdL4" version="24.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-24T10:28:14.345Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="BarKnzWEMKrOwXd1lpo5" version="24.4.6" type="github">
   <diagram name="Page-1" id="BIBi98vKyc31B9fN39kg">
-    <mxGraphModel dx="3389" dy="2333" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2563" dy="1779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -257,11 +257,11 @@
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-109" value="Alle tasks er done?" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="-830" y="485" width="150" height="90" as="geometry" />
         </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-129" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-111" target="HaPU3EN4g4eDBjvCJEjl-128">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-111" value="Subprojekt er done&amp;nbsp;" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-810" y="370" width="110" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="HaPU3EN4g4eDBjvCJEjl-115" value="Subprojekt ryger i arkiv" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-830" y="340" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-116" value="Ja" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.501;exitY=0.053;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-109" target="HaPU3EN4g4eDBjvCJEjl-111">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -299,6 +299,9 @@
         </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-127" value="Projektet forbliver lukket, og i arkivet" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="633.33" y="455" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-128" value="Projektet ryger i arkiv" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-810" y="270" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
