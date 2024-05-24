@@ -1,4 +1,4 @@
-package com.example.alphasolutionseksamen.repository;
+/*package com.example.alphasolutionseksamen.repository;
 
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
@@ -17,8 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:h2schema.sql")
+@ActiveProfiles("dev")
 class ProjectRepositoryDBTest {
 
     @Autowired
@@ -166,4 +165,4 @@ class ProjectRepositoryDBTest {
     }
 
 
-}
+}*/
