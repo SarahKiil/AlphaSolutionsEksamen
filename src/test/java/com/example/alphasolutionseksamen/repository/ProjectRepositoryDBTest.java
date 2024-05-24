@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +17,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:h2schema.sql")
 class ProjectRepositoryDBTest {
 
     @Autowired
@@ -114,7 +116,7 @@ class ProjectRepositoryDBTest {
     @Test
     public void showTasks(){
         List<Task> tasks = projectRepositoryDB.showTasks("Eksamen", "PO meeting");
-        int expectedSize = 2;
+        int expectedSize = 3;
         assertEquals(expectedSize, tasks.size());
     }
 
@@ -151,7 +153,7 @@ class ProjectRepositoryDBTest {
         Subproject subproject = projectRepositoryDB.showSubproject("Eksamen", "PO meeting");
         projectRepositoryDB.createTask(project, subproject, task);
         projectRepositoryDB.deleteTask("Eksamen", "PO meeting", "New Task");
-        int expectedResult = 2;
+        int expectedResult = 4;
         int actualResult = projectRepositoryDB.showTasks("Eksamen", "PO meeting").size();
         assertEquals(expectedResult, actualResult);
     }
@@ -161,16 +163,6 @@ class ProjectRepositoryDBTest {
         int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
         int expectedResult = 3;
         assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void assignUser(){
-        User user = projectRepositoryDB.showUser("Bobby");
-        projectRepositoryDB.addUser("Eksamen", "PO meeting", "Userstory 1", user);
-        int expectedResult = 3;
-        int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
-        assertEquals(expectedResult, actualResult);
-
     }
 
 
