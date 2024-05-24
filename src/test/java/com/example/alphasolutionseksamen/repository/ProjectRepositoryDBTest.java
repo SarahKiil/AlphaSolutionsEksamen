@@ -1,4 +1,4 @@
-/*package com.example.alphasolutionseksamen.repository;
+package com.example.alphasolutionseksamen.repository;
 
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
@@ -16,6 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("dev")
 class ProjectRepositoryDBTest {
 
     @Autowired
@@ -64,6 +65,7 @@ class ProjectRepositoryDBTest {
         Project actualProject = projectRepositoryDB.showProject("Testerprojekt");
         String expectedName = "Testerprojekt";
         assertEquals(expectedName, actualProject.getName());
+        projectRepositoryDB.deleteProject("Testerprojekt");
     }
 
     @Test
@@ -74,6 +76,7 @@ class ProjectRepositoryDBTest {
         Subproject actualSubproject = projectRepositoryDB.showSubproject("Eksamen", "Testersubprojekt");
         String expectedName = "Testersubprojekt";
         assertEquals(expectedName, actualSubproject.getName());
+        projectRepositoryDB.deleteSubproject("Eksamen", "Testersubprojekt");
     }
     @Test
     public void createTask(){
@@ -97,32 +100,34 @@ class ProjectRepositoryDBTest {
     @Test
     public void showProjects() {
         List<Project> projects = projectRepositoryDB.showProjects();
-        int expectedSize = 7;
+        int expectedSize = 2;
         assertEquals(expectedSize, projects.size());
     }
 
     @Test
     public void showSubprojects(){
         List<Subproject> subprojects = projectRepositoryDB.showSubprojects("Eksamen");
-        int expectedSize = 7;
+        int expectedSize = 2;
         assertEquals(expectedSize, subprojects.size());
     }
 
     @Test
     public void showTasks(){
         List<Task> tasks = projectRepositoryDB.showTasks("Eksamen", "PO meeting");
-        int expectedSize = 6;
-        assertEquals(6, tasks.size());
+        int expectedSize = 2;
+        assertEquals(expectedSize, tasks.size());
     }
 
     @Test
     public void updateProject(){
-        Project project = new Project("Eksamen", "Blabla", "05-05-2024", 0, 0, "Bobby");
+        Project project = new Project("Eksamen", "Blabla", "2024-05-05", 0, 0, "Bobby");
         projectRepositoryDB.updateProject("Eksamen", project);
         String expectedResult = "Blabla";
         Project projectToShow = projectRepositoryDB.showProject("Eksamen");
         String actualResult = projectToShow.getDescription();
         assertEquals(expectedResult, actualResult);
+        Project newProject = new Project("Eksamen", "dette er en eksamen", "2024-05-29", 5, 0, "Bobby");
+        projectRepositoryDB.updateProject("Eksamen", newProject);
 
     }
 
@@ -134,10 +139,9 @@ class ProjectRepositoryDBTest {
         Task updatedTask = projectRepositoryDB.showTask("Eksamen", "PO meeting", "Userstory 1");
         String expectedResult = "Blabla";
         String actualResult = updatedTask.getDescription();
-        System.out.println(updatedTask.getDescription());
-        System.out.println(updatedTask.getName());
         assertEquals(expectedResult, actualResult);
-
+        newTask = new Task("Userstory 1", "Vis userstory til Luise", 5, 0);
+        projectRepositoryDB.updateTask("Eksamen", "PO meeting", newTask, "Userstory 1");
     }
 
     @Test
@@ -155,7 +159,7 @@ class ProjectRepositoryDBTest {
     @Test
     public void showAssignedUsers(){
         int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
-        int expectedResult = 2;
+        int expectedResult = 3;
         assertEquals(expectedResult, actualResult);
     }
 
@@ -170,4 +174,4 @@ class ProjectRepositoryDBTest {
     }
 
 
-}*/
+}
