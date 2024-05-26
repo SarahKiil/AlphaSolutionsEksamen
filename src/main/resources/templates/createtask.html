@@ -30,6 +30,7 @@
                 <option th:each="String : ${statusPriorities}" th:value="${String}" th:text="${String}"></option>
             </select>
         </p>
+        <p th:if="${tasknameError}" th:text="${tasknameError}" class="error-message"></p>
         <div class="checkbox-group">
             <div th:each="skill : ${skills}">
                 <label th:for="${skill}">

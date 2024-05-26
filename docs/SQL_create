@@ -25,7 +25,7 @@ primary key (username));
 
 create table Projects (
 ID int auto_increment,
-Name varchar(30) not null,
+Name varchar(30) not null unique,
 description varchar(250),
 deadline varchar(20),
 estimatedhours double,

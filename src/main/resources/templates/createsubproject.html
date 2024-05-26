@@ -18,6 +18,7 @@
         <label for="description">Beskrivelse</label>
         <input type="text" id="description" name="description" th:field="*{description}"/>
     </p>
+    <p th:if="${subprojectNameError}" th:text="${subprojectNameError}" class="error-message"></p>
 
     <br>
     <input type="submit" value="Opret subprojekt" /></form>

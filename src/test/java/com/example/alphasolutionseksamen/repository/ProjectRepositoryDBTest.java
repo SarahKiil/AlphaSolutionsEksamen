@@ -1,4 +1,4 @@
-/*package com.example.alphasolutionseksamen.repository;
+package com.example.alphasolutionseksamen.repository;
 
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
@@ -17,7 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 class ProjectRepositoryDBTest {
 
     @Autowired
@@ -88,6 +88,8 @@ class ProjectRepositoryDBTest {
         Task actualTask = projectRepositoryDB.showTask("Eksamen", "PO meeting", "Testertask");
         String expectedName = "Testertask";
         assertEquals(expectedName, actualTask.getName());
+        projectRepositoryDB.deleteTask("Eksamen", "PO meeting","Testertask");
+
     }
 
     @Test
@@ -115,7 +117,7 @@ class ProjectRepositoryDBTest {
     @Test
     public void showTasks(){
         List<Task> tasks = projectRepositoryDB.showTasks("Eksamen", "PO meeting");
-        int expectedSize = 3;
+        int expectedSize = 2;
         assertEquals(expectedSize, tasks.size());
     }
 
@@ -152,7 +154,7 @@ class ProjectRepositoryDBTest {
         Subproject subproject = projectRepositoryDB.showSubproject("Eksamen", "PO meeting");
         projectRepositoryDB.createTask(project, subproject, task);
         projectRepositoryDB.deleteTask("Eksamen", "PO meeting", "New Task");
-        int expectedResult = 4;
+        int expectedResult = 2;
         int actualResult = projectRepositoryDB.showTasks("Eksamen", "PO meeting").size();
         assertEquals(expectedResult, actualResult);
     }
@@ -160,9 +162,9 @@ class ProjectRepositoryDBTest {
     @Test
     public void showAssignedUsers(){
         int actualResult = projectRepositoryDB.showAssignedUsers("Eksamen", "PO meeting", "Userstory 1").size();
-        int expectedResult = 3;
+        int expectedResult = 2;
         assertEquals(expectedResult, actualResult);
     }
 
 
-}*/
+}

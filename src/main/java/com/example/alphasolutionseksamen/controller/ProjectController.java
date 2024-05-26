@@ -23,8 +23,6 @@ public class ProjectController {
     private User loggedInUser;
     private ProjectService projectService;
 
-    private ProjectRepositoryDB projectRepositoryDB;
-
     public ProjectController(ProjectService projectService){
         this.projectService =projectService;
     }
@@ -42,14 +40,20 @@ public class ProjectController {
     public String createProject(Model model){
     model.addAttribute("project", new Project());
     return "createproject";
-}
+    }
 
     @PostMapping("/save")
-    public String createProject(@ModelAttribute Project project, HttpSession session){
+    public String createProject(@ModelAttribute Project project, HttpSession session, Model model){
         loggedInUser = (User) session.getAttribute("key");
+        List<Project> projects = projectService.showProjects();
+        for (Project p : projects){
+            if (p.getName().equalsIgnoreCase(project.getName())){
+                model.addAttribute("projectNameError", "Der findes allerede et projekt med dette navn");
+                return "createproject";
+            }
+        }
         project.setUsername(loggedInUser.getUsername());
         projectService.createProject(project);
-        //projectService.createProject(project);
         return "redirect:/project/overview";
     }
 
@@ -61,8 +65,15 @@ public class ProjectController {
     }
 
     @PostMapping("/{name}/save")
-    public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
+    public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject, Model model){
         Project project = projectService.showProject(name);
+        List<Subproject> subprojects = projectService.showSubprojects(project.getName());
+        for (Subproject s : subprojects){
+            if (s.getName().equalsIgnoreCase(subproject.getName())){
+                model.addAttribute("subprojectNameError", "Dette projekt har allerede et subprojekt med dette navn");
+                return "createsubproject";
+            }
+        }
         projectService.createSubproject(project, subproject);
         //projectService.createSubproject(project, subproject);
         return "redirect:/project/{name}/subprojects";
@@ -73,18 +84,25 @@ public class ProjectController {
         model.addAttribute("projectname", name);
         model.addAttribute("subprojectname", subproject);
         model.addAttribute("task", new Task());
-        List <String> statusPriorities = projectService.showStatus();
-        model.addAttribute("statusPriorities", statusPriorities);
+        model.addAttribute("statusPriorities", projectService.showStatus());
         model.addAttribute("skills", projectService.showSkills());
         return "createtask";
     }
 
     @PostMapping("/{name}/{subprojectname}/save")
-    public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
+    public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task, Model model){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
+        List<Task> tasks = projectService.showTasks(project.getName(), subproject.getName());
+        for (Task t : tasks){
+            if (t.getName().equalsIgnoreCase(task.getName())){
+                model.addAttribute("tasknameError", "Dette subprojekt har allerede en task med dette navn");
+                model.addAttribute("statusPriorities", projectService.showStatus());
+                model.addAttribute("skills", projectService.showSkills());
+                return "createtask";
+            }
+        }
         projectService.createTask(project, subproject, task);
-        //projectService.createTask(project, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 

@@ -24,7 +24,8 @@
         <label for="deadline">Deadline</label>
         <input type="date" id="deadline" name="deadline" value="2024-01-01" min="2024-01-01" max="2040-12-31" th:field="*{deadline}" />
     </p>
-    <input type="submit" value="Create project" />
+    <p th:if="${projectNameError}" th:text="${projectNameError}" class="error-message"></p>
+    <input type="submit" value="Opret project" />
 </form>
 <a th:href="@{'/project/frontpage'}" class="button">Fortryd</a>
 
