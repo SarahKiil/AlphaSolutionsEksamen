@@ -4,14 +4,12 @@ import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
 import com.example.alphasolutionseksamen.model.User;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:h2schema.sql")
 class ProjectRepositoryDBTest {
+
 
     @Autowired
     ProjectRepositoryDB projectRepositoryDB;
@@ -65,9 +64,9 @@ class ProjectRepositoryDBTest {
         Project project = new Project ("Testerprojekt", "Tester projekt", "2024-05-29", "abc");
         projectRepositoryDB.createProject(project);
         Project actualProject = projectRepositoryDB.showProject("Testerprojekt");
+        System.out.println(actualProject.getName());
         String expectedName = "Testerprojekt";
         assertEquals(expectedName, actualProject.getName());
-        projectRepositoryDB.deleteProject("Testerprojekt");
     }
 
     @Test
@@ -124,14 +123,12 @@ class ProjectRepositoryDBTest {
 
     @Test
     public void updateProject(){
-        Project project = new Project("Eksamen", "Blabla", "2024-05-05", 0, 0, "Bobby");
-        projectRepositoryDB.updateProject("Eksamen", project);
-        String expectedResult = "Blabla";
+        Project projectToUpdate = new Project("Eksamen", "dette er en eksamen1", "2024-05-29", 13, 0, "Bobby");
+        projectRepositoryDB.updateProject("Eksamen", projectToUpdate);
+        String expectedResult = "dette er en eksamen1";
         Project projectToShow = projectRepositoryDB.showProject("Eksamen");
         String actualResult = projectToShow.getDescription();
         assertEquals(expectedResult, actualResult);
-        Project newProject = new Project("Eksamen", "dette er en eksamen", "2024-05-29", 5, 0, "Bobby");
-        projectRepositoryDB.updateProject("Eksamen", newProject);
 
     }
 

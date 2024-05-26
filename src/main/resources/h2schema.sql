@@ -1,12 +1,13 @@
-create database if not exists AlphaCalc default character set utf8;
-use AlphaCalc;
-drop table if exists Users;
-drop table if exists Projects;
-drop table if exists Subprojects;
-drop table if exists Task;
-drop table if exists Skills;
+create schema if not exists AlphaCalc;
+
 drop table if exists Skills_users;
 drop table if exists Skills_Tasks;
+drop table if exists Skills;
+drop table if exists Tasks_Users;
+drop table if exists Tasks;
+drop table if exists Subprojects;
+drop table if exists Projects;
+drop table if exists Users;
 
 
 create table Users (
