@@ -1,5 +1,6 @@
+/* General body styling */
 body {
-    background-color: white;
+    background-color: #f0f4f8;
     background-image: linear-gradient(to right, #023554, #779095, #9eada8, #efead8);
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -10,6 +11,7 @@ body {
     color: #333;
 }
 
+/* Container styling */
 .container {
     width: 90%;
     max-width: 600px;
@@ -18,8 +20,22 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Fade-in animation for the container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form styling */
 form {
     display: flex;
     flex-direction: column;
@@ -41,14 +57,23 @@ input[type="text"],
 input[type="description"],
 input[type="number"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
+input[type="text"]:focus,
+input[type="description"]:focus,
+input[type="number"]:focus {
+    border-color: #6d8a9f;
+    outline: none;
+}
+
+/* Button group styling */
 .button-group {
     display: flex;
     justify-content: flex-start;
@@ -56,6 +81,7 @@ input[type="number"] {
     margin-top: 20px;
 }
 
+/* General button styling */
 .button {
     background-color: #6d8a9f;
     border: none;
@@ -65,20 +91,18 @@ input[type="number"] {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .button:hover {
     background-color: #559bad;
-    color: #000000;
+    color: #ffffff;
     transform: scale(1.05);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
+/* Specific button styles */
 .delete-button {
     background-color: #d9534f;
 }
@@ -95,4 +119,10 @@ a {
 .cancel-button:hover {
     background-color: #ff0000;
     color: #ffffff;
+}
+
+/* Link styling */
+a {
+    text-decoration: none;
+    color: inherit;
 }

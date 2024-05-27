@@ -5,23 +5,19 @@
     <title>Login page</title>
     <link th:href="@{/loginpage.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
+
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 
-
 <main class="Login">
     <h1>Log ind på din konto</h1>
-    <form action="/project/user/postlogin" method="post" class="Login">
+    <form action="/project/user/postlogin" method="post" class="Login login-form">
         <div class="Login">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required />
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required />
+            <input type="text" id="username" name="username" placeholder="Brugernavn" required />
+            <input type="password" id="password" name="password" placeholder="Adgangskode" required />
             <button type="submit" class="button">Login</button>
-
             <p th:if="${loginError}" th:text="${loginError}" class="error-message"></p>
-
         </div>
     </form>
     <p>Har du ikke en konto? Tilmeld dig her!</p>
@@ -29,7 +25,6 @@
         <a href="/project/user/create" class="signupp-button">Tilmeld dig!</a>
     </div>
 </main>
-
 
 </body>
 </html>

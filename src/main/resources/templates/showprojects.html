@@ -35,7 +35,7 @@
                     <button type="button" class="button">Opdater projekt</button>
                 </a>
             </p>
-            <p th:if="${projectswithtasks.contains(project)}"><b>Dette projekt indeholder subprojekter!!!</b></p>
+            <p th:if="${projectswithtasks.contains(project)}"><b>OBS! dette projekt indeholder subprojekter</b></p>
             <p>
                 <a th:each="p : ${managedprojects}" th:if="${p.name}==${project.name}"  th:href="@{ ${project.name} + '/delete'}">
                     <button type="button" class="button">Slet projekt</button>

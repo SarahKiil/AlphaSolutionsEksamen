@@ -37,7 +37,7 @@
                     </a>
                     <p th:if="${subprojectswithtasks.contains(subproject)}"><b>Dette subprojekt indeholder tasks</b></p>
                     <a th:if="${manager}" th:href="@{${subproject.name} + '/delete'}">
-                        <button type="button" class="button delete-button">Slet Subprojekt</button>
+                        <button type="button" class="button delete-buttonn">Slet Subprojekt</button>
                     </a>
                 </div>
             </td>
@@ -45,7 +45,7 @@
         </tbody>
     </table>
 
-    <a th:href="@{'/project/overview'}" class="go-back">Go Back</a>
+    <a th:href="@{'/project/overview'}" class="go-back">Tilbage</a>
 
     <div class="add-subproject">
         <a th:if="${manager}" th:href="@{'/project/' + ${projectname} + '/create'}">

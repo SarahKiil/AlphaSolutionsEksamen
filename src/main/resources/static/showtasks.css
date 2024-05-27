@@ -3,7 +3,7 @@ body {
     background-color: white;
     background-image: linear-gradient(to right, #023554, #779095, #9eada8, #efead8);
     font-family: 'Roboto', sans-serif;
-    color: #333;
+    color: white;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -12,7 +12,7 @@ body {
     height: 100vh;
 }
 
-/* Container styling for the frosted glass effect */
+
 .container {
     width: 90%;
     max-width: 800px;
@@ -31,7 +31,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    background-color: rgba(0, 51, 102, 0.1); /* Bluish tint */
+    background-color: rgba(0, 51, 102, 0.1);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -56,14 +56,23 @@ th {
 }
 
 td {
-    background-color: rgba(0, 51, 102, 0.05); /* Lighter bluish tint */
+    background-color: rgba(0, 51, 102, 0.05);
+    color: white;
 }
 
 tbody tr:hover {
-    background-color: rgba(0, 51, 102, 0.1); /* Slightly darker bluish tint */
+    background-color: rgba(0, 51, 102, 0.1);
 }
 
-/* Button styling */
+
+.high-status {
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+
 .button {
     background-color: #2e3b4e;
     border: none;
@@ -84,10 +93,10 @@ tbody tr:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Go-back button styling */
+
 .go-back {
     position: fixed;
-    bottom: 50px; /* Increased bottom spacing */
+    bottom: 50px;
     left: 20px;
     background-color: #2e3b4e;
     color: white;
@@ -105,7 +114,7 @@ tbody tr:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Add-subtask button styling */
+
 .add-subtask {
     position: fixed;
     bottom: 50px; /* Increased bottom spacing */
@@ -117,7 +126,7 @@ tbody tr:hover {
     font-weight: bold;
 }
 
-/* Button container styling */
+
 .button-container {
     display: flex;
     flex-wrap: wrap;
@@ -128,4 +137,15 @@ tbody tr:hover {
     display: flex;
     justify-content: space-around;
     margin: 10px 0;
+}
+
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.progress-labels .label-start, .progress-labels .label-end {
+    color: white;
 }

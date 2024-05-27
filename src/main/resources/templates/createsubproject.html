@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret subprojekt</title>
-    <div th:replace="~{fragments/headerloggedin :: header}"></div>
-
-
+    <link th:href="@{/createsubproject.css}" rel="stylesheet">
+    <link th:href="@{/main.css}" rel="stylesheet">
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
 
-<form th:action="@{'/project/' + ${projectname} + '/save'}" th:object="${subproject}" method="post">
-    <p>
-        <label for="name">Navn</label>
-        <input type="text" id="name" name="name" th:field="*{name}"/>
-    </p>
-    <p>
-        <label for="description">Beskrivelse</label>
-        <input type="text" id="description" name="description" th:field="*{description}"/>
-    </p>
-
-    <br>
-    <input type="submit" value="Opret subprojekt" /></form>
-
-
-
+<div class="form-container">
+    <form th:action="@{'/project/' + ${projectname} + '/save'}" th:object="${subproject}" method="post">
+        <p>
+            <label for="name">Navn</label>
+            <input type="text" id="name" name="name" th:field="*{name}"/>
+        </p>
+        <p>
+            <label for="description">Beskrivelse</label>
+            <input type="text" id="description" name="description" th:field="*{description}"/>
+        </p>
+        <br>
+        <input type="submit" value="Opret subprojekt" class="submit-button"/>
+    </form>
+</div>
 </body>
 </html>

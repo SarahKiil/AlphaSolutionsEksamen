@@ -5,29 +5,28 @@
     <title>Update Your Project</title>
     <link th:href="@{/updatehours.css}" rel="stylesheet">
     <link th:href="@{/main.css}" rel="stylesheet">
+    <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/headerloggedin :: header}"></div>
 <div class="container">
     <form th:action="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/' + ${task.name} + '/updatehours'}" method="post" th:object="${task}">
         <p th:text="${task.name}"></p>
         <p>
             <label for="usedHours">Brugte arbejdstimer</label>
-            <input id="usedHours" name="usedHours" type="number" th:value="${task.usedHours}"/>
+            <input id="usedHours" name="usedHours" type="number" th:value="${task.usedHours}" />
         </p>
-
         <div class="button-container">
-            <button type="submit" class="button">Opdater arbejdstimer</button>
-
-                <a th:if="${notdone}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name}+ '/' + ${task.name} + '/' + 'done'}">
-                    <button type="button" class="button cancel-button">Markér som færdigt</button>
-                </a>
-                <a th:if="${manager}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name}+ '/' + ${task.name} + '/' + 'done'}">
-                <button type="button" class="button cancel-button">Genoptag tasken</button>
-                </a>
-            <a th:href="@{'/project/frontpage'}">
-                <button type="button" class="button cancel-button">Anullér</button>
+            <button type="submit" class="button primary">Opdater arbejdstimer</button>
+            <a th:if="${notdone}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/' + ${task.name} + '/done'}">
+                <button type="button" class="button cancel">Markér som færdigt</button>
             </a>
-
+            <a th:if="${manager}" th:href="@{'/project/' + ${project.name} + '/' + ${subproject.name} + '/' + ${task.name} + '/done'}">
+                <button type="button" class="button cancel">Genoptag tasken</button>
+            </a>
+            <a th:href="@{'/project/frontpage'}">
+                <button type="button" class="button cancel">Gå tilbage</button>
+            </a>
         </div>
     </form>
 </div>

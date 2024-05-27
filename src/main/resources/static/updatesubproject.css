@@ -1,5 +1,4 @@
 body {
-    background-color: #1b232f;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -7,7 +6,10 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    color: #fff;
+    color: #000000;
+    background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=pexels-jplenio-1103970.jpg&fm=jpg') no-repeat center center fixed;
+    background-size: cover;
+
 }
 
 header {
@@ -36,13 +38,15 @@ header h1 {
 .container {
     width: 80%;
     max-width: 600px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     padding: 30px;
     margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    color: #fff;
 }
 
 form {
@@ -52,24 +56,26 @@ form {
 form p {
     margin: 15px 0;
     font-size: 16px;
-    color: #333;
+    color: #ccc;
 }
 
 input[type="text"] {
-    width: calc(100% - 20px);
+    width: calc(100% - 24px);
     padding: 12px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 label {
     font-weight: bold;
     display: block;
     margin-top: 15px;
-    color: #333;
+    color: #fff;
 }
 
 .button {

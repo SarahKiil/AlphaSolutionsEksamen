@@ -17,6 +17,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
 .user-info {
@@ -67,29 +68,33 @@ p, th, td {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: rgba(30, 58, 76, 0.8);
+    background: linear-gradient(45deg, #484e4c, #7c8484);
     color: #fff;
     font-size: 16px;
-    transition: background-color 0.35s, box-shadow 0.35s;
+    transition: background-color 0.35s, box-shadow 0.35s, transform 0.2s;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     display: inline-block;
     margin-right: 10px;
-    margin-top: 10px;  /* Added more spacing here */
+    margin-top: 10px;
     text-align: center;
 }
 
 .button:hover, .button:focus {
-    background-color: rgba(44, 83, 100, 0.8);
+    background: linear-gradient(45deg, #39413d, #556262);
     outline: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 .delete-button {
-    background-color: rgba(217, 83, 79, 0.8);
+    background: linear-gradient(45deg, #d9534f, #c9302c);
 }
 
 .delete-button:hover, .delete-button:focus {
-    background-color: rgba(201, 48, 44, 0.8);
+    background: linear-gradient(45deg, #c9302c, #ac2925);
+    outline: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 strong {

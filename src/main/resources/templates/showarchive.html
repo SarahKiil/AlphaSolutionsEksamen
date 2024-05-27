@@ -4,39 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlphaCalc</title>
-    <link th:href="@{/showsubprojects.css}" rel="stylesheet">
+    <link th:href="@{/showarchive.css}" rel="stylesheet">
     <link th:href="@{/headerloggedin.css}" rel="stylesheet">
 </head>
-
 <body>
 <div th:replace="~{fragments/headerloggedin :: header}"></div>
 
-<table>
-    <thead>
-    <tr>
-        <th>Arkiverede projekter:</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="project : ${doneprojects}">
-        <td>
-            <a th:href="@{ ${project.name} + '/subprojects'}">
-                <button type="button" class="button" th:text="${project.name}"></button>
-            </a>
-            <p>Projektmanager <strong th:text="${project.username}"></strong></p>
-            <p>Beskrivelse <strong th:text="${project.description}"></strong></p>
-            <p>Deadline <strong th:text="${project.deadline}"></strong></p>
-            <p>Forventede timer <strong th:text="${project.estimatedHours}"></strong></p>
-            <p>Brugte timer <strong th:text="${project.usedHours}"></strong></p>
-            <p th:if="${doneprojects.contains(project)}"><b>FÆRDIG</b></p>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<p>
-    <a th:href="@{'/project/frontpage'}">
-        <button type="button" class="button">Tilbage</button>
-    </a>
-</p>
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Arkiverede projekter:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${doneprojects}">
+            <td>
+                <a th:href="@{ ${project.name} + '/subprojects'}">
+                    <button type="button" class="button" th:text="${project.name}"></button>
+                </a>
+                <p>Projektmanager <strong th:text="${project.username}"></strong></p>
+                <p>Beskrivelse <strong th:text="${project.description}"></strong></p>
+                <p>Deadline <strong th:text="${project.deadline}"></strong></p>
+                <p>Forventede timer <strong th:text="${project.estimatedHours}"></strong></p>
+                <p>Brugte timer <strong th:text="${project.usedHours}"></strong></p>
+                <p th:if="${doneprojects.contains(project)}"><b>FÆRDIG</b></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a th:href="@{'/project/frontpage'}" class="back-button">
+    <button type="button" class="button">Tilbage</button>
+</a>
+
 </body>
 </html>
