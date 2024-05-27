@@ -1,7 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
 import com.example.alphasolutionseksamen.TaskComparator;
-import com.example.alphasolutionseksamen.repository.ProjectRepository;
 import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
 import jakarta.servlet.http.HttpSession;
 import com.example.alphasolutionseksamen.model.Project;
@@ -16,38 +15,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(path="project")
 public class ProjectController {
 
     private User loggedInUser;
-    private ProjectRepository rp = new ProjectRepository();
     private ProjectService projectService;
-
-    private ProjectRepositoryDB projectRepositoryDB;
 
     public ProjectController(ProjectService projectService){
         this.projectService =projectService;
     }
-    /*public ProjectController(ProjectService projectService){
-        this.projectService = projectService;
-    }*/
-
-
     @GetMapping("")
-    public String getIndex(HttpSession session, Model model){
-        /*User user = new User("Bobby", "Bobby", "Bobsen", "bobby555", "bobbyersej@gmail.com", "Bobbyvej", "66", 2200, "København", 12345678, "Denmark");
-
-        User userToBeLoggedIn = projectService.showUser(user.getUsername());
-        loggedInUser = (User) session.getAttribute("key");
-        if (loggedInUser == null) {
-            loggedInUser = new User();
-            session.setAttribute("key", userToBeLoggedIn);
-        return "frontpage";
-    }*/
-        model.addAttribute("tal", "width:100%");
+    public String getIndex(){
         return "index";}
 
     @GetMapping("/frontpage")
@@ -60,14 +40,20 @@ public class ProjectController {
     public String createProject(Model model){
     model.addAttribute("project", new Project());
     return "createproject";
-}
+    }
 
     @PostMapping("/save")
-    public String createProject(@ModelAttribute Project project, HttpSession session){
+    public String createProject(@ModelAttribute Project project, HttpSession session, Model model){
         loggedInUser = (User) session.getAttribute("key");
+        List<Project> projects = projectService.showProjects();
+        for (Project p : projects){
+            if (p.getName().equalsIgnoreCase(project.getName())){
+                model.addAttribute("projectNameError", "Der findes allerede et projekt med dette navn");
+                return "createproject";
+            }
+        }
         project.setUsername(loggedInUser.getUsername());
         projectService.createProject(project);
-        //projectService.createProject(project);
         return "redirect:/project/overview";
     }
 
@@ -79,8 +65,15 @@ public class ProjectController {
     }
 
     @PostMapping("/{name}/save")
-    public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject){
+    public String createSubproject(@PathVariable String name, @ModelAttribute Subproject subproject, Model model){
         Project project = projectService.showProject(name);
+        List<Subproject> subprojects = projectService.showSubprojects(project.getName());
+        for (Subproject s : subprojects){
+            if (s.getName().equalsIgnoreCase(subproject.getName())){
+                model.addAttribute("subprojectNameError", "Dette projekt har allerede et subprojekt med dette navn");
+                return "createsubproject";
+            }
+        }
         projectService.createSubproject(project, subproject);
         //projectService.createSubproject(project, subproject);
         return "redirect:/project/{name}/subprojects";
@@ -91,18 +84,25 @@ public class ProjectController {
         model.addAttribute("projectname", name);
         model.addAttribute("subprojectname", subproject);
         model.addAttribute("task", new Task());
-        List <String> statusPriorities = projectService.showStatus();
-        model.addAttribute("statusPriorities", statusPriorities);
+        model.addAttribute("statusPriorities", projectService.showStatus());
         model.addAttribute("skills", projectService.showSkills());
         return "createtask";
     }
 
     @PostMapping("/{name}/{subprojectname}/save")
-    public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task){
+    public String saveTask(@PathVariable String name, @PathVariable String subprojectname, @ModelAttribute Task task, Model model){
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
+        List<Task> tasks = projectService.showTasks(project.getName(), subproject.getName());
+        for (Task t : tasks){
+            if (t.getName().equalsIgnoreCase(task.getName())){
+                model.addAttribute("tasknameError", "Dette subprojekt har allerede en task med dette navn");
+                model.addAttribute("statusPriorities", projectService.showStatus());
+                model.addAttribute("skills", projectService.showSkills());
+                return "createtask";
+            }
+        }
         projectService.createTask(project, subproject, task);
-        //projectService.createTask(project, subproject, task);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
 
@@ -242,7 +242,6 @@ public class ProjectController {
 
     @GetMapping("/{name}/edit")
     public String updateProject(@PathVariable String name, Model model){
-        //Project project = projectService.showProject(name);
         Project project = projectService.showProject(name);
         model.addAttribute("project", project);
         return "updateproject";
@@ -278,9 +277,6 @@ public class ProjectController {
         Project project = projectService.showProject(name);
         Subproject subproject = projectService.showSubproject(name, subprojectname);
         Task task = projectService.showTask(name, subprojectname, taskname);
-        for (String s : task.getSkills()){
-            System.out.println(s);
-        }
         List <String> statusPriorities = projectService.showStatus();
         model.addAttribute("project", project);
         model.addAttribute("subproject", subproject);
@@ -293,8 +289,6 @@ public class ProjectController {
 
     @PostMapping("/{name}/{subprojectname}/{taskname}/update")
     public String updateTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname, Task task){
-        //Project project = projectRepositoryDB.showProject(name);
-       // Subproject subproject =projectRepositoryDB.showSubproject(project, subprojectname);
         projectService.updateTask(name, subprojectname, task, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
@@ -310,7 +304,6 @@ public class ProjectController {
 
     @PostMapping("/profile/update")
     public String updateUser(User user, HttpSession session){
-        System.out.println(user.getStreetNumber());
         session.setAttribute("key", user);
         projectService.updateUser(user);
         return "redirect:/project/profile";
@@ -573,7 +566,6 @@ public class ProjectController {
         projectService.deleteSubproject(name, subprojectname);
         return "redirect:/project/{name}/subprojects";
     }
-
     @GetMapping("profile/delete")
     public String deleteUser(HttpSession session){
         loggedInUser = (User)session.getAttribute("key");
@@ -582,13 +574,10 @@ public class ProjectController {
         return "redirect:/project";
 
     }
-
     @GetMapping("/{name}/{subprojectname}/{taskname}/delete")
     public String deleteTask(@PathVariable String name, @PathVariable String subprojectname, @PathVariable String taskname){
         projectService.deleteTask(name, subprojectname, taskname);
         return "redirect:/project/{name}/{subprojectname}/tasks";
     }
-
-
 
 }

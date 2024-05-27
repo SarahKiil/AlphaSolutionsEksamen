@@ -22,10 +22,6 @@ public class ProjectRepositoryDB {
     @Value("${spring.datasource.password}")
     private String pwd;
 
-    //ArrayList<Project> projects = new ArrayList<>();
-
-    //ArrayList<User> users = new ArrayList<>();
-
 
     public int getProjectID(String projectName) {
         int id = 0;
@@ -65,7 +61,6 @@ public class ProjectRepositoryDB {
         try (Connection connection = DriverManager.getConnection(db_url, SQLusername, pwd)) {
             String SQL = "insert into projects (name, description, deadline, estimatedhours, usedhours, username) values (?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            //ps.setInt(1, id);
             ps.setString(1, project.getName());
             ps.setString(2, project.getDescription());
             ps.setString(3, project.getDeadline());
@@ -84,7 +79,6 @@ public class ProjectRepositoryDB {
             int id = getProjectID(project.getName());
             String SQL = "insert into subprojects (name, description, estimatedhours, usedhours, project_id) values (?, ?, ?, ?, ?);";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            //ps.setInt(1, id);
             ps.setString(1, subproject.getName());
             ps.setString(2, subproject.getDescription());
             ps.setDouble(3, 0);
@@ -723,8 +717,6 @@ public class ProjectRepositoryDB {
             List<Integer> skillsIDs = new ArrayList<>();
             String SQL = "UPDATE USERS SET FIRSTNAME=?, LASTNAME=?, EMAIL=?, STREETNAME=?, STREETNUMBER=?, POSTNUMBER=?, PHONENUMBER=?, CITY=?, COUNTRY=? WHERE USERNAME=?";
             PreparedStatement ps = connection.prepareStatement(SQL);
-            System.out.println(user.getUsername());
-            System.out.println(user.getStreetNumber());
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getEmail());
@@ -1111,7 +1103,6 @@ public boolean checkLogin(User user) {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public double calculateUserWorkload(String projectName, String subprojectName, Task task){
@@ -1143,6 +1134,4 @@ public boolean checkLogin(User user) {
         }
 
     }
-
-
 }
