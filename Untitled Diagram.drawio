@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-24T10:28:14.345Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="BarKnzWEMKrOwXd1lpo5" version="24.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-27T13:56:35.543Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="DrxcY072uVCGcq329TQt" version="24.4.6" type="github">
   <diagram name="Page-1" id="BIBi98vKyc31B9fN39kg">
-    <mxGraphModel dx="2563" dy="1779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2776" dy="1922" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -31,7 +31,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-12" value="Bruger indtaster oplysninger" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="440" y="39" width="110" height="50" as="geometry" />
+          <mxGeometry x="440" y="39" width="110" height="51" as="geometry" />
         </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-13" value="Ja" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#141B24;" edge="1" parent="1" target="HaPU3EN4g4eDBjvCJEjl-6">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -224,12 +224,6 @@
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-95" value="Er brugernavnet allerede taget?" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="677" y="220" width="150" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="HaPU3EN4g4eDBjvCJEjl-96" value="Ja" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.514;exitY=0.057;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-95">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="752" y="410" as="sourcePoint" />
-            <mxPoint x="550" y="64.99999999999977" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-97" value="Nej" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.515;exitY=0.966;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-95" target="HaPU3EN4g4eDBjvCJEjl-23">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="750" y="109" as="sourcePoint" />
@@ -302,6 +296,15 @@
         </mxCell>
         <mxCell id="HaPU3EN4g4eDBjvCJEjl-128" value="Projektet ryger i arkiv" style="html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="-810" y="270" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-132" value="" style="endArrow=block;startArrow=block;endFill=1;startFill=1;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.329;entryY=0.161;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HaPU3EN4g4eDBjvCJEjl-12" target="HaPU3EN4g4eDBjvCJEjl-95">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="530" y="188.82" as="sourcePoint" />
+            <mxPoint x="690" y="188.82" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HaPU3EN4g4eDBjvCJEjl-133" value="ja" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="620" y="130" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
