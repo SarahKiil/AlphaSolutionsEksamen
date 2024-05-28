@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -1105,9 +1106,10 @@ public boolean checkLogin(User user) {
         }
     }
 
-    public double calculateUserWorkload(String projectName, String subprojectName, Task task){
+    public Double calculateUserWorkload(String projectName, String subprojectName, Task task){
         int usersAmount = showAssignedUsers(projectName, subprojectName, task.getName()).size();
         double hours = task.getEstimatedHours()-task.getUsedHours();
+
         return hours/usersAmount;
     }
 

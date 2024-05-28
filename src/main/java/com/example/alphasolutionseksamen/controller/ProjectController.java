@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -205,6 +206,8 @@ public class ProjectController {
         List<Task>tasks = projectService.showTasks(name, subprojectname);
         tasks.sort(new TaskComparator());
         HashMap<String, Double> workloads = new HashMap<>();
+        HashMap<String, Double> workloadHours = new HashMap<>();
+
 
 
 
@@ -216,6 +219,8 @@ public class ProjectController {
                     assignedTasks.add(t);
                     if (projectService.calculateUserWorkload(name, subprojectname, t) >= 0) {
                         workloads.put(t.getName(), projectService.calculateUserWorkload(name, subprojectname, t));
+                        workloadHours.put(t.getName(), projectService.calculateUserWorkload(name, subprojectname, t));
+
                     }
                 }
             }

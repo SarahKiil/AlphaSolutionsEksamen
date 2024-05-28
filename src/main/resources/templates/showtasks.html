@@ -29,8 +29,8 @@
                 <p>Beskrivelse <strong th:text="${task.description}"></strong></p>
                 <p>Forventede timer <strong th:text="${task.estimatedHours}"></strong></p>
                 <p>Brugte timer <strong th:text="${task.usedHours}"></strong></p>
-                <p th:each="key : ${workloads.keySet()}" th:if="${key} == ${task.name}">Forventede arbejdstimer: <strong th:text="${workloads.get(key)}"></strong></p>
-                <p th:each="key : ${workloads.keySet()}" th:if="${key} == ${task.name}">Forventede arbejdsdage: <strong th:text="${workloads.get(key)/6}"></strong></p>
+                <p th:each="key : ${workloads.keySet()}" th:if="${key} == ${task.name}">Forventede arbejdstimer: <strong th:text="${#numbers.formatDecimal(workloads.get(key), 0, 2)}"></strong></p>
+                <p th:each="key : ${workloads.keySet()}" th:if="${key} == ${task.name}">Forventede arbejdsdage: <strong th:text="${#numbers.formatDecimal(workloads.get(key)/6, 0, 2)}"></strong></p>
                 <p th:if="${donetasks.contains(task)}"><b>DONE</b></p>
                 <p th:if="${task.usedHours > task.estimatedHours}" th:text="${hoursError}"></p>
 

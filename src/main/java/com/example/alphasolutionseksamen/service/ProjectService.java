@@ -160,7 +160,7 @@ public Project showProject(String projectName) {
     rpd.deleteTask(projectName, subprojectName, taskName);
     }
 
-    public double calculateUserWorkload(String projectName, String subprojectName, Task task){
+    public Double calculateUserWorkload(String projectName, String subprojectName, Task task){
     return rpd.calculateUserWorkload(projectName, subprojectName, task);
     }
 
