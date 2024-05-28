@@ -481,7 +481,7 @@ public class ProjectRepositoryDB {
         List<User> users = showUsers();
         for (User u : users){
             for (String s : u.getSkills()){
-                if(s.equals(skill)){
+                if(s.equalsIgnoreCase(skill)){
                     usersWithSkill.add(u);
                 }
             }

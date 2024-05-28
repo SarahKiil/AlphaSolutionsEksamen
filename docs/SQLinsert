@@ -25,22 +25,22 @@ Insert into users(username, firstname, lastname, password, email, streetname, st
 
 -- Projekter:
 
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Websideredesign', 'Redesign af virksomhedens hjemmeside', '2024-07-15', 120, 0, 'anna01');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Mobilappudvikling', 'Udvikling af en ny mobilapp', '2024-08-01', 200, 0, 'thomas99');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Databaseoptimering', 'Optimering af databaseydelse', '2024-06-20', 80, 0, 'karenk');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Cloudmigrering', 'Migrering af tjenester til skyen', '2024-09-10', 150, 0, 'martin76');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('E-handelsplatform', 'Udvikling af en e-handelsplatform', '2024-12-31', 300, 0, 'lisaL');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Websideredesign', 'Redesign af virksomhedens hjemmeside', '2024-07-15', 195, 0, 'anna01');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Mobilappudvikling', 'Udvikling af en ny mobilapp', '2024-08-01', 120, 0, 'thomas99');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Databaseoptimering', 'Optimering af databaseydelse', '2024-06-20', 115, 0, 'karenk');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Cloudmigrering', 'Migrering af tjenester til skyen', '2024-09-10', 100, 0, 'martin76');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('E-handelsplatform', 'Udvikling af en e-handelsplatform', '2024-12-31', 0, 0, 'lisaL');
 
 -- Delprojekter:
 
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('UI Design', 'Design af brugergrænsefladen', 50, 0, 1);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Frontend Udvikling', 'Udvikling af frontend komponenter', 70, 0, 1);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Backend Udvikling', 'Udvikling af backend tjenester', 80, 0, 2);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('API Integration', 'Integration af tredjeparts APIer', 40, 0, 2);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Databaseskema Design', 'Design af databaseskema', 30, 0, 3);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Ydelsestuning', 'Tuning af databaseydelse', 50, 0, 3);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Cloud Setup', 'Opsætning af cloud infrastruktur', 100, 0, 4);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Datamigrering', 'Migrering af data til skyen', 50, 0, 4);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('UI Design', 'Design af brugergrænsefladen', 90, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Frontend Udvikling', 'Udvikling af frontend komponenter', 105, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Backend Udvikling', 'Udvikling af backend tjenester', 50, 0, 2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('API Integration', 'Integration af tredjeparts APIer', 70, 0, 2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Databaseskema Design', 'Design af databaseskema', 45, 0, 3);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Ydelsestuning', 'Tuning af databaseydelse', 70, 0, 3);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Cloud Setup', 'Opsætning af cloud infrastruktur', 80, 0, 4);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Datamigrering', 'Migrering af data til skyen', 20, 0, 4);
 
 -- Tasks:
 
@@ -54,16 +54,16 @@ Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, d
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Indeks Opsætning', 'Opret indekser for hurtigere forespørgsler', 15, 0, 6, 'f', 'medium');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Cloud Infrastruktur', 'Opsæt virtuelle maskiner og netværk', 60, 0, 7, 'f', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Data Backup', 'Sikre backup af alle data før migrering', 20, 0, 8, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Unit Testing', 'Skriv enhedstests for alle moduler', 25, 0, 9, 'f', 'medium');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Integration Testing', 'Test hele systemet integration', 30, 0, 10, 'f', 'medium');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Performance Optimization', 'Optimer systemets ydeevne', 40, 0, 11, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Security Audit', 'Gennemfør sikkerhedstjek', 35, 0, 12, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('User Training', 'Træn brugere i det nye system', 20, 0, 13, 'f', 'medium');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Documentation', 'Dokumenter systemet og koden', 15, 0, 14, 'f', 'low');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Deployment', 'Udrulning af systemet i produktionsmiljø', 25, 0, 15, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Bug Fixing', 'Ret fejl fundet under test', 30, 0, 16, 'f', 'medium');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Code Review', 'Gennemgå og godkend kode', 10, 0, 17, 'f', 'low');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Feature Implementation', 'Implementer ny funktionalitet', 50, 0, 18, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Unit Testing', 'Skriv enhedstests for alle moduler', 25, 0, 4, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Integration Testing', 'Test hele systemet integration', 30, 0, 5, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Performance Optimization', 'Optimer systemets ydeevne', 40, 0, 6, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Security Audit', 'Gennemfør sikkerhedstjek', 35, 0, 2, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('User Training', 'Træn brugere i det nye system', 20, 0, 7, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Documentation', 'Dokumenter systemet og koden', 15, 0, 6, 'f', 'low');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Deployment', 'Udrulning af systemet i produktionsmiljø', 25, 0, 4, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Bug Fixing', 'Ret fejl fundet under test', 30, 0, 2, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Code Review', 'Gennemgå og godkend kode', 10, 0, 1, 'f', 'low');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Feature Implementation', 'Implementer ny funktionalitet', 50, 0, 1, 'f', 'high');
 
 -- Assign users to tasks:
 

@@ -17,14 +17,15 @@
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
 
+
     <p>Hvilket skill vil du sortere efter? </p>
     <div class="dropdown">
         <button class="dropbtn">Skills</button>
         <div class="dropdown-content">
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce Apex'}">SalesForce Apex</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce LWC'}">SalesForce LWC</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce CC'}">SalesForce CC</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Azure integration'}">Azure integration</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce Apex Udvikling'}">SalesForce Apex Udvikling</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce LWC udvikling'}">SalesForce LWC udvikling</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce CC udvikling'}">SalesForce CC udvikling</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Azure integration udvikling'}">Azure integration udvikling</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Enterprise arkitektur'}">Enterprise arkitektur</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Projektledelse'}">Projektledelse</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Programledelse'}">Programledelse</a>
@@ -44,11 +45,13 @@
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/frontend'}">Frontend</a>
         </div>
     </div>
+    <br>
+    <input type="submit" value="Tilføj bruger" /></form>
     <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
     <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
 
-    <br>
-    <input type="submit" value="Tilføj bruger" /></form>
+
+
 
 
 

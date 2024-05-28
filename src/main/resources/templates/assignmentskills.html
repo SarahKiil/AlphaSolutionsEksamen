@@ -15,17 +15,17 @@
         <label for="username">Brugernavn</label>
         <input type="text" id="username" name="username" th:field="*{username}"/>
     </p>
+    <input type="submit" value="Tilføj bruger" />
     <tr th:each="user : ${users}">
         <td>
+            <br>
             <p>Brugernavn <strong th:text="${user.username}"></strong></p>
             <p>Fornavn <strong th:text="${user.firstName}"></strong></p>
             <p>Efternavn <strong th:text="${user.lastName}"></strong></p>
             <p>Skills <strong th:text="${user.skillsSetup}"></strong></p>
     <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
     <p th:if="${userError}" th:text="${userError}" class="error-message"></p>
-
-    <br>
-    <input type="submit" value="Tilføj bruger" /></form>
+</form>
 
 
 
