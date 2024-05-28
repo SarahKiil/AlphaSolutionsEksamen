@@ -1,4 +1,4 @@
-package com.example.alphasolutionseksamen;
+package com.example.alphasolutionseksamen.util;
 import com.example.alphasolutionseksamen.model.Task;
 
 import java.util.Comparator;

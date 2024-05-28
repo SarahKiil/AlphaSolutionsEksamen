@@ -1,7 +1,5 @@
 package com.example.alphasolutionseksamen.model;
 
-import com.example.alphasolutionseksamen.Priority;
-
 import java.util.ArrayList;
 import java.util.List;
 

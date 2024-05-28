@@ -1,6 +1,6 @@
 package com.example.alphasolutionseksamen.repository;
 
-import com.example.alphasolutionseksamen.Priority;
+import com.example.alphasolutionseksamen.model.Priority;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;

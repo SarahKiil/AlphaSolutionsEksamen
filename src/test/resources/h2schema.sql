@@ -1,5 +1,5 @@
 create schema if not exists AlphaCalc;
-use AlphaCalc;
+
 drop table if exists Skills_users;
 drop table if exists Skills_Tasks;
 drop table if exists Skills;

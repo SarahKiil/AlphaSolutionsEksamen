@@ -1,7 +1,6 @@
 package com.example.alphasolutionseksamen.controller;
 
-import com.example.alphasolutionseksamen.TaskComparator;
-import com.example.alphasolutionseksamen.repository.ProjectRepositoryDB;
+import com.example.alphasolutionseksamen.util.TaskComparator;
 import jakarta.servlet.http.HttpSession;
 import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;

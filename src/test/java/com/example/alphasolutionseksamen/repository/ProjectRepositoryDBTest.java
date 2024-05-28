@@ -4,6 +4,7 @@ import com.example.alphasolutionseksamen.model.Project;
 import com.example.alphasolutionseksamen.model.Subproject;
 import com.example.alphasolutionseksamen.model.Task;
 import com.example.alphasolutionseksamen.model.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:h2schema.sql")
 @SpringBootTest
-
 class ProjectRepositoryDBTest {
 
 
@@ -70,7 +70,7 @@ class ProjectRepositoryDBTest {
         assertEquals(expectedSize, actualSize);
     }*/
 
-   /* @Test
+    /*@Test
     void createSubproject(){
         Project project = projectRepositoryDB.showProject("Eksamen");
         Subproject subproject = new Subproject ("Testersubprojekt", "Tester subprojekt");
@@ -81,12 +81,17 @@ class ProjectRepositoryDBTest {
         assertEquals(expectedName, actualSubproject.getName());
         projectRepositoryDB.deleteSubproject("Eksamen", "Testersubprojekt");
     }*/
-   /* @Test
+    /*@Test
     void createTask(){
         Project project = projectRepositoryDB.showProject("Eksamen");
         Subproject subproject = projectRepositoryDB.showSubproject("Eksamen", "PO meeting");
+        int size = projectRepositoryDB.showTasks("Eksamen", "PO meeting").size();
         Task task = new Task ("Testertask", "Tester", 5.0, 0.0);
         projectRepositoryDB.createTask(project, subproject, task);
+        int size2 = projectRepositoryDB.showTasks("Eksamen", "PO meeting").size();
+        System.out.println(size);
+        System.out.println(size2);
+
         Task actualTask = projectRepositoryDB.showTask("Eksamen", "PO meeting", "Testertask");
         String expectedName = "Testertask";
         assertEquals(expectedName, actualTask.getName());

@@ -21,6 +21,18 @@
     <div class="dropdown">
         <button class="dropbtn">Skills</button>
         <div class="dropdown-content">
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce Apex'}">SalesForce Apex</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce LWC'}">SalesForce LWC</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/SalesForce CC'}">SalesForce CC</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Azure integration'}">Azure integration</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Enterprise arkitektur'}">Enterprise arkitektur</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Projektledelse'}">Projektledelse</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Programledelse'}">Programledelse</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/QA manaager'}">QA Manager</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Manuel test'}">Manuel test</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/Test automation'}">Test automation</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/CRM business consultant'}">CRM business consultant</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/e-commerce consultant'}">e-commerce consultant</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/java'}">Java</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/html'}">HTML</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/css'}">CSS</a>
@@ -28,9 +40,8 @@
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/python'}">Python</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/c++'}">C++</a>
             <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/c#'}">C#</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/javascript'}">JavaScript</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/scrum'}">SCRUM</a>
-            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/cloud'}">Cloud</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/javascript'}">Javascript</a>
+            <a th:href="@{'/project/' + ${project.name} + '/'+${subproject.name} + '/'+${task.name} + '/frontend'}">Frontend</a>
         </div>
     </div>
     <p th:if="${assignmentError}" th:text="${assignmentError}" class="error-message"></p>
