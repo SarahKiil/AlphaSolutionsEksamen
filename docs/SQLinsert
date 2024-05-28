@@ -54,6 +54,16 @@ Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, d
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Indeks Opsætning', 'Opret indekser for hurtigere forespørgsler', 15, 0, 6, 'f', 'medium');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Cloud Infrastruktur', 'Opsæt virtuelle maskiner og netværk', 60, 0, 7, 'f', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Data Backup', 'Sikre backup af alle data før migrering', 20, 0, 8, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Unit Testing', 'Skriv enhedstests for alle moduler', 25, 0, 9, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Integration Testing', 'Test hele systemet integration', 30, 0, 10, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Performance Optimization', 'Optimer systemets ydeevne', 40, 0, 11, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Security Audit', 'Gennemfør sikkerhedstjek', 35, 0, 12, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('User Training', 'Træn brugere i det nye system', 20, 0, 13, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Documentation', 'Dokumenter systemet og koden', 15, 0, 14, 'f', 'low');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Deployment', 'Udrulning af systemet i produktionsmiljø', 25, 0, 15, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Bug Fixing', 'Ret fejl fundet under test', 30, 0, 16, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Code Review', 'Gennemgå og godkend kode', 10, 0, 17, 'f', 'low');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Feature Implementation', 'Implementer ny funktionalitet', 50, 0, 18, 'f', 'high');
 
 -- Assign users to tasks:
 
@@ -321,3 +331,5 @@ Insert into skills_tasks(Skill_ID, task_id) values (9, 19);  -- Frontend for Tas
 
 Insert into skills_tasks(Skill_ID, task_id) values (4, 20);  -- SQL for Task 20
 Insert into skills_tasks(Skill_ID, task_id) values (7, 20);  -- C# for Task 20
+
+
