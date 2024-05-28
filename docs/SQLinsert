@@ -1,31 +1,130 @@
 -- Personer indsat:
 
-Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('Bobby', 'Bobby', 'Bobsen', 'bobby555', 'bobbyersej@gmail.com', 'Bobbyvej', '66', 2200, 12345678, 'København', 'Danmark');
-Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('abc', 'Harry', 'Potter', '123', 'harrypotter@mail.co.uk', 'Londonroad', '29', 10000, 1234567899, 'London', 'England');
-Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('HanneRocks', 'Hanne', 'Jensen', '1234', 'hanneframarketing@gmail.com', 'Taffelæblevej', '13', 4000, 87654321, 'Roskilde', 'Sverige');
+-- Flere personer indsat:
+
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('anna01', 'Anna', 'Andersen', 'anna123', 'anna01@example.com', 'Frederiksberg Allé', '10', 1820, 11223344, 'Frederiksberg', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('thomas99', 'Thomas', 'Thomsen', 'thomas456', 'thomas99@example.com', 'Nørrebrogade', '20', 2200, 22334455, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('karenk', 'Karen', 'Kristensen', 'karen789', 'karenk@example.com', 'Østerbrogade', '30', 2100, 33445566, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('martin76', 'Martin', 'Mortensen', 'martin987', 'martin76@example.com', 'Vesterbrogade', '40', 1620, 44556677, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('lisaL', 'Lisa', 'Larsen', 'lisa321', 'lisaL@example.com', 'Amagerbrogade', '50', 2300, 55667788, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('mads_m', 'Mads', 'Madsen', 'mads654', 'mads_m@example.com', 'Enghavevej', '60', 1674, 66778899, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('sofie_s', 'Sofie', 'Svendsen', 'sofie000', 'sofie_s@example.com', 'Valby Langgade', '70', 2500, 77889900, 'Valby', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('henrik_h', 'Henrik', 'Hansen', 'henrik111', 'henrik_h@example.com', 'Gl. Kongevej', '80', 1850, 88990011, 'Frederiksberg', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('camilla_c', 'Camilla', 'Christensen', 'camilla222', 'camilla_c@example.com', 'Sankt Annæ Plads', '90', 1250, 99001122, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('peter_p', 'Peter', 'Petersen', 'peter333', 'peter_p@example.com', 'Åboulevard', '100', 2200, 10111213, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('julia_j', 'Julia', 'Jørgensen', 'julia444', 'julia_j@example.com', 'Falkoner Allé', '110', 2000, 11121314, 'Frederiksberg', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('anders_a', 'Anders', 'Andersen', 'anders555', 'anders_a@example.com', 'Vigerslev Allé', '120', 2500, 12131415, 'Valby', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('mia_m', 'Mia', 'Mikkelsen', 'mia666', 'mia_m@example.com', 'Gammel Køge Landevej', '130', 2500, 13141516, 'Valby', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('sebastian_s', 'Sebastian', 'Sørensen', 'sebastian777', 'sebastian_s@example.com', 'Jagtvej', '140', 2200, 14151617, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('frederik_f', 'Frederik', 'Frederiksen', 'frederik888', 'frederik_f@example.com', 'Strandvejen', '150', 2100, 15161718, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('clara_c', 'Clara', 'Carlsen', 'clara999', 'clara_c@example.com', 'H. C. Andersens Boulevard', '160', 1553, 16171819, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('simon_s', 'Simon', 'Simonsen', 'simon101', 'simon_s@example.com', 'Nansensgade', '170', 1366, 17181920, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('eline_e', 'Eline', 'Eriksen', 'eline202', 'eline_e@example.com', 'Øresundsvej', '180', 2300, 18192021, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('magnus_m', 'Magnus', 'Mathiesen', 'magnus303', 'magnus_m@example.com', 'Njalsgade', '190', 2300, 19202122, 'København', 'Danmark');
+Insert into users(username, firstname, lastname, password, email, streetname, streetnumber, postnumber, phonenumber, city, country) values ('victor_v', 'Victor', 'Villadsen', 'victor404', 'victor_v@example.com', 'Pilestræde', '200', 1112, 20212223, 'København', 'Danmark');
 
 -- Projekter:
 
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Eksamen', 'dette er en eksamen', '2024-05-29', 13, 0, 'Bobby');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Skoleprojekt', 'dette er et projekt til skolen i foråret 2024', '2024-05-31', 0, 0,  'Bobby');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Websideredesign', 'Redesign af virksomhedens hjemmeside', '2024-07-15', 120, 0, 'anna01');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Mobilappudvikling', 'Udvikling af en ny mobilapp', '2024-08-01', 200, 0, 'thomas99');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Databaseoptimering', 'Optimering af databaseydelse', '2024-06-20', 80, 0, 'karenk');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Cloudmigrering', 'Migrering af tjenester til skyen', '2024-09-10', 150, 0, 'martin76');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('E-handelsplatform', 'Udvikling af en e-handelsplatform', '2024-12-31', 300, 0, 'lisaL');
 
--- subprojects:
+-- Delprojekter:
 
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('PO meeting', 'Mødes med Luise', 11, 0, 1);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Code review', 'Mødes med Tine', 2, 0, 1);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Business', 'Stuff', 0, 0, 2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('UI Design', 'Design af brugergrænsefladen', 50, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Frontend Udvikling', 'Udvikling af frontend komponenter', 70, 0, 1);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Backend Udvikling', 'Udvikling af backend tjenester', 80, 0, 2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('API Integration', 'Integration af tredjeparts APIer', 40, 0, 2);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Databaseskema Design', 'Design af databaseskema', 30, 0, 3);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Ydelsestuning', 'Tuning af databaseydelse', 50, 0, 3);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Cloud Setup', 'Opsætning af cloud infrastruktur', 100, 0, 4);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Datamigrering', 'Migrering af data til skyen', 50, 0, 4);
 
--- tasks:
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 1', 'vis userstory til Luise', 5, 0, 1, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 2', 'vis userstory til Luise', 6, 0, 1, 'f', 'uncategorized');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Userstory 3', 'vis userstory til Luise igen', 2, 0, 2, 'f', 'uncategorized');
+-- Tasks:
 
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Wireframe Design', 'Opret wireframes til UI', 10, 0, 1, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('HTML/CSS Udvikling', 'Implementer UI i HTML og CSS', 20, 0, 1, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('JavaScript Komponenter', 'Udvikle dynamiske komponenter med JavaScript', 40, 0, 2, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Backend API', 'Opret RESTful API', 30, 0, 3, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Database Forbindelse', 'Opsæt forbindelse til database', 20, 0, 3, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('API Integration Test', 'Test integration med eksterne APIer', 20, 0, 4, 'f', 'low');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Skema Normalisering', 'Normaliser databaseskema', 15, 0, 5, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Indeks Opsætning', 'Opret indekser for hurtigere forespørgsler', 15, 0, 6, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Cloud Infrastruktur', 'Opsæt virtuelle maskiner og netværk', 60, 0, 7, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Data Backup', 'Sikre backup af alle data før migrering', 20, 0, 8, 'f', 'high');
 
 -- Assign users to tasks:
 
-Insert into tasks_users(task_ID, username) values (1, 'abc');
-Insert into tasks_users(task_ID, username) values (2, 'abc');
-Insert into tasks_users(task_ID, username) values (1, 'HanneRocks');
+-- Assignments for project 1 (Websideredesign)
+Insert into tasks_users(task_ID, username) values (1, 'thomas99');
+Insert into tasks_users(task_ID, username) values (1, 'karenk');
+Insert into tasks_users(task_ID, username) values (2, 'martin76');
+Insert into tasks_users(task_ID, username) values (2, 'lisaL');
+Insert into tasks_users(task_ID, username) values (3, 'thomas99');
+Insert into tasks_users(task_ID, username) values (3, 'martin76');
+
+-- Assignments for project 2 (Mobilappudvikling)
+Insert into tasks_users(task_ID, username) values (4, 'martin76');
+Insert into tasks_users(task_ID, username) values (4, 'lisaL');
+Insert into tasks_users(task_ID, username) values (5, 'karenk');
+Insert into tasks_users(task_ID, username) values (5, 'mads_m');
+Insert into tasks_users(task_ID, username) values (6, 'mads_m');
+Insert into tasks_users(task_ID, username) values (6, 'sofie_s');
+
+-- Assignments for project 3 (Databaseoptimering)
+Insert into tasks_users(task_ID, username) values (7, 'sofie_s');
+Insert into tasks_users(task_ID, username) values (7, 'henrik_h');
+Insert into tasks_users(task_ID, username) values (8, 'henrik_h');
+Insert into tasks_users(task_ID, username) values (8, 'camilla_c');
+Insert into tasks_users(task_ID, username) values (9, 'camilla_c');
+Insert into tasks_users(task_ID, username) values (9, 'peter_p');
+
+-- Assignments for project 4 (Cloudmigrering)
+Insert into tasks_users(task_ID, username) values (10, 'peter_p');
+Insert into tasks_users(task_ID, username) values (10, 'julia_j');
+Insert into tasks_users(task_ID, username) values (11, 'julia_j');
+Insert into tasks_users(task_ID, username) values (11, 'anders_a');
+Insert into tasks_users(task_ID, username) values (12, 'anders_a');
+Insert into tasks_users(task_ID, username) values (12, 'mia_m');
+
+-- Assignments for project 5 (E-handelsplatform)
+Insert into tasks_users(task_ID, username) values (13, 'mia_m');
+Insert into tasks_users(task_ID, username) values (13, 'sebastian_s');
+Insert into tasks_users(task_ID, username) values (14, 'sebastian_s');
+Insert into tasks_users(task_ID, username) values (14, 'frederik_f');
+Insert into tasks_users(task_ID, username) values (15, 'frederik_f');
+Insert into tasks_users(task_ID, username) values (15, 'clara_c');
+Insert into tasks_users(task_ID, username) values (16, 'clara_c');
+Insert into tasks_users(task_ID, username) values (16, 'simon_s');
+Insert into tasks_users(task_ID, username) values (17, 'simon_s');
+Insert into tasks_users(task_ID, username) values (17, 'eline_e');
+Insert into tasks_users(task_ID, username) values (18, 'eline_e');
+Insert into tasks_users(task_ID, username) values (18, 'magnus_m');
+Insert into tasks_users(task_ID, username) values (19, 'magnus_m');
+Insert into tasks_users(task_ID, username) values (19, 'victor_v');
+Insert into tasks_users(task_ID, username) values (20, 'victor_v');
+
+-- Additional assignments to ensure each user has up to 3 tasks:
+Insert into tasks_users(task_ID, username) values (4, 'karenk');
+Insert into tasks_users(task_ID, username) values (5, 'martin76');
+Insert into tasks_users(task_ID, username) values (6, 'lisaL');
+Insert into tasks_users(task_ID, username) values (7, 'thomas99');
+Insert into tasks_users(task_ID, username) values (8, 'sofie_s');
+Insert into tasks_users(task_ID, username) values (9, 'henrik_h');
+Insert into tasks_users(task_ID, username) values (10, 'camilla_c');
+Insert into tasks_users(task_ID, username) values (11, 'peter_p');
+Insert into tasks_users(task_ID, username) values (12, 'julia_j');
+Insert into tasks_users(task_ID, username) values (13, 'anders_a');
+Insert into tasks_users(task_ID, username) values (14, 'mia_m');
+Insert into tasks_users(task_ID, username) values (15, 'sebastian_s');
+Insert into tasks_users(task_ID, username) values (16, 'frederik_f');
+Insert into tasks_users(task_ID, username) values (17, 'clara_c');
+Insert into tasks_users(task_ID, username) values (18, 'simon_s');
+Insert into tasks_users(task_ID, username) values (19, 'eline_e');
+Insert into tasks_users(task_ID, username) values (20, 'magnus_m');
+
 
 -- Skills:
 
@@ -52,18 +151,173 @@ Insert into skills(name) values ('CRM business consultant');
 Insert into skills(name) values ('e-commerce consultant');
 
 -- Assign skills to users:
-Insert into skills_users(Skill_ID, username) values (1, 'abc');
-Insert into skills_users(Skill_ID, username) values (2, 'abc');
-Insert into skills_users(Skill_ID, username) values (5, 'abc');
-Insert into skills_users(Skill_ID, username) values (3, 'Bobby');
-Insert into skills_users(Skill_ID, username) values (4, 'Bobby');
-Insert into skills_users(Skill_ID, username) values (9, 'HanneRocks');
-Insert into skills_users(Skill_ID, username) values (10, 'HanneRocks');
+
+-- Anna Hansen
+Insert into skills_users(Skill_ID, username) values (1, 'anna01');  -- Java
+Insert into skills_users(Skill_ID, username) values (2, 'anna01');  -- HTML
+Insert into skills_users(Skill_ID, username) values (3, 'anna01');  -- CSS
+
+-- Thomas Nielsen
+Insert into skills_users(Skill_ID, username) values (4, 'thomas99'); -- SQL
+Insert into skills_users(Skill_ID, username) values (7, 'thomas99'); -- C#
+Insert into skills_users(Skill_ID, username) values (9, 'thomas99'); -- Frontend
+
+-- Karen Kristensen
+Insert into skills_users(Skill_ID, username) values (2, 'karenk');  -- HTML
+Insert into skills_users(Skill_ID, username) values (9, 'karenk');  -- Frontend
+Insert into skills_users(Skill_ID, username) values (14, 'karenk'); -- Enterprise arkitektur
+
+-- Martin Andersen
+Insert into skills_users(Skill_ID, username) values (1, 'martin76'); -- Java
+Insert into skills_users(Skill_ID, username) values (6, 'martin76'); -- C++
+Insert into skills_users(Skill_ID, username) values (12, 'martin76'); -- Salesforce CC udvikling
+
+-- Lisa Larsen
+Insert into skills_users(Skill_ID, username) values (5, 'lisaL');   -- Python
+Insert into skills_users(Skill_ID, username) values (13, 'lisaL'); -- Azure integration udvikling
+Insert into skills_users(Skill_ID, username) values (20, 'lisaL'); -- CRM business consultant
+
+-- Mads Madsen
+Insert into skills_users(Skill_ID, username) values (4, 'mads_m');  -- SQL
+Insert into skills_users(Skill_ID, username) values (10, 'mads_m'); -- Salesforce Apex udvikling
+Insert into skills_users(Skill_ID, username) values (18, 'mads_m'); -- Test automation
+
+-- Sofie Sørensen
+Insert into skills_users(Skill_ID, username) values (8, 'sofie_s');  -- JavaScript
+Insert into skills_users(Skill_ID, username) values (11, 'sofie_s'); -- Salesforce LWC udvikling
+Insert into skills_users(Skill_ID, username) values (19, 'sofie_s'); -- Manuel testing
+
+-- Henrik Hansen
+Insert into skills_users(Skill_ID, username) values (1, 'henrik_h');  -- Java
+Insert into skills_users(Skill_ID, username) values (13, 'henrik_h'); -- Azure integration udvikling
+Insert into skills_users(Skill_ID, username) values (15, 'henrik_h'); -- Projektledelse
+
+-- Camilla Christiansen
+Insert into skills_users(Skill_ID, username) values (6, 'camilla_c');  -- C++
+Insert into skills_users(Skill_ID, username) values (14, 'camilla_c'); -- Enterprise arkitektur
+Insert into skills_users(Skill_ID, username) values (20, 'camilla_c'); -- CRM business consultant
+
+-- Peter Petersen
+Insert into skills_users(Skill_ID, username) values (2, 'peter_p');  -- HTML
+Insert into skills_users(Skill_ID, username) values (3, 'peter_p');  -- CSS
+Insert into skills_users(Skill_ID, username) values (21, 'peter_p'); -- e-commerce consultant
+
+-- Julia Jensen
+Insert into skills_users(Skill_ID, username) values (7, 'julia_j');  -- C#
+Insert into skills_users(Skill_ID, username) values (15, 'julia_j'); -- Projektledelse
+Insert into skills_users(Skill_ID, username) values (18, 'julia_j'); -- Test automation
+
+-- Anders Andersen
+Insert into skills_users(Skill_ID, username) values (10, 'anders_a'); -- Salesforce Apex udvikling
+Insert into skills_users(Skill_ID, username) values (11, 'anders_a'); -- Salesforce LWC udvikling
+Insert into skills_users(Skill_ID, username) values (12, 'anders_a'); -- Salesforce CC udvikling
+
+-- Mia Mikkelsen
+Insert into skills_users(Skill_ID, username) values (3, 'mia_m');  -- CSS
+Insert into skills_users(Skill_ID, username) values (8, 'mia_m');  -- JavaScript
+Insert into skills_users(Skill_ID, username) values (17, 'mia_m'); -- QA Manager
+
+-- Sebastian Sørensen
+Insert into skills_users(Skill_ID, username) values (1, 'sebastian_s'); -- Java
+Insert into skills_users(Skill_ID, username) values (4, 'sebastian_s'); -- SQL
+Insert into skills_users(Skill_ID, username) values (16, 'sebastian_s'); -- Programledelse
+
+-- Frederik Frederiksen
+Insert into skills_users(Skill_ID, username) values (6, 'frederik_f'); -- C++
+Insert into skills_users(Skill_ID, username) values (7, 'frederik_f'); -- C#
+Insert into skills_users(Skill_ID, username) values (20, 'frederik_f'); -- CRM business consultant
+
+-- Clara Clausen
+Insert into skills_users(Skill_ID, username) values (8, 'clara_c');  -- JavaScript
+Insert into skills_users(Skill_ID, username) values (9, 'clara_c');  -- Frontend
+Insert into skills_users(Skill_ID, username) values (17, 'clara_c'); -- QA Manager
+
+-- Simon Simonsen
+Insert into skills_users(Skill_ID, username) values (11, 'simon_s'); -- Salesforce LWC udvikling
+Insert into skills_users(Skill_ID, username) values (12, 'simon_s'); -- Salesforce CC udvikling
+Insert into skills_users(Skill_ID, username) values (21, 'simon_s'); -- e-commerce consultant
+
+-- Eline Ellegaard
+Insert into skills_users(Skill_ID, username) values (5, 'eline_e');   -- Python
+Insert into skills_users(Skill_ID, username) values (13, 'eline_e'); -- Azure integration udvikling
+Insert into skills_users(Skill_ID, username) values (18, 'eline_e'); -- Test automation
+
+-- Magnus Møller
+Insert into skills_users(Skill_ID, username) values (7, 'magnus_m');  -- C#
+Insert into skills_users(Skill_ID, username) values (14, 'magnus_m'); -- Enterprise arkitektur
+Insert into skills_users(Skill_ID, username) values (16, 'magnus_m'); -- Programledelse
+
+-- Victor Vestergaard
+Insert into skills_users(Skill_ID, username) values (9, 'victor_v');  -- Frontend
+Insert into skills_users(Skill_ID, username) values (10, 'victor_v'); -- Salesforce Apex udvikling
+Insert into skills_users(Skill_ID, username) values (19, 'victor_v'); -- Manuel testing
+
 
 -- Assign skills to tasks;
-Insert into skills_tasks(Skill_ID, task_id) values (1, 1);
-Insert into skills_tasks(Skill_ID, task_id) values (2, 1);
-Insert into skills_tasks(Skill_ID, task_id) values (3, 2);
-Insert into skills_tasks(Skill_ID, task_id) values (4, 2);
-Insert into skills_tasks(Skill_ID, task_id) values (5, 3);
-Insert into skills_tasks(Skill_ID, task_id) values (6, 3);
+
+-- Tasks for project 1 (Websideredesign)
+Insert into skills_tasks(Skill_ID, task_id) values (2, 1);  -- HTML for Task 1
+Insert into skills_tasks(Skill_ID, task_id) values (3, 1);  -- CSS for Task 1
+Insert into skills_tasks(Skill_ID, task_id) values (8, 1);  -- JavaScript for Task 1
+
+Insert into skills_tasks(Skill_ID, task_id) values (2, 2);  -- HTML for Task 2
+Insert into skills_tasks(Skill_ID, task_id) values (3, 2);  -- CSS for Task 2
+Insert into skills_tasks(Skill_ID, task_id) values (8, 2);  -- JavaScript for Task 2
+
+Insert into skills_tasks(Skill_ID, task_id) values (1, 3);  -- Java for Task 3
+Insert into skills_tasks(Skill_ID, task_id) values (4, 3);  -- SQL for Task 3
+
+-- Tasks for project 2 (Mobilappudvikling)
+Insert into skills_tasks(Skill_ID, task_id) values (1, 4);  -- Java for Task 4
+Insert into skills_tasks(Skill_ID, task_id) values (6, 4);  -- C++ for Task 4
+
+Insert into skills_tasks(Skill_ID, task_id) values (5, 5);  -- Python for Task 5
+Insert into skills_tasks(Skill_ID, task_id) values (8, 5);  -- JavaScript for Task 5
+
+Insert into skills_tasks(Skill_ID, task_id) values (4, 6);  -- SQL for Task 6
+Insert into skills_tasks(Skill_ID, task_id) values (7, 6);  -- C# for Task 6
+
+-- Tasks for project 3 (Databaseoptimering)
+Insert into skills_tasks(Skill_ID, task_id) values (4, 7);  -- SQL for Task 7
+Insert into skills_tasks(Skill_ID, task_id) values (15, 7); -- Projektledelse for Task 7
+
+Insert into skills_tasks(Skill_ID, task_id) values (6, 8);  -- C++ for Task 8
+Insert into skills_tasks(Skill_ID, task_id) values (14, 8); -- Enterprise arkitektur for Task 8
+
+Insert into skills_tasks(Skill_ID, task_id) values (1, 9);  -- Java for Task 9
+Insert into skills_tasks(Skill_ID, task_id) values (13, 9); -- Azure integration udvikling for Task 9
+
+-- Tasks for project 4 (Cloudmigrering)
+Insert into skills_tasks(Skill_ID, task_id) values (13, 10); -- Azure integration udvikling for Task 10
+Insert into skills_tasks(Skill_ID, task_id) values (15, 10); -- Projektledelse for Task 10
+
+Insert into skills_tasks(Skill_ID, task_id) values (17, 11); -- QA Manager for Task 11
+Insert into skills_tasks(Skill_ID, task_id) values (18, 11); -- Manuel testing for Task 11
+
+Insert into skills_tasks(Skill_ID, task_id) values (1, 12);  -- Java for Task 12
+Insert into skills_tasks(Skill_ID, task_id) values (8, 12);  -- JavaScript for Task 12
+
+-- Tasks for project 5 (E-handelsplatform)
+Insert into skills_tasks(Skill_ID, task_id) values (9, 13);  -- Frontend for Task 13
+Insert into skills_tasks(Skill_ID, task_id) values (10, 13); -- Salesforce Apex udvikling for Task 13
+
+Insert into skills_tasks(Skill_ID, task_id) values (11, 14); -- Salesforce LWC udvikling for Task 14
+Insert into skills_tasks(Skill_ID, task_id) values (12, 14); -- Salesforce CC udvikling for Task 14
+
+Insert into skills_tasks(Skill_ID, task_id) values (20, 15); -- CRM business consultant for Task 15
+Insert into skills_tasks(Skill_ID, task_id) values (21, 15); -- e-commerce consultant for Task 15
+
+Insert into skills_tasks(Skill_ID, task_id) values (14, 16); -- Enterprise arkitektur for Task 16
+Insert into skills_tasks(Skill_ID, task_id) values (15, 16); -- Projektledelse for Task 16
+
+Insert into skills_tasks(Skill_ID, task_id) values (5, 17);  -- Python for Task 17
+Insert into skills_tasks(Skill_ID, task_id) values (18, 17); -- Manuel testing for Task 17
+
+Insert into skills_tasks(Skill_ID, task_id) values (16, 18); -- Programledelse for Task 18
+Insert into skills_tasks(Skill_ID, task_id) values (19, 18); -- Test automation for Task 18
+
+Insert into skills_tasks(Skill_ID, task_id) values (2, 19);  -- HTML for Task 19
+Insert into skills_tasks(Skill_ID, task_id) values (9, 19);  -- Frontend for Task 19
+
+Insert into skills_tasks(Skill_ID, task_id) values (4, 20);  -- SQL for Task 20
+Insert into skills_tasks(Skill_ID, task_id) values (7, 20);  -- C# for Task 20
