@@ -28,7 +28,7 @@ Insert into users(username, firstname, lastname, password, email, streetname, st
 Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Websideredesign', 'Redesign af virksomhedens hjemmeside', '2024-07-15', 195, 0, 'anna01');
 Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Mobilappudvikling', 'Udvikling af en ny mobilapp', '2024-08-01', 120, 0, 'thomas99');
 Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Databaseoptimering', 'Optimering af databaseydelse', '2024-06-20', 115, 0, 'karenk');
-Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Cloudmigrering', 'Migrering af tjenester til skyen', '2024-09-10', 100, 0, 'martin76');
+Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('Cloudmigrering', 'Migrering af tjenester til skyen', '2024-09-10', 100, 100, 'martin76');
 Insert into projects(name, description, deadline, estimatedhours, usedhours, username) values ('E-handelsplatform', 'Udvikling af en e-handelsplatform', '2024-12-31', 0, 0, 'lisaL');
 
 -- Delprojekter:
