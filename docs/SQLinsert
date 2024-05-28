@@ -39,8 +39,8 @@ Insert into subprojects(name, description, estimatedhours, usedhours, project_ID
 Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('API Integration', 'Integration af tredjeparts APIer', 70, 0, 2);
 Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Databaseskema Design', 'Design af databaseskema', 45, 0, 3);
 Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Ydelsestuning', 'Tuning af databaseydelse', 70, 0, 3);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Cloud Setup', 'Opsætning af cloud infrastruktur', 80, 0, 4);
-Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Datamigrering', 'Migrering af data til skyen', 20, 0, 4);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Cloud Setup', 'Opsætning af cloud infrastruktur', 80, 80, 4);
+Insert into subprojects(name, description, estimatedhours, usedhours, project_ID) values ('Datamigrering', 'Migrering af data til skyen', 20, 20, 4);
 
 -- Tasks:
 
@@ -52,13 +52,13 @@ Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, d
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('API Integration Test', 'Test integration med eksterne APIer', 20, 0, 4, 'f', 'low');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Skema Normalisering', 'Normaliser databaseskema', 15, 0, 5, 'f', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Indeks Opsætning', 'Opret indekser for hurtigere forespørgsler', 15, 0, 6, 'f', 'medium');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Cloud Infrastruktur', 'Opsæt virtuelle maskiner og netværk', 60, 0, 7, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Data Backup', 'Sikre backup af alle data før migrering', 20, 0, 8, 'f', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Cloud Infrastruktur', 'Opsæt virtuelle maskiner og netværk', 60, 60, 7, 't', 'high');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Data Backup', 'Sikre backup af alle data før migrering', 20, 20, 8, 't', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Unit Testing', 'Skriv enhedstests for alle moduler', 25, 0, 4, 'f', 'medium');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Integration Testing', 'Test hele systemet integration', 30, 0, 5, 'f', 'medium');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Performance Optimization', 'Optimer systemets ydeevne', 40, 0, 6, 'f', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Security Audit', 'Gennemfør sikkerhedstjek', 35, 0, 2, 'f', 'high');
-Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('User Training', 'Træn brugere i det nye system', 20, 0, 7, 'f', 'medium');
+Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('User Training', 'Træn brugere i det nye system', 20, 20, 7, 't', 'medium');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Documentation', 'Dokumenter systemet og koden', 15, 0, 6, 'f', 'low');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Deployment', 'Udrulning af systemet i produktionsmiljø', 25, 0, 4, 'f', 'high');
 Insert into tasks(name, description, estimatedhours, usedhours, subproject_ID, done, status) values ('Bug Fixing', 'Ret fejl fundet under test', 30, 0, 2, 'f', 'medium');
